@@ -1,0 +1,249 @@
+<!--
+    Copyright (C) 2023  Live Assistant official Windows app Authors
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<Page
+    x:Class="LiveAssistant.Pages.OverlayExplorerPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:database="using:LiveAssistant.Database"
+    xmlns:components="using:LiveAssistant.Components"
+    mc:Ignorable="d"
+    NavigationCacheMode="Required">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="256"/>
+            <ColumnDefinition Width="1"/>
+            <ColumnDefinition Width="320"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid
+            Grid.Column="0"
+            Padding="12">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid
+                Grid.Row="0"
+                ColumnSpacing="12">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Button
+                    x:Uid="OverlayExplorerAddButton"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    HorizontalAlignment="Stretch"
+                    Style="{StaticResource AccentButtonStyle}"
+                    Visibility="{x:Bind _viewModel.IsProvidersEmpty, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Command="{x:Bind _viewModel.AddProviderCommand}"/>
+
+                <DropDownButton
+                    Grid.Column="0"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Left"
+                    Visibility="{x:Bind _viewModel.IsProvidersEmpty, Mode=OneWay, Converter={StaticResource BooleanToVisibilityInverseConverter}}"
+                    Content="{x:Bind _viewModel.Provider.Name, Mode=OneWay}">
+
+                    <DropDownButton.Flyout>
+                        <MenuFlyout
+                            x:Name="ProvidersMenu"
+                            Placement="BottomEdgeAlignedLeft"/>
+                    </DropDownButton.Flyout>
+                </DropDownButton>
+
+                <Button
+                    Grid.Column="1"
+                    VerticalAlignment="Stretch"
+                    Padding="8 0"
+                    Visibility="{x:Bind _viewModel.IsProvidersEmpty, Mode=OneWay, Converter={StaticResource BooleanToVisibilityInverseConverter}}"
+                    Command="{x:Bind _viewModel.AddProviderCommand}">
+
+                    <FontIcon
+                        Glyph="{StaticResource IconAdd}"/>
+                </Button>
+            </Grid>
+
+            <Border
+                Grid.Row="1"
+                HorizontalAlignment="Stretch"
+                Height="1"
+                Margin="0 12 0 0"
+                Background="{ThemeResource DividerStrokeColorDefault}"/>
+
+            <ListView
+                Grid.Row="2"
+                Padding="0 12"
+                Margin="-4 0"
+                ItemsSource="{x:Bind _viewModel.Overlays, Mode=OneWay}"
+                Visibility="{x:Bind _viewModel.IsOverlaysEmpty, Mode=OneWay, Converter={StaticResource BooleanToVisibilityInverseConverter}}"
+                SelectionMode="Single"
+                SelectedValue="{x:Bind _viewModel.Overlay, Mode=TwoWay}">
+
+                <ListView.Header>
+                    <Grid
+                        HorizontalAlignment="Stretch"
+                        ColumnSpacing="12"
+                        Margin="4 0 4 8">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button
+                            x:Uid="OverlayExplorerReloadProviderButton"
+                            Grid.Column="0"
+                            HorizontalAlignment="Stretch"
+                            Command="{x:Bind _viewModel.ReloadProviderCommand}"
+                            CommandParameter="{x:Bind _viewModel.Provider, Mode=OneWay}"/>
+
+                        <Button
+                            x:Uid="OverlayExplorerRemoveProviderButton"
+                            Grid.Column="1"
+                            HorizontalAlignment="Stretch"
+                            Command="{x:Bind _viewModel.RemoveProviderCommand}"
+                            CommandParameter="{x:Bind _viewModel.Provider, Mode=OneWay}"/>
+                    </Grid>
+                </ListView.Header>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate
+                        x:DataType="database:Overlay">
+
+                        <StackPanel
+                            Orientation="Vertical"
+                            Margin="0 6">
+
+                            <TextBlock
+                                Style="{ThemeResource BodyTextBlockStyle}"
+                                Foreground="{ThemeResource TextFillColorPrimary}"
+                                Text="{x:Bind Name, Mode=OneWay}"/>
+
+                            <TextBlock
+                                Style="{ThemeResource CaptionTextBlockStyle}"
+                                Foreground="{ThemeResource TextFillColorTertiary}"
+                                Text="{x:Bind Category, Mode=OneWay}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <components:EmptyState
+                Grid.Row="2"
+                Visibility="{x:Bind _viewModel.IsOverlaysEmpty, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+                Glyph="{StaticResource IconOverlay}"/>
+        </Grid>
+
+        <Border
+            Grid.Column="1"
+            Margin="0 12"
+            Background="{ThemeResource DividerStrokeColorDefault}"/>
+
+        <ScrollViewer
+            Grid.Column="2"
+            Visibility="{x:Bind _viewModel.IsFieldsEmpty, Mode=OneWay, Converter={StaticResource BooleanToVisibilityInverseConverter}}">
+
+            <StackPanel
+                Margin="12"
+                Orientation="Vertical">
+
+                <Button
+                    x:Uid="OverlayExplorerCopyUrlButton"
+                    HorizontalAlignment="Stretch"
+                    Style="{StaticResource AccentButtonStyle}"
+                    Command="{x:Bind _viewModel.CopyUrlCommand}"/>
+
+                <DropDownButton
+                    x:Uid="OverlayExplorerPreviewBackgroundColorDropDownButton"
+                    Margin="0 12 0 0"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Left">
+
+                    <DropDownButton.Flyout>
+                        <Flyout>
+                            <ColorPicker
+                                Color="{x:Bind _viewModel.BackgroundColor, Mode=TwoWay}"/>
+                        </Flyout>
+                    </DropDownButton.Flyout>
+                </DropDownButton>
+
+                <InfoBar
+                    x:Uid="OverlayExplorerServerInfoBar"
+                    Margin="0 12 0 0"
+                    HorizontalAlignment="Stretch"
+                    IsOpen="True"
+                    IsClosable="False"
+                    Severity="Informational"
+                    Visibility="{x:Bind _socketServerViewModel.Manager.IsRunning, Mode=OneWay, Converter={StaticResource BooleanToVisibilityInverseConverter}}"/>
+
+                <Border
+                    HorizontalAlignment="Stretch"
+                    Margin="0 12"
+                    Height="1"
+                    Background="{ThemeResource DividerStrokeColorDefault}"/>
+
+                <StackPanel
+                    x:Name="FieldsPanel"
+                    Orientation="Vertical"
+                    Spacing="12"/>
+            </StackPanel>
+        </ScrollViewer>
+
+        <components:EmptyState
+            Grid.Column="2"
+            Visibility="{x:Bind _viewModel.IsFieldsEmpty, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+            Glyph="{StaticResource IconOverlayFields}"/>
+
+        <Grid
+            Grid.Column="3"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            BorderThickness="1 0 0 0"
+            BorderBrush="{ThemeResource CardStrokeColorDefault}"
+            Background="{ThemeResource CardBackgroundFillColorDefault}">
+
+            <WebView2
+                Grid.Row="0"
+                Grid.Column="0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Visibility="{x:Bind _viewModel.Overlay, Mode=OneWay, Converter={StaticResource IsNullToVisibilityConverter}}"
+                Source="{x:Bind _viewModel.PreviewUri, Mode=OneWay}"
+                CanGoBack="False"
+                CanGoForward="False"
+                DefaultBackgroundColor="{x:Bind _viewModel.BackgroundColor, Mode=OneWay}"/>
+
+            <components:EmptyState
+                Grid.Row="0"
+                Grid.Column="0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Visibility="{x:Bind _viewModel.Overlay, Mode=OneWay, Converter={StaticResource IsNullToVisibilityInverseConverter}}"
+                Glyph="{StaticResource IconWebsite}"/>
+        </Grid>
+    </Grid>
+</Page>

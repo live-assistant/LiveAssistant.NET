@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AppDisplayName" xml:space="preserve">
+    <value>直播助理</value>
+  </data>
+  <data name="AudioDeviceComboBox.Header" xml:space="preserve">
+    <value>音频设备</value>
+  </data>
+  <data name="BilibiliHostDialogChannelIdTextBoxPlaceholderText" xml:space="preserve">
+    <value>频道 ID</value>
+  </data>
+  <data name="BilibiliHostDialogTitle" xml:space="preserve">
+    <value>添加哔哩哔哩主播</value>
+  </data>
+  <data name="ButtonCancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="ButtonConfirm" xml:space="preserve">
+    <value>确认</value>
+  </data>
+  <data name="ButtonConnect" xml:space="preserve">
+    <value>连接</value>
+  </data>
+  <data name="ButtonDisconnect" xml:space="preserve">
+    <value>断开</value>
+  </data>
+  <data name="EngineComboBox.Header" xml:space="preserve">
+    <value>引擎</value>
+  </data>
+  <data name="ExtensionHeartRateHeader.Content" xml:space="preserve">
+    <value>心率</value>
+  </data>
+  <data name="ExtensionHeartRateHypeRateIdTextBox.PlaceholderText" xml:space="preserve">
+    <value>HypeRate 会话 ID</value>
+  </data>
+  <data name="ExtensionLiveCaptionHeader.Content" xml:space="preserve">
+    <value>实时字幕</value>
+  </data>
+  <data name="ExtensionLiveCaptionPreviewPlaceholder" xml:space="preserve">
+    <value>开始说话以查看预览</value>
+  </data>
+  <data name="ExtensionMediaInfoEmptyState.Title" xml:space="preserve">
+    <value>没有信息</value>
+  </data>
+  <data name="ExtensionMediaInfoHeader.Content" xml:space="preserve">
+    <value>媒体信息</value>
+  </data>
+  <data name="SocketServerClientsDropDownButton.Text" xml:space="preserve">
+    <value>客户端</value>
+  </data>
+  <data name="SocketServerCheckBox.Content" xml:space="preserve">
+    <value>服务器</value>
+  </data>
+  <data name="ExtensionTTSEngineNameAmazonPolly" xml:space="preserve">
+    <value>Amazon Polly</value>
+  </data>
+  <data name="ExtensionTTSEngineNameSystem" xml:space="preserve">
+    <value>系统</value>
+  </data>
+  <data name="ExtensionTTSHeader.Content" xml:space="preserve">
+    <value>文本转语音</value>
+  </data>
+  <data name="VoiceComboBox.Header" xml:space="preserve">
+    <value>声音</value>
+  </data>
+  <data name="ExtensionTTSTemplateMessage" xml:space="preserve">
+    <value>{0}说{1}</value>
+  </data>
+  <data name="GiftsListEmptyState.Title" xml:space="preserve">
+    <value>没有礼物</value>
+  </data>
+  <data name="HistoryEmptyState.Body" xml:space="preserve">
+    <value>在记录器页面录制一个新的场次来查看历史记录</value>
+  </data>
+  <data name="HistoryEmptyState.Title" xml:space="preserve">
+    <value>没有场次</value>
+  </data>
+  <data name="HostPickerHeader.Text" xml:space="preserve">
+    <value>主播</value>
+  </data>
+  <data name="MainWindowTabNameHistory" xml:space="preserve">
+    <value>历史</value>
+  </data>
+  <data name="MainWindowTabNameRecorder" xml:space="preserve">
+    <value>记录器</value>
+  </data>
+  <data name="MessagesListEmptyState.Title" xml:space="preserve">
+    <value>没有消息</value>
+  </data>
+  <data name="PasswordBox.PlaceholderText" xml:space="preserve">
+    <value>密码</value>
+  </data>
+  <data name="PlatformBilibili" xml:space="preserve">
+    <value>哔哩哔哩</value>
+  </data>
+  <data name="PlatformTwitch" xml:space="preserve">
+    <value>Twitch</value>
+  </data>
+  <data name="PlatformYouTube" xml:space="preserve">
+    <value>YouTube</value>
+  </data>
+  <data name="PortNumberBox.PlaceholderText" xml:space="preserve">
+    <value>端口</value>
+  </data>
+  <data name="SocketDataTypeCaption" xml:space="preserve">
+    <value>字幕</value>
+  </data>
+  <data name="SocketDataTypeGift" xml:space="preserve">
+    <value>礼物</value>
+  </data>
+  <data name="SocketDataTypeHeartRate" xml:space="preserve">
+    <value>心率</value>
+  </data>
+  <data name="SocketDataTypeMediaInfo" xml:space="preserve">
+    <value>媒体信息</value>
+  </data>
+  <data name="SocketDataTypeMembership" xml:space="preserve">
+    <value>订阅</value>
+  </data>
+  <data name="SocketDataTypeMessage" xml:space="preserve">
+    <value>消息</value>
+  </data>
+  <data name="SocketDataTypeSuperChat" xml:space="preserve">
+    <value>醒目留言</value>
+  </data>
+  <data name="SocketDataTypeViewersCount" xml:space="preserve">
+    <value>观众人数</value>
+  </data>
+  <data name="TermSuperChat" xml:space="preserve">
+    <value>醒目留言</value>
+  </data>
+  <data name="SocketServerTestModeToggleButtonToolTip.Content" xml:space="preserve">
+    <value>测试模式</value>
+  </data>
+  <data name="ExtensionKaraokeStationHeader.Content" xml:space="preserve">
+    <value>点歌台</value>
+  </data>
+  <data name="ExtensionKaraokeStationKeywordDefault" xml:space="preserve">
+    <value>点歌</value>
+  </data>
+  <data name="ExtensionKaraokeStationMinimumAudienceLevelNumberBox.Header" xml:space="preserve">
+    <value>最低观众等级</value>
+  </data>
+  <data name="ExtensionKaraokeStationRequiresWearingBadgeCheckBox.Content" xml:space="preserve">
+    <value>需要佩戴徽章</value>
+  </data>
+  <data name="ExtensionKaraokeStationKeywordTextBox.Header" xml:space="preserve">
+    <value>触发关键词</value>
+  </data>
+  <data name="ExtensionKaraokeStationMinimumIntervalNumberBox.Header" xml:space="preserve">
+    <value>最短间隔（秒）</value>
+  </data>
+  <data name="ExtensionKaraokeStationEmptyState.Title" xml:space="preserve">
+    <value>没有歌曲</value>
+  </data>
+  <data name="ExtensionKaraokeStationAddSongTextBox.PlaceholderText" xml:space="preserve">
+    <value>添加歌曲</value>
+  </data>
+  <data name="SocketDataTypeKaraokeStation" xml:space="preserve">
+    <value>点歌台</value>
+  </data>
+  <data name="ExtensionMediaInfoAlbumFallbackValue" xml:space="preserve">
+    <value>专辑</value>
+  </data>
+  <data name="ExtensionMediaInfoArtistFallbackValue" xml:space="preserve">
+    <value>艺术家</value>
+  </data>
+  <data name="AppDescription" xml:space="preserve">
+    <value>你的一站式直播管理方案</value>
+  </data>
+  <data name="ExtensionMediaInfoTitleFallbackValue" xml:space="preserve">
+    <value>标题</value>
+  </data>
+  <data name="ExtensionInputInfoHeader.Content" xml:space="preserve">
+    <value>系统输入信息</value>
+  </data>
+  <data name="SocketDataTypeMousePosition" xml:space="preserve">
+    <value>鼠标位置</value>
+  </data>
+  <data name="SocketDataTypeMouseButton" xml:space="preserve">
+    <value>鼠标按键</value>
+  </data>
+  <data name="SocketDataTypeKeyboardButton" xml:space="preserve">
+    <value>键盘按键</value>
+  </data>
+  <data name="SocketDataTypeGamepad" xml:space="preserve">
+    <value>游戏手柄</value>
+  </data>
+  <data name="ExtensionInputInfoMouseCheckBox.Content" xml:space="preserve">
+    <value>鼠标</value>
+  </data>
+  <data name="ExtensionInputInfoKeyboardCheckBox.Content" xml:space="preserve">
+    <value>键盘</value>
+  </data>
+  <data name="ExtensionInputInfoGamePadCheckBox.Content" xml:space="preserve">
+    <value>手柄</value>
+  </data>
+  <data name="ExtensionTTSAmazonPollyKeyPasswordBox.Header" xml:space="preserve">
+    <value>访问密钥</value>
+  </data>
+  <data name="ExtensionTTSAmazonPollySecretPasswordBox.Header" xml:space="preserve">
+    <value>秘密访问密钥</value>
+  </data>
+  <data name="SocketDataTypeAudienceUpdate" xml:space="preserve">
+    <value>观众数据更新</value>
+  </data>
+  <data name="SocketDataTypeEnter" xml:space="preserve">
+    <value>进入直播间</value>
+  </data>
+  <data name="SocketDataTypeFollow" xml:space="preserve">
+    <value>关注</value>
+  </data>
+  <data name="TermAnonymous" xml:space="preserve">
+    <value>匿名</value>
+  </data>
+  <data name="MainWindowTabNameOverlayExplorer" xml:space="preserve">
+    <value>覆盖层浏览器</value>
+  </data>
+  <data name="OverlayExplorerAddProviderDialogUrlTextBoxPlaceholderText" xml:space="preserve">
+    <value>配置链接</value>
+  </data>
+  <data name="ButtonAdd" xml:space="preserve">
+    <value>添加</value>
+  </data>
+  <data name="OverlayExplorerAddButton.Content" xml:space="preserve">
+    <value>添加来源</value>
+  </data>
+  <data name="OverlayExplorerAddProviderDialogTitle" xml:space="preserve">
+    <value>添加来源</value>
+  </data>
+  <data name="OverlayExplorerPreviewBackgroundColorDropDownButton.Content" xml:space="preserve">
+    <value>预览背景颜色</value>
+  </data>
+  <data name="OverlayExplorerCopyUrlButton.Content" xml:space="preserve">
+    <value>复制链接</value>
+  </data>
+  <data name="OverlayExplorerRemoveProviderButton.Content" xml:space="preserve">
+    <value>移除</value>
+  </data>
+  <data name="OverlayExplorerReloadProviderButton.Content" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="SocketServerPasswordMenuRegenerate.Text" xml:space="preserve">
+    <value>重新生成</value>
+  </data>
+  <data name="SocketServerPasswordDropDownButton.Content" xml:space="preserve">
+    <value>密码</value>
+  </data>
+  <data name="SocketServerPasswordMenuCopy.Text" xml:space="preserve">
+    <value>复制</value>
+  </data>
+  <data name="OverlayExplorerServerInfoBar.Message" xml:space="preserve">
+    <value>请确保在测试覆盖层的时候服务器也在运行</value>
+  </data>
+  <data name="ExtensionAudioSpectrumHeader.Content" xml:space="preserve">
+    <value>音频频谱</value>
+  </data>
+  <data name="SocketDataTypeInputAudioSpectrum" xml:space="preserve">
+    <value>录制设备频谱</value>
+  </data>
+  <data name="SocketDataTypeOutputAudioSpectrum" xml:space="preserve">
+    <value>播放设备频谱</value>
+  </data>
+  <data name="ExceptionInfoBarTitle" xml:space="preserve">
+    <value>发生了一个异常</value>
+  </data>
+  <data name="ExceptionMessageAuthenticationExpired" xml:space="preserve">
+    <value>身份验证已过期</value>
+  </data>
+  <data name="BilibiliConnectorExceptionCannotConnect" xml:space="preserve">
+    <value>无法连接到服务器</value>
+  </data>
+  <data name="AudioDeviceInputComboBox.Header" xml:space="preserve">
+    <value>音频输入设备</value>
+  </data>
+  <data name="AudioDeviceOutputComboBox.Header" xml:space="preserve">
+    <value>音频输出设备</value>
+  </data>
+  <data name="MainWindowTabNameSettings" xml:space="preserve">
+    <value>设置</value>
+  </data>
+  <data name="SettingsSendDiagnosticDataTitle.Text" xml:space="preserve">
+    <value>发送诊断数据</value>
+  </data>
+  <data name="SettingsSendDiagnosticDataSubtitle.Text" xml:space="preserve">
+    <value>这将允许我们收集必要的应用诊断数据以改进应用性能，对这项设置的更改将在下次启动时生效。</value>
+  </data>
+  <data name="SettingsPackages.Header" xml:space="preserve">
+    <value>本应用中使用的包</value>
+  </data>
+  <data name="SettingsNotice.Header" xml:space="preserve">
+    <value>第三方软件说明</value>
+  </data>
+  <data name="SettingsLicense.Header" xml:space="preserve">
+    <value>许可</value>
+  </data>
+  <data name="SettingsSpecialThanks.Header" xml:space="preserve">
+    <value>特别鸣谢</value>
+  </data>
+  <data name="SettingsTrademarks.Text" xml:space="preserve">
+    <value>哔哩哔哩、Twitch、YouTube、Amazon 和 HypeRate 是其各自所有者的商标。</value>
+  </data>
+</root>

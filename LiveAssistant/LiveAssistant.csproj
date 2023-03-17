@@ -1,0 +1,213 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows10.0.22621.0</TargetFramework>
+    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    <RootNamespace>LiveAssistant</RootNamespace>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <Platforms>x64;arm64</Platforms>
+    <RuntimeIdentifiers>win10-x64;win10-arm64</RuntimeIdentifiers>
+    <PublishProfile>win10-$(Platform).pubxml</PublishProfile>
+    <UseWinUI>true</UseWinUI>
+    <EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
+    <GenerateTemporaryStoreCertificate>True</GenerateTemporaryStoreCertificate>
+    <SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
+    <IsPublishable>False</IsPublishable>
+    <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
+    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
+    <AppxSymbolPackageEnabled>True</AppxSymbolPackageEnabled>
+    <GenerateTestArtifacts>True</GenerateTestArtifacts>
+    <AppxBundle>Never</AppxBundle>
+    <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
+    <Nullable>enable</Nullable>
+    <ErrorReport>send</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="Strings\en-US\Resources.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Assets\LargeTile.scale-100.png" />
+    <None Remove="Assets\StoreLogo.scale-125.png" />
+    <None Remove="Assets\StoreLogo.scale-150.png" />
+    <None Remove="Components\CredentialsDialog.xaml" />
+    <None Remove="Components\EmptyState.xaml" />
+    <None Remove="Components\SessionController.xaml" />
+    <None Remove="Components\SessionViewer.xaml" />
+    <None Remove="Components\SocketServerController.xaml" />
+    <None Remove="Dictionaries\Converters.xaml" />
+    <None Remove="Dictionaries\Icons.xaml" />
+    <None Remove="Dictionaries\Styles.xaml" />
+    <None Remove="Dictionaries\Templates.xaml" />
+    <None Remove="Extensions\AudioSpectrum\AudioSpectrumExtension.xaml" />
+    <None Remove="Extensions\HeartRate\HeartRateExtension.xaml" />
+    <None Remove="Extensions\InputInfo\InputInfoExtension.xaml" />
+    <None Remove="Extensions\KaraokeStation\KaraokeStationExtension.xaml" />
+    <None Remove="Extensions\LiveCaption\LiveCaptionExtension.xaml" />
+    <None Remove="Extensions\MediaInfo\MediaInfoExtension.xaml" />
+    <None Remove="Extensions\TextToSpeech\TextToSpeechExtension.xaml" />
+    <None Remove="Images\Package\VisualTemplateIcon.png" />
+    <None Remove="Images\Package\WindowIcon.ico" />
+    <None Remove="LICENSE" />
+    <None Remove="NOTICE.txt" />
+    <None Remove="Pages\HistoryPage.xaml" />
+    <None Remove="Pages\OverlayExplorerPage.xaml" />
+    <None Remove="Pages\RecorderPage.xaml" />
+    <None Remove="Pages\SettingsPage.xaml" />
+    <None Remove="Pages\WorkspacePage.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Remove="Dictionaries\Common_themeresources_any.xaml" />
+    <Page Remove="Dictionaries\Common_themeresources_v1.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Assets\SplashScreen.scale-200.png" />
+    <Content Include="Assets\LockScreenLogo.scale-200.png" />
+    <Content Include="Assets\Square150x150Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <Content Include="Images\Package\VisualTemplateIcon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Package\WindowIcon.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LICENSE">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NOTICE.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AWSSDK.Polly" Version="3.7.106.19" />
+    <PackageReference Include="CommunityToolkit.HighPerformance" Version="8.1.0" />
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
+    <PackageReference Include="EmbedIO" Version="3.5.2" />
+    <PackageReference Include="FftSharp" Version="1.1.6" />
+    <PackageReference Include="ISO.4217.CurrencyCodes" Version="1.0.10" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Graphics.Win2D" Version="1.0.4" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.230313.1" />
+    <PackageReference Include="MimeTypesMap" Version="1.0.8" />
+    <PackageReference Include="NAudio" Version="2.1.0" />
+    <PackageReference Include="NLipsum" Version="1.1.0" />
+    <PackageReference Include="PInvoke.Hid" Version="0.7.124" />
+    <PackageReference Include="PInvoke.SHCore" Version="0.7.124" />
+    <PackageReference Include="PInvoke.User32" Version="0.7.124" />
+    <PackageReference Include="RawInput.Sharp" Version="0.0.4" />
+    <PackageReference Include="Realm" Version="10.20.0" />
+    <PackageReference Include="Sentry" Version="3.29.1" />
+    <PackageReference Include="System.IO.Pipelines" Version="7.0.0" />
+    <PackageReference Include="System.Speech" Version="7.0.0" />
+    <PackageReference Include="TwitchLib" Version="3.5.3" />
+    <PackageReference Include="Unosquare.Swan" Version="3.0.0" />
+    <PackageReference Include="Vortice.XInput" Version="2.4.2" />
+    <PackageReference Include="Websocket.Client" Version="4.6.1" />
+    <PackageReference Include="WinUIEx" Version="2.1.0" />
+    <Manifest Include="$(ApplicationManifest)" />
+  </ItemGroup>
+
+  <!-- Defining the "Msix" ProjectCapability here allows the Single-project MSIX Packaging
+       Tools extension to be activated for this project even if the Windows App SDK Nuget
+       package has not yet been restored -->
+  <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnablePreviewMsixTooling)'=='true'">
+    <ProjectCapability Include="Msix" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LiveAssistant.Protocols\LiveAssistant.Protocols.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="Assets\Fonts\Segoe Fluent Icons.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Dictionaries\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Dictionaries\Icons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Components\SessionViewer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Components\SocketServerController.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <None Update="Dictionaries\WinUI\Common_themeresources_any.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Dictionaries\WinUI\Common_themeresources_v1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <Page Update="Pages\SettingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Extensions\AudioWaveform\AudioSpectrumExtension.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Pages\OverlayExplorerPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Extensions\InputInfo\InputInfoExtension.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Extensions\KaraokeStation\KaraokeStationExtension.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Extensions\MediaInfo\MediaInfoExtension.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Extensions\HeartRate\HeartRateExtension.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Dictionaries\Converters.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Dictionaries\Templates.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Extensions\TextToSpeech\TextToSpeechExtension.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Pages\HistoryPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Components\CredentialsDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Components\SessionController.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Components\EmptyState.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Extensions\LiveCaption\LiveCaptionExtension.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+</Project>

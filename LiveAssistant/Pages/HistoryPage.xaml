@@ -1,0 +1,152 @@
+<!--
+    Copyright (C) 2023  Live Assistant official Windows app Authors
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<Page
+    x:Class="LiveAssistant.Pages.HistoryPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:components="using:LiveAssistant.Components"
+    xmlns:database="using:LiveAssistant.Database"
+    mc:Ignorable="d"
+    NavigationCacheMode="Required">
+
+    <Grid
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch">
+
+        <Grid
+            Grid.Row="0"
+            Grid.Column="0"
+            Visibility="{x:Bind HistoryViewModel.IsAllSessionsEmpty, Mode=OneWay, Converter={StaticResource BooleanToVisibilityInverseConverter}}">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="1"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="1"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <CalendarView
+                Grid.Row="0"
+                Grid.Column="0"
+                Background="Transparent"
+                BorderThickness="0"
+                BorderBrush="Transparent"
+                DisplayMode="Month"
+                IsOutOfScopeEnabled="False"
+                IsTodayHighlighted="True"
+                TodayBackground="Transparent"
+                TodayFontWeight="Bold"
+                TodayHoverBackground="{ThemeResource SubtleFillColorSecondaryBrush}"
+                TodayPressedBackground="{ThemeResource SubtleFillColorTertiaryBrush}"
+                TodayForeground="{ThemeResource AccentTextFillColorPrimaryBrush}"
+                TodaySelectedInnerBorderBrush="{ThemeResource AccentFillColorDefaultBrush}"
+                TodayBlackoutBackground="Transparent"
+                TodayBlackoutForeground="{ThemeResource AccentTextFillColorPrimaryBrush}"
+                MinDate="{x:Bind HistoryViewModel.MinDate, Mode=OneWay}"
+                MaxDate="{x:Bind HistoryViewModel.MaxDate, Mode=OneWay}"
+                SelectedDatesChanged="OnSelectedDatesChanged"
+                CalendarViewDayItemChanging="OnCalendarViewDayItemChanging"/>
+
+            <Border
+                Grid.Row="1"
+                Grid.Column="0"
+                Margin="12 0"
+                Background="{ThemeResource DividerStrokeColorDefault}"/>
+
+            <ListView
+                Grid.Row="2"
+                Grid.Column="0"
+                Padding="0 12"
+                Visibility="{x:Bind HistoryViewModel.IsSessionsEmpty, Mode=OneWay, Converter={StaticResource BooleanToVisibilityInverseConverter}}"
+                ItemsSource="{x:Bind HistoryViewModel.Sessions, Mode=OneWay}"
+                Margin="6 0"
+                SelectionMode="Single"
+                SelectedValue="{x:Bind HistoryViewModel.ActiveSession, Mode=TwoWay}">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate
+                        x:DataType="database:Session">
+
+                        <StackPanel
+                            Orientation="Vertical"
+                            Spacing="1"
+                            Padding="0 6">
+
+                            <TextBlock
+                                Style="{ThemeResource BodyTextBlockStyle}"
+                                Foreground="{ThemeResource TextFillColorPrimary}"
+                                Text="{x:Bind StartTimestamp, Mode=OneWay, Converter={StaticResource DateTimeOffsetToNormalDateShortTimeConverter}}"/>
+
+                            <StackPanel
+                                Orientation="Horizontal"
+                                Spacing="2">
+
+                                <TextBlock
+                                    Style="{ThemeResource CaptionTextBlockStyle}"
+                                    Foreground="{ThemeResource TextFillColorTertiary}"
+                                    Text="{x:Bind Host, Mode=OneWay, Converter={StaticResource HostToDisplayNameConverter}}"/>
+
+                                <TextBlock
+                                    Style="{ThemeResource CaptionTextBlockStyle}"
+                                    Foreground="{ThemeResource TextFillColorTertiary}"
+                                    Text="&#183;"/>
+
+                                <TextBlock
+                                    Style="{ThemeResource CaptionTextBlockStyle}"
+                                    Foreground="{ThemeResource TextFillColorTertiary}"
+                                    Text="{x:Bind Platform, Mode=OneWay, Converter={StaticResource PlatformIntToTextConverter}}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <components:EmptyState
+                Grid.Row="2"
+                Grid.Column="0"
+                Visibility="{x:Bind HistoryViewModel.IsSessionsEmpty, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+                Glyph="{StaticResource IconList}"/>
+
+            <Border
+                Grid.Row="0"
+                Grid.RowSpan="3"
+                Grid.Column="1"
+                Margin="0 12"
+                Background="{ThemeResource DividerStrokeColorDefault}"/>
+
+            <components:SessionViewer
+                Grid.Row="0"
+                Grid.RowSpan="3"
+                Grid.Column="2"
+                Session="{x:Bind HistoryViewModel.ActiveSession, Mode=OneWay}"/>
+        </Grid>
+
+        <components:EmptyState
+            x:Uid="HistoryEmptyState"
+            Grid.Row="0"
+            Grid.Column="0"
+            Visibility="{x:Bind HistoryViewModel.IsAllSessionsEmpty, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+            Glyph="{StaticResource IconList}"/>
+    </Grid>
+</Page>

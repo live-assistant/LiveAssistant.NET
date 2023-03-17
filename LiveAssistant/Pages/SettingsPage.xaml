@@ -1,0 +1,145 @@
+<!--
+    Copyright (C) 2023  Live Assistant official Windows app Authors
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<Page
+    x:Class="LiveAssistant.Pages.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <ScrollViewer
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch">
+
+        <StackPanel
+            HorizontalAlignment="Center"
+            Orientation="Vertical"
+            Margin="16"
+            Width="720"
+            Spacing="12">
+
+            <Grid
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Top"
+                ColumnSpacing="12"
+                Padding="16"
+                Background="{ThemeResource CardBackgroundFillColorDefault}"
+                CornerRadius="4"
+                BorderBrush="{ThemeResource CardStrokeColorDefault}"
+                BorderThickness="1">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel
+                    Grid.Column="0"
+                    Orientation="Vertical"
+                    VerticalAlignment="Center"
+                    Spacing="2">
+
+                    <TextBlock
+                        x:Uid="SettingsSendDiagnosticDataTitle"
+                        Style="{ThemeResource BodyTextBlockStyle}"
+                        Foreground="{ThemeResource TextFillColorPrimary}"/>
+
+                    <TextBlock
+                        x:Uid="SettingsSendDiagnosticDataSubtitle"
+                        Style="{ThemeResource CaptionTextBlockStyle}"
+                        Foreground="{ThemeResource TextFillColorTertiary}"
+                        TextWrapping="WrapWholeWords"/>
+                </StackPanel>
+
+                <ToggleSwitch
+                    Grid.Column="1"
+                    VerticalAlignment="Center"
+                    MinWidth="0"
+                    IsOn="{x:Bind _settingsViewModel.SendDiagnosticData, Mode=TwoWay}"/>
+            </Grid>
+
+            <Expander
+                x:Uid="SettingsLicense"
+                HorizontalAlignment="Stretch"
+                HorizontalContentAlignment="Stretch">
+
+                <ScrollViewer
+                    HorizontalAlignment="Stretch"
+                    MaxHeight="560"
+                    Margin="0 -16">
+
+                    <TextBlock
+                        x:Name="LicenseTextBlock"
+                        Margin="0 16"
+                        TextWrapping="WrapWholeWords"/>
+                </ScrollViewer>
+            </Expander>
+
+            <Expander
+                x:Uid="SettingsSpecialThanks"
+                HorizontalAlignment="Stretch"
+                HorizontalContentAlignment="Stretch">
+
+                <StackPanel
+                    Orientation="Vertical">
+
+                    <HyperlinkButton
+                        Content="bililive_dm"
+                        NavigateUri="https://github.com/copyliu/bililive_dm"/>
+
+                    <HyperlinkButton
+                        Content="Csharp-Data-Visualization"
+                        NavigateUri="https://github.com/swharden/Csharp-Data-Visualization"/>
+                </StackPanel>
+            </Expander>
+
+            <Expander
+                x:Uid="SettingsPackages"
+                HorizontalAlignment="Stretch"
+                HorizontalContentAlignment="Stretch">
+
+                <StackPanel
+                    x:Name="PackagesList"
+                    Orientation="Vertical"/>
+            </Expander>
+
+            <Expander
+                x:Uid="SettingsNotice"
+                HorizontalAlignment="Stretch"
+                HorizontalContentAlignment="Stretch">
+
+                <ScrollViewer
+                    HorizontalAlignment="Stretch"
+                    MaxHeight="560"
+                    Margin="0 -16">
+
+                    <TextBlock
+                        x:Name="NoticeTextBlock"
+                        Margin="0 16"
+                        TextWrapping="WrapWholeWords"/>
+                </ScrollViewer>
+            </Expander>
+
+            <TextBlock
+                x:Uid="SettingsTrademarks"
+                Style="{ThemeResource CaptionTextBlockStyle}"
+                Foreground="{ThemeResource TextFillColorTertiary}"
+                TextWrapping="WrapWholeWords"/>
+        </StackPanel>
+    </ScrollViewer>
+</Page>
