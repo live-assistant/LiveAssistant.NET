@@ -21,11 +21,14 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:components="using:LiveAssistant.Components"
+    xmlns:mediaControl="using:Windows.Media.Control"
+    xmlns:local="using:LiveAssistant.Extensions.MediaInfo"
     mc:Ignorable="d">
 
     <UserControl.Resources>
         <x:Double x:Key="CoverSize">56</x:Double>
         <x:Int32 x:Key="CoverSizeInt">56</x:Int32>
+        <local:SourceAppUserModelIdToNameConverter x:Key="AppUserModelIdToNameConverter"/>
     </UserControl.Resources>
 
     <Expander
@@ -46,9 +49,18 @@
                 HorizontalContentAlignment="Left"
                 Margin="0 0 0 12"
                 Visibility="{x:Bind IsSessionsEmpty, Mode=OneWay, Converter={StaticResource BooleanToVisibilityInverseConverter}}"
-                DisplayMemberPath="SourceAppUserModelId"
                 ItemsSource="{x:Bind _sessions, Mode=OneWay}"
-                SelectedItem="{x:Bind Session, Mode=TwoWay}"/>
+                SelectedItem="{x:Bind Session, Mode=TwoWay}">
+
+                <ComboBox.ItemTemplate>
+                    <DataTemplate
+                        x:DataType="mediaControl:GlobalSystemMediaTransportControlsSession">
+
+                        <TextBlock
+                            Text="{x:Bind SourceAppUserModelId, Mode=OneWay, Converter={StaticResource AppUserModelIdToNameConverter}}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
 
             <components:EmptyState
                 x:Uid="ExtensionMediaInfoEmptyState"

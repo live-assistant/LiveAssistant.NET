@@ -13,11 +13,25 @@
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+using System;
 using CommunityToolkit.Mvvm.Messaging.Messages;
+using Microsoft.UI.Xaml.Data;
 
 namespace LiveAssistant.Extensions.MediaInfo;
 
 internal class RequireMediaInfoMessage : ValueChangedMessage<bool>
 {
     public RequireMediaInfoMessage() : base(true) { }
+}
+
+internal class SourceAppUserModelIdToNameConverter : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, string language)
+    {
+        var id = (string)value;
+        if (id.Contains("Spotify")) return "Spotify";
+        return id;
+    }
+
+    public object ConvertBack(object value, Type targetType, object parameter, string language) => throw new NotImplementedException();
 }

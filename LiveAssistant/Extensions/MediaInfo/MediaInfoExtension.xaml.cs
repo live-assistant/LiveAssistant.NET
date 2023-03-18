@@ -50,7 +50,7 @@ public sealed partial class MediaInfoExtension : INotifyPropertyChanged
 
     // Session manager
     private GlobalSystemMediaTransportControlsSessionManager? _sessionManager;
-    private readonly ObservableCollection<GlobalSystemMediaTransportControlsSession> _sessions = new();
+    private ObservableCollection<GlobalSystemMediaTransportControlsSession> _sessions = new();
     private bool IsSessionsEmpty => !_sessions.Any();
 
     private GlobalSystemMediaTransportControlsSession? _session;
@@ -123,6 +123,28 @@ public sealed partial class MediaInfoExtension : INotifyPropertyChanged
         }
     }
 
+    private readonly string[] _fullMatchAmuid =
+    {
+        "Chrome",
+        "ChromeBeta",
+        "MSEdge",
+        "MSEdgeDev",
+        "MSEdgeBeta",
+    };
+
+    private readonly string[] _prefixMatchAmuid =
+    {
+        "ChromeCanary.",
+        "MSEdgeCanary.",
+        "Mozilla.",
+        "OperaSoftware.",
+        "Brave.",
+        "Tencent.QQBrowser.",
+        "360se",
+        "360ent",
+        "360ChromeX",
+    };
+
     private void SetupSessions()
     {
         if (_sessionManager is null) return;
@@ -133,12 +155,15 @@ public sealed partial class MediaInfoExtension : INotifyPropertyChanged
             _sessions.Clear();
             foreach (var session in _sessionManager.GetSessions())
             {
+                var id = session.SourceAppUserModelId;
+                if (_fullMatchAmuid.Any(f => f == id)) continue;
+                if (_prefixMatchAmuid.Any(p => id.StartsWith(p))) continue;
                 _sessions.Add(session);
             }
             OnPropertyChanged(nameof(_sessions));
             OnPropertyChanged(nameof(IsSessionsEmpty));
 
-            if (Session is not null && !_sessions.Contains(Session)) Session = null;
+            if (Session is not null && _sessions.All(s => s.SourceAppUserModelId != Session.SourceAppUserModelId)) Session = null;
             Session ??= _sessions.FirstOrDefault();
         });
     }
@@ -203,7 +228,7 @@ public sealed partial class MediaInfoExtension : INotifyPropertyChanged
                     Media = media;
 
                     var thumbnail = Media.Thumbnail;
-                    if (thumbnail != null)
+                    if (thumbnail is not null)
                     {
                         // Set base64
                         var stream = await thumbnail.OpenReadAsync();

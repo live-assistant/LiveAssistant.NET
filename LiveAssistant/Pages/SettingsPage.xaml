@@ -85,6 +85,8 @@
 
                     <TextBlock
                         x:Name="LicenseTextBlock"
+                        Style="{ThemeResource CaptionTextBlockStyle}"
+                        Foreground="{ThemeResource TextFillColorSecondary}"
                         Margin="0 16"
                         TextWrapping="WrapWholeWords"/>
                 </ScrollViewer>
@@ -130,6 +132,8 @@
 
                     <TextBlock
                         x:Name="NoticeTextBlock"
+                        Style="{ThemeResource CaptionTextBlockStyle}"
+                        Foreground="{ThemeResource TextFillColorSecondary}"
                         Margin="0 16"
                         TextWrapping="WrapWholeWords"/>
                 </ScrollViewer>
