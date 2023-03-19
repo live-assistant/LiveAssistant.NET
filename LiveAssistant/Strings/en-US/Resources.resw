@@ -339,4 +339,28 @@
   <data name="SettingsTrademarks.Text" xml:space="preserve">
     <value>Bilibili, Twitch, YouTube, Amazon and HypeRate are trademarks of their respective owners.</value>
   </data>
+  <data name="SessionViewerSummaryViewersCount" xml:space="preserve">
+    <value>Viewers Count</value>
+  </data>
+  <data name="SessionViewerSummaryDuration.Text" xml:space="preserve">
+    <value>Duration</value>
+  </data>
+  <data name="SessionViewerSummaryPeakViewersCount" xml:space="preserve">
+    <value>Peak Viewers Count</value>
+  </data>
+  <data name="SessionViewerSummaryMessagesCount.Text" xml:space="preserve">
+    <value>Messages</value>
+  </data>
+  <data name="SessionViewerSummarySuperChatCounts.Text" xml:space="preserve">
+    <value>Super Chats</value>
+  </data>
+  <data name="SessionViewerSummaryGiftsCount.Text" xml:space="preserve">
+    <value>Gifts</value>
+  </data>
+  <data name="SessionViewerSummaryNewMembersCount.Text" xml:space="preserve">
+    <value>New Members</value>
+  </data>
+  <data name="SessionViewerSummaryNewFollowersCount.Text" xml:space="preserve">
+    <value>New Followers</value>
+  </data>
 </root>
