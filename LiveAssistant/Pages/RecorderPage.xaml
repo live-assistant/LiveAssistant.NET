@@ -42,6 +42,7 @@
 
         <components:SessionViewer
             Grid.Column="0"
+            IsRecording="True"
             Session="{x:Bind SessionViewModel.ActiveSession, Mode=OneWay}"/>
 
         <Border

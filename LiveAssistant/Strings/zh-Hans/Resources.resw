@@ -417,4 +417,28 @@
   <data name="SettingsTrademarks.Text" xml:space="preserve">
     <value>哔哩哔哩、Twitch、YouTube、Amazon 和 HypeRate 是其各自所有者的商标。</value>
   </data>
+  <data name="SessionViewerSummaryViewersCount" xml:space="preserve">
+    <value>观看人数</value>
+  </data>
+  <data name="SessionViewerSummaryDuration.Text" xml:space="preserve">
+    <value>时长</value>
+  </data>
+  <data name="SessionViewerSummaryPeakViewersCount" xml:space="preserve">
+    <value>最高观看人数</value>
+  </data>
+  <data name="SessionViewerSummaryMessagesCount.Text" xml:space="preserve">
+    <value>消息</value>
+  </data>
+  <data name="SessionViewerSummarySuperChatCounts.Text" xml:space="preserve">
+    <value>醒目留言</value>
+  </data>
+  <data name="SessionViewerSummaryGiftsCount.Text" xml:space="preserve">
+    <value>礼物</value>
+  </data>
+  <data name="SessionViewerSummaryNewMembersCount.Text" xml:space="preserve">
+    <value>新会员</value>
+  </data>
+  <data name="SessionViewerSummaryNewFollowersCount.Text" xml:space="preserve">
+    <value>新关注</value>
+  </data>
 </root>

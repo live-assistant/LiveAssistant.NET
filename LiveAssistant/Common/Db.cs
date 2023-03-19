@@ -34,15 +34,19 @@ internal class Db
             Vault.SetPassword(Constants.VaultUserNameRealmKey, key);
         }
 
-        Realm = Realm.GetInstance(new RealmConfiguration($"{ApplicationData.Current.RoamingFolder.Path}/{Constants.VaultRealmName}.realm")
+        var config = new RealmConfiguration($"{ApplicationData.Current.RoamingFolder.Path}/{Constants.VaultRealmName}.realm")
         {
             SchemaVersion = 0,
 #if !DEBUG
             EncryptionKey = new UTF8Encoding().GetBytes(key),
-#else
-            ShouldDeleteIfMigrationNeeded = true,
 #endif
-        });
+            MigrationCallback = (migration, oldVersion) =>
+            {
+
+            },
+        };
+
+        Realm = Realm.GetInstance(config);
     }
 
     public readonly Realm Realm;
