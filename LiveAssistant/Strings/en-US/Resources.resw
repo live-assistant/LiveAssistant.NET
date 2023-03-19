@@ -1,0 +1,342 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>1.3</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AppDisplayName" xml:space="preserve">
+    <value>Live Assistant</value>
+  </data>
+  <data name="PlatformBilibili" xml:space="preserve">
+    <value>Bilibili</value>
+  </data>
+  <data name="PlatformYouTube" xml:space="preserve">
+    <value>YouTube</value>
+  </data>
+  <data name="PlatformTwitch" xml:space="preserve">
+    <value>Twitch</value>
+  </data>
+  <data name="BilibiliHostDialogTitle" xml:space="preserve">
+    <value>Add Bilibili Host</value>
+  </data>
+  <data name="ButtonCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ButtonConfirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="BilibiliHostDialogChannelIdTextBoxPlaceholderText" xml:space="preserve">
+    <value>Channel ID</value>
+  </data>
+  <data name="TermSuperChat" xml:space="preserve">
+    <value>Super Chat</value>
+  </data>
+  <data name="MessagesListEmptyState.Title" xml:space="preserve">
+    <value>No message</value>
+  </data>
+  <data name="GiftsListEmptyState.Title" xml:space="preserve">
+    <value>No gift</value>
+  </data>
+  <data name="HostPickerHeader.Text" xml:space="preserve">
+    <value>Hosts</value>
+  </data>
+  <data name="ButtonConnect" xml:space="preserve">
+    <value>Connect</value>
+  </data>
+  <data name="ButtonDisconnect" xml:space="preserve">
+    <value>Disconnect</value>
+  </data>
+  <data name="ExtensionTTSHeader.Content" xml:space="preserve">
+    <value>Text to Speech</value>
+  </data>
+  <data name="MainWindowTabNameRecorder" xml:space="preserve">
+    <value>Recorder</value>
+  </data>
+  <data name="MainWindowTabNameHistory" xml:space="preserve">
+    <value>History</value>
+  </data>
+  <data name="HistoryEmptyState.Title" xml:space="preserve">
+    <value>No session</value>
+  </data>
+  <data name="HistoryEmptyState.Body" xml:space="preserve">
+    <value>Record a session on the Recorder page to start using the history viewer</value>
+  </data>
+  <data name="ExtensionTTSTemplateMessage" xml:space="preserve">
+    <value>{0} says {1}</value>
+  </data>
+  <data name="AudioDeviceComboBox.Header" xml:space="preserve">
+    <value>Audio Device</value>
+  </data>
+  <data name="VoiceComboBox.Header" xml:space="preserve">
+    <value>Voice</value>
+  </data>
+  <data name="ExtensionLiveCaptionHeader.Content" xml:space="preserve">
+    <value>Live Caption</value>
+  </data>
+  <data name="ExtensionLiveCaptionPreviewPlaceholder" xml:space="preserve">
+    <value>Start speak to see preview here</value>
+  </data>
+  <data name="ExtensionTTSEngineNameSystem" xml:space="preserve">
+    <value>System</value>
+  </data>
+  <data name="ExtensionTTSEngineNameAmazonPolly" xml:space="preserve">
+    <value>Amazon Polly</value>
+  </data>
+  <data name="EngineComboBox.Header" xml:space="preserve">
+    <value>Engine</value>
+  </data>
+  <data name="SocketServerCheckBox.Content" xml:space="preserve">
+    <value>Server</value>
+  </data>
+  <data name="PortNumberBox.PlaceholderText" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="PasswordBox.PlaceholderText" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="SocketServerClientsDropDownButton.Text" xml:space="preserve">
+    <value>Clients</value>
+  </data>
+  <data name="SocketDataTypeMessage" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="SocketDataTypeSuperChat" xml:space="preserve">
+    <value>Super Chat</value>
+  </data>
+  <data name="SocketDataTypeGift" xml:space="preserve">
+    <value>Gift</value>
+  </data>
+  <data name="SocketDataTypeMembership" xml:space="preserve">
+    <value>Membership</value>
+  </data>
+  <data name="SocketDataTypeViewersCount" xml:space="preserve">
+    <value>Viewers Count</value>
+  </data>
+  <data name="SocketDataTypeCaption" xml:space="preserve">
+    <value>Caption</value>
+  </data>
+  <data name="SocketDataTypeHeartRate" xml:space="preserve">
+    <value>Heart Rate</value>
+  </data>
+  <data name="ExtensionHeartRateHeader.Content" xml:space="preserve">
+    <value>Heart Rate</value>
+  </data>
+  <data name="ExtensionHeartRateHypeRateIdTextBox.PlaceholderText" xml:space="preserve">
+    <value>HypeRate Session ID</value>
+  </data>
+  <data name="ExtensionMediaInfoHeader.Content" xml:space="preserve">
+    <value>Media Info</value>
+  </data>
+  <data name="ExtensionMediaInfoEmptyState.Title" xml:space="preserve">
+    <value>No info</value>
+  </data>
+  <data name="SocketDataTypeMediaInfo" xml:space="preserve">
+    <value>Media Info</value>
+  </data>
+  <data name="SocketServerTestModeToggleButtonToolTip.Content" xml:space="preserve">
+    <value>Test mode</value>
+  </data>
+  <data name="ExtensionKaraokeStationHeader.Content" xml:space="preserve">
+    <value>Karaoke Station</value>
+  </data>
+  <data name="ExtensionKaraokeStationKeywordDefault" xml:space="preserve">
+    <value>Karaoke</value>
+  </data>
+  <data name="ExtensionKaraokeStationRequiresWearingBadgeCheckBox.Content" xml:space="preserve">
+    <value>Requires Wearing Badge</value>
+  </data>
+  <data name="ExtensionKaraokeStationMinimumAudienceLevelNumberBox.Header" xml:space="preserve">
+    <value>Minimum Audience Level</value>
+  </data>
+  <data name="ExtensionKaraokeStationKeywordTextBox.Header" xml:space="preserve">
+    <value>Trigger Keyword</value>
+  </data>
+  <data name="ExtensionKaraokeStationMinimumIntervalNumberBox.Header" xml:space="preserve">
+    <value>Minimum Interval (in seconds)</value>
+  </data>
+  <data name="ExtensionKaraokeStationEmptyState.Title" xml:space="preserve">
+    <value>No song</value>
+  </data>
+  <data name="ExtensionKaraokeStationAddSongTextBox.PlaceholderText" xml:space="preserve">
+    <value>Add song</value>
+  </data>
+  <data name="SocketDataTypeKaraokeStation" xml:space="preserve">
+    <value>Karaoke Station</value>
+  </data>
+  <data name="ExtensionMediaInfoArtistFallbackValue" xml:space="preserve">
+    <value>Artist</value>
+  </data>
+  <data name="ExtensionMediaInfoAlbumFallbackValue" xml:space="preserve">
+    <value>Album</value>
+  </data>
+  <data name="AppDescription" xml:space="preserve">
+    <value>Your go-to solution of streaming management</value>
+  </data>
+  <data name="ExtensionMediaInfoTitleFallbackValue" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="ExtensionInputInfoHeader.Content" xml:space="preserve">
+    <value>System Input Info</value>
+  </data>
+  <data name="SocketDataTypeMousePosition" xml:space="preserve">
+    <value>Mouse Position</value>
+  </data>
+  <data name="SocketDataTypeMouseButton" xml:space="preserve">
+    <value>Mouse Button</value>
+  </data>
+  <data name="SocketDataTypeKeyboardButton" xml:space="preserve">
+    <value>Keyboard Button</value>
+  </data>
+  <data name="SocketDataTypeGamepad" xml:space="preserve">
+    <value>Gamepad</value>
+  </data>
+  <data name="ExtensionInputInfoMouseCheckBox.Content" xml:space="preserve">
+    <value>Mouse</value>
+  </data>
+  <data name="ExtensionInputInfoKeyboardCheckBox.Content" xml:space="preserve">
+    <value>Keyboard</value>
+  </data>
+  <data name="ExtensionInputInfoGamePadCheckBox.Content" xml:space="preserve">
+    <value>Game pad</value>
+  </data>
+  <data name="ExtensionTTSAmazonPollyKeyPasswordBox.Header" xml:space="preserve">
+    <value>Access Key</value>
+  </data>
+  <data name="ExtensionTTSAmazonPollySecretPasswordBox.Header" xml:space="preserve">
+    <value>Access Key Secret</value>
+  </data>
+  <data name="SocketDataTypeAudienceUpdate" xml:space="preserve">
+    <value>Audience Data Update</value>
+  </data>
+  <data name="SocketDataTypeEnter" xml:space="preserve">
+    <value>Audience Enter</value>
+  </data>
+  <data name="SocketDataTypeFollow" xml:space="preserve">
+    <value>Follow</value>
+  </data>
+  <data name="TermAnonymous" xml:space="preserve">
+    <value>Anonymous</value>
+  </data>
+  <data name="MainWindowTabNameOverlayExplorer" xml:space="preserve">
+    <value>Overlay Explorer</value>
+  </data>
+  <data name="OverlayExplorerAddProviderDialogUrlTextBoxPlaceholderText" xml:space="preserve">
+    <value>Config URL</value>
+  </data>
+  <data name="ButtonAdd" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="OverlayExplorerAddButton.Content" xml:space="preserve">
+    <value>Add Provider</value>
+  </data>
+  <data name="OverlayExplorerAddProviderDialogTitle" xml:space="preserve">
+    <value>Add Provider</value>
+  </data>
+  <data name="OverlayExplorerPreviewBackgroundColorDropDownButton.Content" xml:space="preserve">
+    <value>Preview Background Color</value>
+  </data>
+  <data name="OverlayExplorerCopyUrlButton.Content" xml:space="preserve">
+    <value>Copy URL</value>
+  </data>
+  <data name="OverlayExplorerRemoveProviderButton.Content" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="OverlayExplorerReloadProviderButton.Content" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="SocketServerPasswordMenuRegenerate.Text" xml:space="preserve">
+    <value>Regenerate</value>
+  </data>
+  <data name="SocketServerPasswordDropDownButton.Content" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="SocketServerPasswordMenuCopy.Text" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="OverlayExplorerServerInfoBar.Message" xml:space="preserve">
+    <value>Make sure the server is running when you are testing a overlay</value>
+  </data>
+  <data name="ExtensionAudioSpectrumHeader.Content" xml:space="preserve">
+    <value>Audio Spectrum</value>
+  </data>
+  <data name="SocketDataTypeInputAudioSpectrum" xml:space="preserve">
+    <value>Input Audio Spectrum</value>
+  </data>
+  <data name="SocketDataTypeOutputAudioSpectrum" xml:space="preserve">
+    <value>Output Audio Spectrum</value>
+  </data>
+  <data name="ExceptionInfoBarTitle" xml:space="preserve">
+    <value>An exception occured</value>
+  </data>
+  <data name="ExceptionMessageAuthenticationExpired" xml:space="preserve">
+    <value>Authentication expired</value>
+  </data>
+  <data name="BilibiliConnectorExceptionCannotConnect" xml:space="preserve">
+    <value>Cannot connect to the server</value>
+  </data>
+  <data name="AudioDeviceInputComboBox.Header" xml:space="preserve">
+    <value>Audio Input Device</value>
+  </data>
+  <data name="AudioDeviceOutputComboBox.Header" xml:space="preserve">
+    <value>Audio Output Device</value>
+  </data>
+  <data name="MainWindowTabNameSettings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="SettingsSendDiagnosticDataTitle.Text" xml:space="preserve">
+    <value>Send diagnostic data</value>
+  </data>
+  <data name="SettingsSendDiagnosticDataSubtitle.Text" xml:space="preserve">
+    <value>This will allow us to collect necessary diagnostic data to improve the app's performance. Changes made to this setting will take effect on next launch.</value>
+  </data>
+  <data name="SettingsPackages.Header" xml:space="preserve">
+    <value>Packages used in this app</value>
+  </data>
+  <data name="SettingsNotice.Header" xml:space="preserve">
+    <value>Third-party software notice</value>
+  </data>
+  <data name="SettingsLicense.Header" xml:space="preserve">
+    <value>License</value>
+  </data>
+  <data name="SettingsSpecialThanks.Header" xml:space="preserve">
+    <value>Special Thanks</value>
+  </data>
+  <data name="SettingsTrademarks.Text" xml:space="preserve">
+    <value>Bilibili, Twitch, YouTube, Amazon and HypeRate are trademarks of their respective owners.</value>
+  </data>
+</root>

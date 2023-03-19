@@ -1,0 +1,56 @@
+﻿<!--
+    Copyright (C) 2023  Live Assistant official Windows app Authors
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <x:String x:Key="IconClose">&#xE10A;</x:String>
+    <x:String x:Key="IconMinimize">&#xE921;</x:String>
+    <x:String x:Key="IconMaximize">&#xE922;</x:String>
+    <x:String x:Key="IconRestore">&#xE923;</x:String>
+    <x:String x:Key="IconPlay">&#xE102;</x:String>
+    <x:String x:Key="IconStop">&#xE15B;</x:String>
+    <x:String x:Key="IconRecord">&#xE7C8;</x:String>
+    <x:String x:Key="IconAdd">&#xE109;</x:String>
+    <x:String x:Key="IconRemoveFrom">&#xECC9;</x:String>
+    <x:String x:Key="IconRefresh">&#xE149;</x:String>
+    <x:String x:Key="IconStreaming">&#xE93E;</x:String>
+    <x:String x:Key="IconSignalTower">&#xEC05;</x:String>
+    <x:String x:Key="IconNetworkSharing">&#xE704;</x:String>
+    <x:String x:Key="IconError">&#xE783;</x:String>
+    <x:String x:Key="IconTts">&#xEFA9;</x:String>
+    <x:String x:Key="IconRobot">&#xE99A;</x:String>
+    <x:String x:Key="IconGlobe">&#xE12B;</x:String>
+    <x:String x:Key="IconSuperChat">&#xE15F;</x:String>
+    <x:String x:Key="IconMessage">&#xE8F2;</x:String>
+    <x:String x:Key="IconMusic">&#xE189;</x:String>
+    <x:String x:Key="IconClosedCaption">&#xE190;</x:String>
+    <x:String x:Key="IconHost">&#xE187;</x:String>
+    <x:String x:Key="IconHeart">&#xEB51;</x:String>
+    <x:String x:Key="IconGift">&#xF133;</x:String>
+    <x:String x:Key="IconList">&#xE14C;</x:String>
+    <x:String x:Key="IconDelete">&#xE107;</x:String>
+    <x:String x:Key="IconBlock">&#xE733;</x:String>
+    <x:String x:Key="IconHeartFill">&#xEB52;</x:String>
+    <x:String x:Key="IconAlbum">&#xE93C;</x:String>
+    <x:String x:Key="IconMic">&#xE1D6;</x:String>
+    <x:String x:Key="IconPeople">&#xE13D;</x:String>
+    <x:String x:Key="IconMember">&#xEE57;</x:String>
+    <x:String x:Key="IconWebsite">&#xEB41;</x:String>
+    <x:String x:Key="IconOverlay">&#xE7C4;</x:String>
+    <x:String x:Key="IconOverlayFields">&#xF259;</x:String>
+</ResourceDictionary>

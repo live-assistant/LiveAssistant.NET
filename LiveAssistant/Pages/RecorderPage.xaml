@@ -1,0 +1,75 @@
+<!--
+    Copyright (C) 2023  Live Assistant official Windows app Authors
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<Page
+    x:Class="LiveAssistant.Pages.RecorderPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:textToSpeech="using:LiveAssistant.Extensions.TextToSpeech"
+    xmlns:heartRate="using:LiveAssistant.Extensions.HeartRate"
+    xmlns:karaokeStation="using:LiveAssistant.Extensions.KaraokeStation"
+    xmlns:inputInfo="using:LiveAssistant.Extensions.InputInfo"
+    xmlns:components="using:LiveAssistant.Components"
+    xmlns:mediaInfo="using:LiveAssistant.Extensions.MediaInfo"
+    xmlns:audioSpectrum="using:LiveAssistant.Extensions.AudioSpectrum"
+    mc:Ignorable="d"
+    NavigationCacheMode="Required">
+
+    <Grid
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="1"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <components:SessionViewer
+            Grid.Column="0"
+            Session="{x:Bind SessionViewModel.ActiveSession, Mode=OneWay}"/>
+
+        <Border
+            Grid.Column="1"
+            Margin="0 12"
+            Background="{ThemeResource DividerStrokeColorDefault}"/>
+
+        <ScrollViewer
+            Grid.Column="2"
+            Width="360">
+
+            <StackPanel
+                Orientation="Vertical"
+                Spacing="12"
+                Margin="12">
+
+                <textToSpeech:TextToSpeechExtension/>
+
+                <karaokeStation:KaraokeStationExtension/>
+
+                <heartRate:HeartRateExtension/>
+
+                <inputInfo:InputInfoExtension/>
+
+                <mediaInfo:MediaInfoExtension/>
+
+                <audioSpectrum:AudioSpectrumExtension/>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>
