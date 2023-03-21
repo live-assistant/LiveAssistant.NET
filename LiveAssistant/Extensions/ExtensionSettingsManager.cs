@@ -92,7 +92,7 @@ internal class ExtensionSettingsManager : INotifyPropertyChanged
 
     private bool _isSocketServerTestModeEnabled;
 
-    public bool IsRunning => (IsEnabled && IsConnected) || _isSocketServerTestModeEnabled;
+    public bool IsRunning => IsEnabled && (IsConnected || _isSocketServerTestModeEnabled);
     public event EventHandler<bool>? IsRunningChanged;
 
     public event PropertyChangedEventHandler? PropertyChanged;
