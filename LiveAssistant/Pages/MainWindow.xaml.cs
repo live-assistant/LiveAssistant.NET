@@ -276,7 +276,7 @@ internal sealed partial class MainWindow
         },
         new ComboBoxItemValueSet<Type>
         {
-            Name = "MainWindowTabNameOverlayExplorer".Localize(),
+            Name = "MainWindowTabNameOverlay".Localize(),
             Value = typeof(OverlayExplorerPage),
         },
         new ComboBoxItemValueSet<Type>

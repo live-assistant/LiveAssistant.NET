@@ -330,8 +330,8 @@
   <data name="TermAnonymous" xml:space="preserve">
     <value>匿名</value>
   </data>
-  <data name="MainWindowTabNameOverlayExplorer" xml:space="preserve">
-    <value>覆盖层浏览器</value>
+  <data name="MainWindowTabNameOverlay" xml:space="preserve">
+    <value>覆盖层</value>
   </data>
   <data name="OverlayExplorerAddProviderDialogUrlTextBoxPlaceholderText" xml:space="preserve">
     <value>配置链接</value>
