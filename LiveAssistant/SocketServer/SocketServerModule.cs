@@ -13,6 +13,7 @@
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+using System;
 using System.Linq;
 using CommunityToolkit.Mvvm.Messaging;
 using EmbedIO.WebSockets;
@@ -31,9 +32,10 @@ internal class SocketServerModule : WebSocketModule
     protected override Task OnClientConnectedAsync(IWebSocketContext context)
     {
         var args = HttpUtility.ParseQueryString(context.RequestUri.Query);
+        var version = args[Protocols.Data.Constants.QueryNameVersion];
         var types = args[Protocols.Data.Constants.QueryNameDataType];
-        if (args[Protocols.Data.Constants.QueryNameAuthorization] == Password
-            && !string.IsNullOrEmpty(types))
+        var password = args[Protocols.Data.Constants.QueryNameAuthorization];
+        if (Convert.ToInt32(version) <= Protocols.Data.Constants.ProtocolVersion && password == Password && !string.IsNullOrEmpty(types))
         {
             App.Current.MainQueue.TryEnqueue(delegate
             {
