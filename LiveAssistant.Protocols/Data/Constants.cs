@@ -22,6 +22,8 @@ namespace LiveAssistant.Protocols.Data;
 
 public static class Constants
 {
+    public const int ProtocolVersion = 0;
+    public const string QueryNameVersion = "version";
     public const string QueryNameAuthorization = "authorization";
     public const string QueryNameDataType = "types";
 }
