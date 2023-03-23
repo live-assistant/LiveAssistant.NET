@@ -252,8 +252,8 @@
   <data name="TermAnonymous" xml:space="preserve">
     <value>Anonymous</value>
   </data>
-  <data name="MainWindowTabNameOverlayExplorer" xml:space="preserve">
-    <value>Overlay Explorer</value>
+  <data name="MainWindowTabNameOverlay" xml:space="preserve">
+    <value>Overlay</value>
   </data>
   <data name="OverlayExplorerAddProviderDialogUrlTextBoxPlaceholderText" xml:space="preserve">
     <value>Config URL</value>
@@ -362,5 +362,8 @@
   </data>
   <data name="SessionViewerSummaryNewFollowersCount.Text" xml:space="preserve">
     <value>New Followers</value>
+  </data>
+  <data name="OverlayExceptionProtocolVersion" xml:space="preserve">
+    <value>The protocol version is not supported</value>
   </data>
 </root>

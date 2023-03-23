@@ -37,9 +37,9 @@ using Realms;
 
 namespace LiveAssistant.ViewModels;
 
-internal class OverlayExplorerViewModel : ObservableObject
+internal class OverlayViewModel : ObservableObject
 {
-    public OverlayExplorerViewModel()
+    public OverlayViewModel()
     {
         Providers.SubscribeForNotifications(delegate
         {
@@ -61,9 +61,15 @@ internal class OverlayExplorerViewModel : ObservableObject
 
         WeakReferenceMessenger.Default.Register<OverlayExplorerUpdateQueryMessage>(this, (_, message) =>
         {
-            var value = message.Value;
-            _queries[value.Item1] = value.Item2;
+            (string? key, string? value) = message.Value;
+            _queries[key] = value;
             OnPropertyChanged(nameof(PreviewUri));
+
+            if (Overlay is null) return;
+            Db.Default.Realm.Write(delegate
+            {
+                Overlay.SavedFields[key] = value;
+            });
         });
     }
 
@@ -156,9 +162,21 @@ internal class OverlayExplorerViewModel : ObservableObject
     private readonly HttpClient _httpClient = new();
     private async Task LoadProvider(string url)
     {
-        var response = await _httpClient.GetStringAsync(new Uri(url));
-        var data = JsonSerializer.Deserialize<OverlayProviderPayload>(response, Constants.DefaultJsonSerializerOptions);
-        OverlayProvider.Create(url, data);
+        try
+        {
+            var response = await _httpClient.GetStringAsync(new Uri(url));
+            var data = JsonSerializer.Deserialize<OverlayProviderPayload>(response, Constants.DefaultJsonSerializerOptions);
+            if (data.ProtocolVersion < Protocols.Overlay.Constants.ProtocolVersion)
+            {
+                throw new Exception("OverlayExceptionProtocolVersion".Localize());
+            }
+
+            OverlayProvider.Create(url, data, false);
+        }
+        catch (Exception e)
+        {
+            WeakReferenceMessenger.Default.Send(new ShowInfoBarMessage(Helpers.GetExceptionInfoBar(e)));
+        }
     }
 
     // Provider
@@ -195,7 +213,19 @@ internal class OverlayExplorerViewModel : ObservableObject
             SetProperty(ref _overlay, value);
             OverlayChanged?.Invoke(this, value);
             OnPropertyChanged(nameof(IsFieldsEmpty));
+
             _queries.Clear();
+            if (value is not null)
+            {
+                var backgroundColor = value.PreviewBackgroundColor;
+                BackgroundColor = string.IsNullOrEmpty(backgroundColor) ? Colors.White : Helpers.ConvertHexColorToUiColor(backgroundColor);
+
+                foreach ((string? key, string? v) in value.SavedFields)
+                {
+                    _queries[key] = v;
+                }
+            }
+
             OnPropertyChanged(nameof(PreviewUri));
         }
     }
@@ -246,7 +276,16 @@ internal class OverlayExplorerViewModel : ObservableObject
     public Color BackgroundColor
     {
         get => _backgroundColor;
-        set => SetProperty(ref _backgroundColor, value);
+        set
+        {
+            SetProperty(ref _backgroundColor, value);
+
+            if (Overlay is null) return;
+            Db.Default.Realm.Write(delegate
+            {
+                Overlay.PreviewBackgroundColor = Helpers.ConvertUiColorToHexColor(value);
+            });
+        }
     }
 }
 

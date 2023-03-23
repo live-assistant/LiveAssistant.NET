@@ -50,7 +50,7 @@
     <None Remove="LICENSE" />
     <None Remove="NOTICE.txt" />
     <None Remove="Pages\HistoryPage.xaml" />
-    <None Remove="Pages\OverlayExplorerPage.xaml" />
+    <None Remove="Pages\OverlayPage.xaml" />
     <None Remove="Pages\RecorderPage.xaml" />
     <None Remove="Pages\SettingsPage.xaml" />
     <None Remove="Pages\WorkspacePage.xaml" />
@@ -156,7 +156,7 @@
     <Page Update="Extensions\AudioWaveform\AudioSpectrumExtension.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Update="Pages\OverlayExplorerPage.xaml">
+    <Page Update="Pages\OverlayPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Update="Extensions\InputInfo\InputInfoExtension.xaml">

@@ -37,6 +37,7 @@ internal class Db
         var config = new RealmConfiguration($"{ApplicationData.Current.RoamingFolder.Path}/{Constants.VaultRealmName}.realm")
         {
             SchemaVersion = 0,
+            ShouldDeleteIfMigrationNeeded = true,
 #if !DEBUG
             EncryptionKey = new UTF8Encoding().GetBytes(key),
 #endif

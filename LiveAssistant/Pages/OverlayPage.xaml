@@ -15,7 +15,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
 <Page
-    x:Class="LiveAssistant.Pages.OverlayExplorerPage"
+    x:Class="LiveAssistant.Pages.OverlayPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -105,6 +105,7 @@
 
                 <ListView.Header>
                     <Grid
+                        Visibility="{x:Bind _viewModel.Provider.IsPackage, Mode=OneWay, Converter={StaticResource BooleanToVisibilityInverseConverter}}"
                         HorizontalAlignment="Stretch"
                         ColumnSpacing="12"
                         Margin="4 0 4 8">

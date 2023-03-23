@@ -14,6 +14,7 @@
 //    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 using System.Collections.Generic;
+using Windows.Foundation;
 using LiveAssistant.Common;
 using LiveAssistant.Protocols.Overlay.Models;
 using Realms;
@@ -25,14 +26,16 @@ namespace LiveAssistant.Database;
 internal class OverlayProvider : RealmObject
 {
     [PrimaryKey] public string BasePath { get; private set; }
+    public string ProductId { get; private set; }
     public string ConfigUrl { get; private set; }
     public string Name { get; private set; }
+    public int ProtocolVersion { get; private set; }
+    public bool IsPackage { get; private set; }
     public IList<Overlay> Overlays { get; }
 
     public OverlayProvider() { }
 
     private OverlayProvider(
-        string configUrl,
         string basePath)
     {
         BasePath = basePath;
@@ -40,12 +43,13 @@ internal class OverlayProvider : RealmObject
 
     public static OverlayProvider Create(
         string configUrl,
-        OverlayProviderPayload data)
+        OverlayProviderPayload data,
+        bool isPackage)
     {
         var basePath = data.BasePath;
         var existing = Db.Default.Realm.Find<OverlayProvider>(basePath);
 
-        var provider = new OverlayProvider(configUrl, basePath);
+        var provider = new OverlayProvider(basePath);
 
         Db.Default.Realm.Write(delegate
         {
@@ -54,6 +58,9 @@ internal class OverlayProvider : RealmObject
                 Db.Default.Realm.Add(provider);
             }
 
+            (existing ?? provider).ProductId = data.ProductId;
+            (existing ?? provider).ProtocolVersion = data.ProtocolVersion;
+            (existing ?? provider).IsPackage = isPackage;
             (existing ?? provider).ConfigUrl = configUrl;
             (existing ?? provider).Name = data.Name;
             (existing ?? provider).Overlays.Clear();

@@ -173,7 +173,7 @@ public partial class App
             .AddSingleton(new TwitchOAuthViewModel())
             .AddSingleton<SessionViewModel>()
             .AddSingleton<HistoryViewModel>()
-            .AddSingleton<OverlayExplorerViewModel>()
+            .AddSingleton<OverlayViewModel>()
             .BuildServiceProvider();
 
         Ioc.Default.ConfigureServices(serviceProvider);

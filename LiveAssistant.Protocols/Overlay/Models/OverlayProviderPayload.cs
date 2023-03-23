@@ -18,10 +18,13 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+#pragma warning disable CA1051
 namespace LiveAssistant.Protocols.Overlay.Models;
 
 public struct OverlayProviderPayload
 {
+    public string ProductId;
+    public int ProtocolVersion;
     public string Name;
     public string BasePath;
     public OverlayPayload[] Overlays;
