@@ -14,11 +14,13 @@
 //    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 using System.Collections.Generic;
+using System.Linq;
 using LiveAssistant.Common;
 using LiveAssistant.Protocols.Overlay.Models;
 using Realms;
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable UnassignedGetOnlyAutoProperty
+// ReSharper disable CollectionNeverQueried.Global
 #pragma warning disable CS8618
 
 namespace LiveAssistant.Database;
@@ -33,6 +35,12 @@ internal class Overlay : RealmObject
     public string? Description { get; set; }
     public IList<string> DataTypes { get; }
     public IList<OverlayField> Fields { get; }
+    public IDictionary<string, string> SavedFields { get; }
+    public int? MinWidth { get; set; }
+    public int? MaxWidth { get; set; }
+    public int? MinHeight { get; set; }
+    public int? MaxHeight { get; set; }
+    public string? PreviewBackgroundColor { get; set; }
     // ReSharper restore MemberCanBePrivate.Global
 
     public Overlay() { }
@@ -72,10 +80,24 @@ internal class Overlay : RealmObject
         }
 
         (existing ?? overlay).Fields.Clear();
-        foreach (var fieldData in data.Settings)
+        foreach (var fieldData in data.Fields)
         {
             (existing ?? overlay).Fields.Add(OverlayField.Create(id, fieldData));
         }
+
+        foreach ((string? key, string? _) in (existing ?? overlay).SavedFields)
+        {
+            if ((existing ?? overlay).Fields.All(f => f.Key != key))
+            {
+                (existing ?? overlay).SavedFields.Remove(key);
+            }
+        }
+
+        (existing ?? overlay).MinWidth = data.MinWidth;
+        (existing ?? overlay).MaxWidth = data.MaxWidth;
+        (existing ?? overlay).MinHeight = data.MinHeight;
+        (existing ?? overlay).MaxHeight = data.MaxHeight;
+        (existing ?? overlay).PreviewBackgroundColor ??= data.PreviewBackgroundColor;
 
         return existing ?? overlay;
     }

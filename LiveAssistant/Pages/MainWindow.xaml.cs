@@ -104,7 +104,7 @@ internal sealed partial class MainWindow
         {
             NavigationView.SelectedItem = NavigationView.MenuItems.FirstOrDefault(item =>
                 item.As<NavigationViewItem>().Tag.As<ComboBoxItemValueSet<Type>>().Value ==
-                typeof(OverlayExplorerPage));
+                typeof(OverlayPage));
         });
 
         Closed += OnClosed;
@@ -277,7 +277,7 @@ internal sealed partial class MainWindow
         new ComboBoxItemValueSet<Type>
         {
             Name = "MainWindowTabNameOverlay".Localize(),
-            Value = typeof(OverlayExplorerPage),
+            Value = typeof(OverlayPage),
         },
         new ComboBoxItemValueSet<Type>
         {

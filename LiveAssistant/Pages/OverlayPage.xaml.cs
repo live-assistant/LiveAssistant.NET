@@ -33,9 +33,9 @@ using WinRT;
 
 namespace LiveAssistant.Pages;
 
-internal sealed partial class OverlayExplorerPage
+internal sealed partial class OverlayPage
 {
-    public OverlayExplorerPage()
+    public OverlayPage()
     {
         InitializeComponent();
 
@@ -68,7 +68,7 @@ internal sealed partial class OverlayExplorerPage
             var type = Enum.Parse<OverlayFieldType>(field.Type, true);
             var key = field.Key;
 
-            var defaultValue = field.DefaultValue;
+            var defaultValue = overlay.SavedFields.ContainsKey(key) ? overlay.SavedFields[key] : field.DefaultValue;
 
             switch (type)
             {
@@ -228,7 +228,7 @@ internal sealed partial class OverlayExplorerPage
             new OverlayExplorerUpdateQueryMessage(new Tuple<string, string>(key, value)));
     }
 
-    private OverlayExplorerViewModel _viewModel = App.Current.Services.GetService<OverlayExplorerViewModel>() ?? throw new NullReferenceException();
+    private OverlayViewModel _viewModel = App.Current.Services.GetService<OverlayViewModel>() ?? throw new NullReferenceException();
     private readonly SocketServerViewModel _socketServerViewModel = App.Current.Services.GetService<SocketServerViewModel>() ?? throw new NullReferenceException();
 
     private void OnClickRemoveProvider(object sender, RoutedEventArgs e)

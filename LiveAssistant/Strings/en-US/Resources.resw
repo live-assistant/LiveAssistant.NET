@@ -363,4 +363,7 @@
   <data name="SessionViewerSummaryNewFollowersCount.Text" xml:space="preserve">
     <value>New Followers</value>
   </data>
+  <data name="OverlayExceptionProtocolVersion" xml:space="preserve">
+    <value>The protocol version is not supported</value>
+  </data>
 </root>

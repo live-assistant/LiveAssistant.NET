@@ -20,6 +20,7 @@
 
 using LiveAssistant.Protocols.Data;
 // ReSharper disable UnassignedField.Global
+#pragma warning disable CA1051
 
 namespace LiveAssistant.Protocols.Overlay.Models;
 
@@ -30,5 +31,10 @@ public struct OverlayPayload
     public string Category;
     public string? Description;
     public RequestedDataType[] DataTypes;
-    public OverlayFieldPayload[] Settings;
+    public OverlayFieldPayload[] Fields;
+    public int? MinWidth;
+    public int? MaxWidth;
+    public int? MinHeight;
+    public int? MaxHeight;
+    public string? PreviewBackgroundColor;
 }

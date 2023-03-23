@@ -441,4 +441,7 @@
   <data name="SessionViewerSummaryNewFollowersCount.Text" xml:space="preserve">
     <value>新关注</value>
   </data>
+  <data name="OverlayExceptionProtocolVersion" xml:space="preserve">
+    <value>协议版本不受支持</value>
+  </data>
 </root>
