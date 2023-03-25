@@ -13,8 +13,6 @@
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-using CommunityToolkit.Mvvm.Messaging;
-using LiveAssistant.Common.Messages;
 using System;
 using System.Diagnostics;
 using Windows.Security.Credentials;
@@ -45,7 +43,6 @@ internal class Vault
         catch (Exception e)
         {
             Debug.WriteLine(e);
-            WeakReferenceMessenger.Default.Send(new ShowInfoBarMessage(Helpers.GetExceptionInfoBar(e)));
         }
 
         return credential?.Password ?? "";
