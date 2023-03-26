@@ -99,8 +99,14 @@ internal sealed partial class MainWindow
             Manager.WindowMessageReceived -= m.Value;
         });
 
-        // Open overlay explorer if a new provider added
+        // Open overlay explorer if a new provider/package added
         WeakReferenceMessenger.Default.Register<ShouldAddNewOverlayProviderMessage>(this, delegate
+        {
+            NavigationView.SelectedItem = NavigationView.MenuItems.FirstOrDefault(item =>
+                item.As<NavigationViewItem>().Tag.As<ComboBoxItemValueSet<Type>>().Value ==
+                typeof(OverlayPage));
+        });
+        WeakReferenceMessenger.Default.Register<ShouldAddNewOverlayPackageMessage>(this, delegate
         {
             NavigationView.SelectedItem = NavigationView.MenuItems.FirstOrDefault(item =>
                 item.As<NavigationViewItem>().Tag.As<ComboBoxItemValueSet<Type>>().Value ==

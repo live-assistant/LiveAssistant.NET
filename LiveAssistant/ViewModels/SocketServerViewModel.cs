@@ -75,7 +75,7 @@ internal class SocketServerViewModel : ObservableObject
         });
     }
 
-    public readonly ExtensionSettingsManager Manager = new(Common.Constants.ExtensionIdSocketServer, new Dictionary<string, string>
+    public readonly ExtensionSettingsManager Manager = new(Constants.ExtensionIdSocketServer, new Dictionary<string, string>
     {
         { nameof(Port), 7196.ToString() },
         { nameof(Password), "" },

@@ -13,6 +13,7 @@
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -22,6 +23,13 @@ namespace LiveAssistant.Common;
 
 internal static class Constants
 {
+    public static string DocumentsBaseFolderPath => $"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\\Live Assistant\\";
+    public static string OverlayPackagesFolderPath => $"{DocumentsBaseFolderPath}Overlay Packages\\";
+    public static string OverlayPackagesTempFolderPath => $"{DocumentsBaseFolderPath}Temp Package\\";
+    public static string OverlayPackagesTempConfigFilePath => $"{OverlayPackagesTempFolderPath}config.json";
+    public static string OverlayPackagesTempStaticFolderPath => $"{OverlayPackagesTempFolderPath}\\static";
+    public const string OverlayPackageServerBasePath = "http://localhost:57941";
+
     public const string VaultRealmName = "LiveAssistantData";
     public const string VaultUserNameRealmKey = "LiveAssistantKey";
     public const string VaultResourceName = "app.live-assitant.credentials";
