@@ -2,7 +2,7 @@
   "profiles": {
     "LiveAssistant (Package)": {
       "commandName": "MsixPackage",
-      "remoteDebugEnabled": true,
+      "remoteDebugEnabled": false,
       "remoteDebugMachine": "WINDOWS10DEBUG"
     },
     "LiveAssistant (Unpackaged)": {

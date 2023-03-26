@@ -366,4 +366,7 @@
   <data name="OverlayExceptionProtocolVersion" xml:space="preserve">
     <value>The protocol version is not supported</value>
   </data>
+  <data name="OverlayPackageFileName" xml:space="preserve">
+    <value>Live Assistant Overlay Package</value>
+  </data>
 </root>

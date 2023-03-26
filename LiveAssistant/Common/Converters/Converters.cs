@@ -51,8 +51,9 @@ internal class IsNullToVisibilityInverseConverter : IValueConverter
 
 internal class BooleanInverseConverter : IValueConverter
 {
-    public object Convert(object value, Type targetType, object parameter, string language)
+    public object Convert(object? value, Type targetType, object parameter, string language)
     {
+        if (value is null) return true;
         return !(bool)value;
     }
 

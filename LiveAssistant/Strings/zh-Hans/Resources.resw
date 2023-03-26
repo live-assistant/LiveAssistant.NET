@@ -444,4 +444,7 @@
   <data name="OverlayExceptionProtocolVersion" xml:space="preserve">
     <value>协议版本不受支持</value>
   </data>
+  <data name="OverlayPackageFileName" xml:space="preserve">
+    <value>直播助理覆盖层包</value>
+  </data>
 </root>

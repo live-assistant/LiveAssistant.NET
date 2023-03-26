@@ -17,19 +17,24 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
+using Windows.Storage;
 using Windows.UI;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using CommunityToolkit.Mvvm.Messaging.Messages;
+using EmbedIO;
 using LiveAssistant.Common;
 using LiveAssistant.Common.Messages;
 using LiveAssistant.Database;
+using LiveAssistant.Pages;
 using LiveAssistant.Protocols.Overlay.Models;
 using Microsoft.UI;
 using Microsoft.UI.Xaml.Controls;
@@ -37,10 +42,16 @@ using Realms;
 
 namespace LiveAssistant.ViewModels;
 
-internal class OverlayViewModel : ObservableObject
+internal class OverlayViewModel : ObservableObject, IDisposable
 {
     public OverlayViewModel()
     {
+        // Make sure overlay packages folder exists
+        if (!Directory.Exists(Constants.OverlayPackagesFolderPath))
+        {
+            Directory.CreateDirectory(Constants.OverlayPackagesFolderPath);
+        }
+
         Providers.SubscribeForNotifications(delegate
         {
             OnPropertyChanged(nameof(IsProvidersEmpty));
@@ -59,6 +70,11 @@ internal class OverlayViewModel : ObservableObject
             _ = LoadProvider(message.Value);
         });
 
+        WeakReferenceMessenger.Default.Register<ShouldAddNewOverlayPackageMessage>(this, (_, message) =>
+        {
+            _ = AddPackage(message.Value);
+        });
+
         WeakReferenceMessenger.Default.Register<OverlayExplorerUpdateQueryMessage>(this, (_, message) =>
         {
             (string? key, string? value) = message.Value;
@@ -70,6 +86,22 @@ internal class OverlayViewModel : ObservableObject
             {
                 Overlay.SavedFields[key] = value;
             });
+        });
+
+        // Setup server
+        if (!Directory.Exists(Constants.OverlayPackagesFolderPath))
+        {
+            Directory.CreateDirectory(Constants.OverlayPackagesFolderPath);
+        }
+        _packageServer = new WebServer(o => o
+            .WithUrlPrefix(Constants.OverlayPackageServerBasePath)
+            .WithMode(HttpListenerMode.EmbedIO))
+            .WithStaticFolder("/", Constants.OverlayPackagesFolderPath, false);
+        _packageServer.RunAsync();
+
+        WeakReferenceMessenger.Default.Register<MainWindowClosedMessage>(this, delegate
+        {
+            Dispose();
         });
     }
 
@@ -117,7 +149,7 @@ internal class OverlayViewModel : ObservableObject
 
     public RelayCommand<OverlayProvider> ReloadProviderCommand => new(async delegate(OverlayProvider? provider)
     {
-        if (provider is null) return;
+        if (provider?.ConfigUrl is null) return;
 
         try
         {
@@ -137,6 +169,11 @@ internal class OverlayViewModel : ObservableObject
         {
             Overlay = null;
             Provider = null;
+        }
+
+        if (provider.IsPackage)
+        {
+            Directory.Delete($"{Constants.OverlayPackagesFolderPath}\\{provider.ProductId}", true);
         }
 
         Db.Default.Realm.Write(delegate
@@ -171,13 +208,53 @@ internal class OverlayViewModel : ObservableObject
                 throw new Exception("OverlayExceptionProtocolVersion".Localize());
             }
 
-            OverlayProvider.Create(url, data, false);
+            OverlayProvider.Create(false, data, configUrl: url);
         }
         catch (Exception e)
         {
             WeakReferenceMessenger.Default.Send(new ShowInfoBarMessage(Helpers.GetExceptionInfoBar(e)));
         }
     }
+
+    private static async Task AddPackage(IStorageItem pack)
+    {
+        try
+        {
+            if (Directory.Exists(Constants.OverlayPackagesTempFolderPath))
+            {
+                Directory.Delete(Constants.OverlayPackagesTempFolderPath, true);
+            }
+            Directory.CreateDirectory(Constants.OverlayPackagesTempFolderPath);
+
+            // Extract to temp folder
+            ZipFile.ExtractToDirectory(pack.Path, Constants.OverlayPackagesTempFolderPath);
+            var configString = await File.ReadAllTextAsync(Constants.OverlayPackagesTempConfigFilePath);
+
+            // Get provider
+            var provider = JsonSerializer.Deserialize<OverlayProviderPayload>(configString, Constants.DefaultJsonSerializerOptions);
+            provider.BasePath = $"{Constants.OverlayPackageServerBasePath}/{provider.ProductId}/{provider.BasePath}";
+
+            // Move package
+            var packFolderPath = $"{Constants.OverlayPackagesFolderPath}\\{provider.ProductId}\\";
+            if (Directory.Exists(packFolderPath))
+            {
+                Directory.Delete(packFolderPath, true);
+            }
+            Directory.Move(Constants.OverlayPackagesTempStaticFolderPath, packFolderPath);
+            OverlayProvider.Create(true, provider);
+
+            // Clear temp
+            Directory.Delete(Constants.OverlayPackagesTempFolderPath, true);
+        }
+        catch (Exception e)
+        {
+            Debug.WriteLine(e);
+            WeakReferenceMessenger.Default.Send(new ShowInfoBarMessage(Helpers.GetExceptionInfoBar(e)));
+        }
+    }
+
+    // Package server
+    private readonly WebServer _packageServer;
 
     // Provider
     private OverlayProvider? _provider;
@@ -287,6 +364,12 @@ internal class OverlayViewModel : ObservableObject
             });
         }
     }
+
+    public void Dispose()
+    {
+        _httpClient.Dispose();
+        _packageServer.Dispose();
+    }
 }
 
 internal class ShouldAddNewOverlayProviderMessage : ValueChangedMessage<string>
@@ -297,4 +380,9 @@ internal class ShouldAddNewOverlayProviderMessage : ValueChangedMessage<string>
 internal class OverlayExplorerUpdateQueryMessage : ValueChangedMessage<Tuple<string, string>>
 {
     public OverlayExplorerUpdateQueryMessage(Tuple<string, string> value) : base(value) { }
+}
+
+internal class ShouldAddNewOverlayPackageMessage : ValueChangedMessage<IStorageItem>
+{
+    public ShouldAddNewOverlayPackageMessage(IStorageItem value) : base(value) { }
 }

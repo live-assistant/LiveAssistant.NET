@@ -51,8 +51,7 @@ public partial class App
                 options.TracesSampleRate = 1.0;
                 options.DiagnosticLevel = SentryLevel.Debug;
 
-#endif
-#if !DEBUG
+#else
                 options.Debug = false;
                 options.TracesSampleRate = 0.2;
                 options.DiagnosticLevel = SentryLevel.Warning;
@@ -146,6 +145,18 @@ public partial class App
                         break;
                 }
                 break;
+
+            case ExtendedActivationKind.File:
+                var fileArgs = args.Data.As<IFileActivatedEventArgs>();
+                var file = fileArgs.Files[0];
+                var path = file.Path;
+                if (!path.EndsWith(".lapack")) return;
+
+                MainQueue.TryEnqueue(delegate
+                {
+                    WeakReferenceMessenger.Default.Send(new ShouldAddNewOverlayPackageMessage(file));
+                });
+                break;
         }
     }
 
@@ -173,7 +184,7 @@ public partial class App
             .AddSingleton(new TwitchOAuthViewModel())
             .AddSingleton<SessionViewModel>()
             .AddSingleton<HistoryViewModel>()
-            .AddSingleton<OverlayViewModel>()
+            .AddSingleton(new OverlayViewModel())
             .BuildServiceProvider();
 
         Ioc.Default.ConfigureServices(serviceProvider);

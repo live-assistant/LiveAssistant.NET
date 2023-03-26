@@ -23,7 +23,6 @@ using System.Timers;
 using LiveAssistant.Common;
 using LiveAssistant.Database;
 using Microsoft.UI.Xaml;
-using Newtonsoft.Json.Linq;
 using Realms;
 
 namespace LiveAssistant.Components;

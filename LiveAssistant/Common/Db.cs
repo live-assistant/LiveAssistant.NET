@@ -14,8 +14,9 @@
 //    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 // ReSharper disable RedundantUsingDirective
+
+using System.IO;
 using System.Text;
-using Windows.Storage;
 using Realms;
 
 namespace LiveAssistant.Common;
@@ -34,7 +35,12 @@ internal class Db
             Vault.SetPassword(Constants.VaultUserNameRealmKey, key);
         }
 
-        var config = new RealmConfiguration($"{ApplicationData.Current.RoamingFolder.Path}/{Constants.VaultRealmName}.realm")
+        if (!Directory.Exists(Constants.DocumentsBaseFolderPath))
+        {
+            Directory.CreateDirectory(Constants.DocumentsBaseFolderPath);
+        }
+
+        var config = new RealmConfiguration($"{Constants.DocumentsBaseFolderPath}{Constants.VaultRealmName}.realm")
         {
             SchemaVersion = 0,
             ShouldDeleteIfMigrationNeeded = true,

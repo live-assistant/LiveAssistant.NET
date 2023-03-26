@@ -105,7 +105,6 @@
 
                 <ListView.Header>
                     <Grid
-                        Visibility="{x:Bind _viewModel.Provider.IsPackage, Mode=OneWay, Converter={StaticResource BooleanToVisibilityInverseConverter}}"
                         HorizontalAlignment="Stretch"
                         ColumnSpacing="12"
                         Margin="4 0 4 8">
@@ -164,12 +163,19 @@
             Margin="0 12"
             Background="{ThemeResource DividerStrokeColorDefault}"/>
 
-        <ScrollViewer
+        <Grid
             Grid.Column="2"
-            Visibility="{x:Bind _viewModel.IsFieldsEmpty, Mode=OneWay, Converter={StaticResource BooleanToVisibilityInverseConverter}}">
+            Visibility="{x:Bind _viewModel.Overlay, Mode=OneWay, Converter={StaticResource IsNullToVisibilityConverter}}">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="1"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
             <StackPanel
-                Margin="12"
+                Grid.Row="0"
+                Padding="12"
                 Orientation="Vertical">
 
                 <Button
@@ -200,23 +206,33 @@
                     IsClosable="False"
                     Severity="Informational"
                     Visibility="{x:Bind _socketServerViewModel.Manager.IsRunning, Mode=OneWay, Converter={StaticResource BooleanToVisibilityInverseConverter}}"/>
+            </StackPanel>
 
-                <Border
-                    HorizontalAlignment="Stretch"
-                    Margin="0 12"
-                    Height="1"
-                    Background="{ThemeResource DividerStrokeColorDefault}"/>
+            <Border
+                Grid.Row="1"
+                HorizontalAlignment="Stretch"
+                Margin="12 0"
+                Background="{ThemeResource DividerStrokeColorDefault}"/>
+
+            <ScrollViewer
+                Grid.Row="2">
 
                 <StackPanel
                     x:Name="FieldsPanel"
                     Orientation="Vertical"
+                    Margin="12"
                     Spacing="12"/>
-            </StackPanel>
-        </ScrollViewer>
+            </ScrollViewer>
+
+            <components:EmptyState
+                Grid.Row="2"
+                Visibility="{x:Bind _viewModel.IsFieldsEmpty, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+                Glyph="{StaticResource IconOverlayFields}"/>
+        </Grid>
 
         <components:EmptyState
             Grid.Column="2"
-            Visibility="{x:Bind _viewModel.IsFieldsEmpty, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+            Visibility="{x:Bind _viewModel.Overlay, Mode=OneWay, Converter={StaticResource IsNullToVisibilityInverseConverter}}"
             Glyph="{StaticResource IconOverlayFields}"/>
 
         <Grid

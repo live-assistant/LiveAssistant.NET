@@ -14,24 +14,26 @@
 //    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 using System.Collections.Generic;
-using Windows.Foundation;
 using LiveAssistant.Common;
 using LiveAssistant.Protocols.Overlay.Models;
 using Realms;
 // ReSharper disable UnassignedGetOnlyAutoProperty
+// ReSharper disable UnusedAutoPropertyAccessor.Global
 #pragma warning disable CS8618
 
 namespace LiveAssistant.Database;
 
 internal class OverlayProvider : RealmObject
 {
+    // ReSharper disable MemberCanBePrivate.Global
     [PrimaryKey] public string BasePath { get; private set; }
     public string ProductId { get; private set; }
-    public string ConfigUrl { get; private set; }
+    public string? ConfigUrl { get; private set; }
     public string Name { get; private set; }
     public int ProtocolVersion { get; private set; }
     public bool IsPackage { get; private set; }
     public IList<Overlay> Overlays { get; }
+    // ReSharper restore MemberCanBePrivate.Global
 
     public OverlayProvider() { }
 
@@ -42,9 +44,9 @@ internal class OverlayProvider : RealmObject
     }
 
     public static OverlayProvider Create(
-        string configUrl,
+        bool isPackage,
         OverlayProviderPayload data,
-        bool isPackage)
+        string? configUrl = null)
     {
         var basePath = data.BasePath;
         var existing = Db.Default.Realm.Find<OverlayProvider>(basePath);
