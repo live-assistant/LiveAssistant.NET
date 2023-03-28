@@ -11,13 +11,15 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "解决方案项", "解决方案项", "{86671F50-C434-4C39-9437-A6BECF34CAE4}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
-		README.md = README.md
 		LICENSE.md = LICENSE.md
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveAssistant", "LiveAssistant\LiveAssistant.csproj", "{E8375D21-197D-4708-9F59-AEF9D7A1479D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveAssistant.Protocols", "LiveAssistant.Protocols\LiveAssistant.Protocols.csproj", "{00E4FAF0-234E-4FE8-9D5C-9106DD0DC792}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveAssistant.Protocols.Data", "LiveAssistant.Protocols.Data\LiveAssistant.Protocols.Data.csproj", "{E19728E9-7853-4CE7-88DB-BB6E09CEF375}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveAssistant.Protocols.Overlay", "LiveAssistant.Protocols.Overlay\LiveAssistant.Protocols.Overlay.csproj", "{579A0BE4-F5D1-4913-A35F-2E9EC9A0B252}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,23 +49,39 @@ Global
 		{E8375D21-197D-4708-9F59-AEF9D7A1479D}.Release|x64.ActiveCfg = Release|x64
 		{E8375D21-197D-4708-9F59-AEF9D7A1479D}.Release|x64.Build.0 = Release|x64
 		{E8375D21-197D-4708-9F59-AEF9D7A1479D}.Release|x64.Deploy.0 = Release|x64
-		{00E4FAF0-234E-4FE8-9D5C-9106DD0DC792}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{00E4FAF0-234E-4FE8-9D5C-9106DD0DC792}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{00E4FAF0-234E-4FE8-9D5C-9106DD0DC792}.Debug|arm64.ActiveCfg = Debug|Any CPU
-		{00E4FAF0-234E-4FE8-9D5C-9106DD0DC792}.Debug|arm64.Build.0 = Debug|Any CPU
-		{00E4FAF0-234E-4FE8-9D5C-9106DD0DC792}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{00E4FAF0-234E-4FE8-9D5C-9106DD0DC792}.Debug|x64.Build.0 = Debug|Any CPU
-		{00E4FAF0-234E-4FE8-9D5C-9106DD0DC792}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{00E4FAF0-234E-4FE8-9D5C-9106DD0DC792}.Release|Any CPU.Build.0 = Release|Any CPU
-		{00E4FAF0-234E-4FE8-9D5C-9106DD0DC792}.Release|arm64.ActiveCfg = Release|Any CPU
-		{00E4FAF0-234E-4FE8-9D5C-9106DD0DC792}.Release|arm64.Build.0 = Release|Any CPU
-		{00E4FAF0-234E-4FE8-9D5C-9106DD0DC792}.Release|x64.ActiveCfg = Release|Any CPU
-		{00E4FAF0-234E-4FE8-9D5C-9106DD0DC792}.Release|x64.Build.0 = Release|Any CPU
+		{E19728E9-7853-4CE7-88DB-BB6E09CEF375}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E19728E9-7853-4CE7-88DB-BB6E09CEF375}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E19728E9-7853-4CE7-88DB-BB6E09CEF375}.Debug|arm64.ActiveCfg = Debug|Any CPU
+		{E19728E9-7853-4CE7-88DB-BB6E09CEF375}.Debug|arm64.Build.0 = Debug|Any CPU
+		{E19728E9-7853-4CE7-88DB-BB6E09CEF375}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E19728E9-7853-4CE7-88DB-BB6E09CEF375}.Debug|x64.Build.0 = Debug|Any CPU
+		{E19728E9-7853-4CE7-88DB-BB6E09CEF375}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E19728E9-7853-4CE7-88DB-BB6E09CEF375}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E19728E9-7853-4CE7-88DB-BB6E09CEF375}.Release|arm64.ActiveCfg = Release|Any CPU
+		{E19728E9-7853-4CE7-88DB-BB6E09CEF375}.Release|arm64.Build.0 = Release|Any CPU
+		{E19728E9-7853-4CE7-88DB-BB6E09CEF375}.Release|x64.ActiveCfg = Release|Any CPU
+		{E19728E9-7853-4CE7-88DB-BB6E09CEF375}.Release|x64.Build.0 = Release|Any CPU
+		{579A0BE4-F5D1-4913-A35F-2E9EC9A0B252}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{579A0BE4-F5D1-4913-A35F-2E9EC9A0B252}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{579A0BE4-F5D1-4913-A35F-2E9EC9A0B252}.Debug|arm64.ActiveCfg = Debug|Any CPU
+		{579A0BE4-F5D1-4913-A35F-2E9EC9A0B252}.Debug|arm64.Build.0 = Debug|Any CPU
+		{579A0BE4-F5D1-4913-A35F-2E9EC9A0B252}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{579A0BE4-F5D1-4913-A35F-2E9EC9A0B252}.Debug|x64.Build.0 = Debug|Any CPU
+		{579A0BE4-F5D1-4913-A35F-2E9EC9A0B252}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{579A0BE4-F5D1-4913-A35F-2E9EC9A0B252}.Release|Any CPU.Build.0 = Release|Any CPU
+		{579A0BE4-F5D1-4913-A35F-2E9EC9A0B252}.Release|arm64.ActiveCfg = Release|Any CPU
+		{579A0BE4-F5D1-4913-A35F-2E9EC9A0B252}.Release|arm64.Build.0 = Release|Any CPU
+		{579A0BE4-F5D1-4913-A35F-2E9EC9A0B252}.Release|x64.ActiveCfg = Release|Any CPU
+		{579A0BE4-F5D1-4913-A35F-2E9EC9A0B252}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {88A8EA67-20D1-42BD-9FA0-77B613340A14}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		LiveAssistant.Protocols.Shared\LiveAssistant.Protocols.Shared.projitems*{579a0be4-f5d1-4913-a35f-2e9ec9a0b252}*SharedItemsImports = 5
+		LiveAssistant.Protocols.Shared\LiveAssistant.Protocols.Shared.projitems*{e19728e9-7853-4ce7-88db-bb6e09cef375}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal

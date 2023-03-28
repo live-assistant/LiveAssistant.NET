@@ -120,7 +120,8 @@
     <None Include="..\.editorconfig" Link=".editorconfig" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LiveAssistant.Protocols\LiveAssistant.Protocols.csproj" />
+    <ProjectReference Include="..\LiveAssistant.Protocols.Data\LiveAssistant.Protocols.Data.csproj" />
+    <ProjectReference Include="..\LiveAssistant.Protocols.Overlay\LiveAssistant.Protocols.Overlay.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="Assets\Fonts\Segoe Fluent Icons.ttf">

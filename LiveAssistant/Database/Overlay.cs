@@ -33,7 +33,6 @@ internal class Overlay : RealmObject
     public string Name { get; set; }
     public string Category { get; set; }
     public string? Description { get; set; }
-    public IList<string> DataTypes { get; }
     public IList<OverlayField> Fields { get; }
     public IDictionary<string, string> SavedFields { get; }
     public int? MinWidth { get; set; }
@@ -72,12 +71,6 @@ internal class Overlay : RealmObject
         (existing ?? overlay).Name = data.Name;
         (existing ?? overlay).Category = data.Category;
         (existing ?? overlay).Description = data.Description;
-
-        (existing ?? overlay).DataTypes.Clear();
-        foreach (var dataType in data.DataTypes)
-        {
-            (existing ?? overlay).DataTypes.Add(dataType.ToString());
-        }
 
         (existing ?? overlay).Fields.Clear();
         foreach (var fieldData in data.Fields)
