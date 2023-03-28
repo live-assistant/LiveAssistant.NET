@@ -4,9 +4,9 @@ The Live Assistant official Windows app is licensed under [GPLv3](/LiveAssistant
 
 `Bilibili`, `Twitch`, `YouTube`, `Amazon` and `HypeRate` are trademarks of their respective owners.
 
-## LiveAssistant.Protocols package
+## LiveAssistant.Protocols.Data and LiveAssistant.Protocols.Overlay package
 
-This package is licensed under [MIT](/LiveAssistant.Protocols/LICENSE). Which applies to all code files in the `LiveAssistant.Protocols` folder.
+This package is licensed under [MIT](/LiveAssistant.Protocols/LICENSE). Which applies to all code files in the `LiveAssistant.Protocols.Data` and `LiveAssistant.Protocols.Overlay` folder.
 
 ## Image content
 
