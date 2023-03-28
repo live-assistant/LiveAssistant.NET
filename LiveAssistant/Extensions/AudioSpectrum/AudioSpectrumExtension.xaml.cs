@@ -79,6 +79,9 @@ public sealed partial class AudioSpectrumExtension : INotifyPropertyChanged, IDi
             _inputMax.Clear();
             _inputMax.Add(MaxInitialValue);
 
+            _silenceOut?.Stop();
+            _silenceOut?.Dispose();
+
             if (_manager.IsRunning)
             {
                 if (_outputCapture is not null)
@@ -99,11 +102,15 @@ public sealed partial class AudioSpectrumExtension : INotifyPropertyChanged, IDi
                 Array.Clear(_inputPoints);
 
                 _outputCapture = new WasapiLoopbackCapture(OutputDevice);
-                _inputCapture = new WasapiCapture(InputDevice);
+                _silenceOutProvider = new SilenceProvider(OutputFormat);
+                _silenceOut = new WasapiOut(OutputDevice, AudioClientShareMode.Shared, false, 0);
+                _silenceOut.Init(_silenceOutProvider);
+                _silenceOut.Play();
 
                 _outputCapture.DataAvailable += OnOutputAvailable;
                 _outputCapture.StartRecording();
 
+                _inputCapture = new WasapiCapture(InputDevice);
                 _inputCapture.DataAvailable += OnInputAvailable;
                 _inputCapture.StartRecording();
             }
@@ -159,10 +166,12 @@ public sealed partial class AudioSpectrumExtension : INotifyPropertyChanged, IDi
 
     // Capture output
     private WasapiLoopbackCapture? _outputCapture;
+    private WasapiOut? _silenceOut;
+    private SilenceProvider? _silenceOutProvider;
     private WaveFormat? OutputFormat => _outputCapture?.WaveFormat;
     private readonly List<double> _outputMax = new();
 
-    private const int PointsCount = 192;
+    private const int PointsCount = 256;
     private readonly double[] _outputPoints = new double[PointsCount];
 
     private void OnOutputAvailable(object? sender, WaveInEventArgs e)
@@ -217,13 +226,12 @@ public sealed partial class AudioSpectrumExtension : INotifyPropertyChanged, IDi
         var rangedMagnitudes = magnitudes.Take(windowed.Length / 4).ToArray();
         var maxMagnitude = rangedMagnitudes.Max();
 
+        Debug.WriteLine(maxMagnitude);
+
         var downSample = rangedMagnitudes.Length / PointsCount;
         if (maxMagnitude < 0.000001)
         {
-            for (var i = 0; i < PointsCount; i++)
-            {
-                target[i] = 0;
-            }
+            Array.Clear(target);
         }
         else
         {
@@ -328,6 +336,7 @@ public sealed partial class AudioSpectrumExtension : INotifyPropertyChanged, IDi
     {
         _outputDevicesManager.Dispose();
         _inputDevicesManager.Dispose();
+        _silenceOut?.Dispose();
         _outputCapture?.Dispose();
         _inputCapture?.Dispose();
     }
