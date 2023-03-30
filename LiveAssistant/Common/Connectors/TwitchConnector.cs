@@ -175,6 +175,7 @@ internal class TwitchConnector : IConnector
                     $"{message.Channel}.{badge.Key}",
                     Convert.ToInt32(badge.Value),
                     displayName: badge.Key)).ToList(),
+                isMember: message.IsSubscriber,
                 type: message.IsBroadcaster ? AudienceTypes.Host : message.IsModerator ? AudienceTypes.ChannelModerator : message.IsStaff ? AudienceTypes.PlatformStaff : AudienceTypes.General);
 
             var id = message.Id;
@@ -235,10 +236,10 @@ internal class TwitchConnector : IConnector
     public event EventHandler<Membership>? MembershipReceived;
     private void OnMembership(object? _, OnChannelSubscriptionArgs e)
     {
-        var membership = e.Subscription;
-
         App.Current.MainQueue.TryEnqueue(delegate
         {
+            var membership = e.Subscription;
+
             var isGift = membership.IsGift ?? false;
             var userId = membership.UserId;
             var displayName = membership.DisplayName;
@@ -248,7 +249,8 @@ internal class TwitchConnector : IConnector
                 Platforms.Twitch,
                 isGift ? membership.RecipientId : userId,
                 userName: isGift ? membership.RecipientName : username,
-                displayName: isGift ? membership.RecipientDisplayName : displayName);
+                displayName: isGift ? membership.RecipientDisplayName : displayName,
+                isMember: true);
 
             var tier = membership.SubscriptionPlan;
             var sku = new Sku(

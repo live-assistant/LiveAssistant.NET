@@ -42,6 +42,15 @@ internal class SessionViewModel : ObservableObject
         });
 
         // Handle events
+        WeakReferenceMessenger.Default.Register<MarkEventMessage>(this, (_, m) =>
+        {
+            if (ActiveSession is null) return;
+            Db.Default.Realm.Write(delegate
+            {
+                ActiveSession.Marks.Add(m.Value);
+            });
+        });
+
         WeakReferenceMessenger.Default.Register<CaptionEventMessage>(this, (_, m) =>
         {
             if (ActiveSession == null) return;
@@ -161,6 +170,7 @@ internal class SessionViewModel : ObservableObject
         ActiveSession = null;
 
         if (session is not null
+            && !session.Marks.Any()
             && !session.Audiences.Any()
             && !session.Messages.Any()
             && !session.SuperChats.Any()

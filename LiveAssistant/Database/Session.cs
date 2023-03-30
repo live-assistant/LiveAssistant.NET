@@ -29,12 +29,13 @@ internal class Session : RealmObject, IPlatformSpecific, ITimeSpan
 {
     [PrimaryKey] public ObjectId Id { get; set; } = ObjectId.GenerateNewId();
     [Indexed] public int Platform { get; private set; }
-    public IList<string> TitleList { get; }
     public Host Host { get; private set; }
-    public string CoverImageUrl { get; set; }
-    public byte[] CoverImageByteArray { get; set; }
+    public IList<string> Titles { get; }
+    public ImageContent? Cover { get; set; }
     [Indexed] public DateTimeOffset StartTimestamp { get; private set; }
     [Indexed] public DateTimeOffset EndTimestamp { get; set; }
+    public IList<Mark> Marks { get; }
+
     public IList<Audience> Audiences { get; }
     public IList<Message> Messages { get; }
     public IList<SuperChat> SuperChats { get; }

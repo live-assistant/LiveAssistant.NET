@@ -29,6 +29,11 @@ public class ShowInfoBarMessage : ValueChangedMessage<InfoBar>
     public ShowInfoBarMessage(InfoBar value) : base(value) { }
 }
 
+internal class MarkEventMessage : ValueChangedMessage<Mark>
+{
+    public MarkEventMessage(Mark value) : base(value) { }
+}
+
 internal class AudienceUpdateEventMessage : ValueChangedMessage<Audience>
 {
     public AudienceUpdateEventMessage(Audience value) : base(value) { }
