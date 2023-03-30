@@ -296,6 +296,7 @@ internal class BilibiliConnector : IConnector, IDisposable
                     level: badgeData[0]?.GetValue<int>() ?? 0,
                     displayName: badgeData[1]?.ToString()),
             } : null,
+            isMember: userData[3]?.GetValue<int>() is 1,
             type: userData[2]?.GetValue<int>() is 1 ? AudienceTypes.ChannelModerator : AudienceTypes.General);
         UpdateAudience(audience);
 
@@ -426,7 +427,8 @@ internal class BilibiliConnector : IConnector, IDisposable
             Platforms.Bilibili,
             data?["uid"]?.ToString() ?? throw new NullReferenceException(),
             userName: userName,
-            displayName: userName);
+            displayName: userName,
+            isMember: true);
         UpdateAudience(audience);
 
         var memberLevel = data["guard_level"]?.GetValue<int>() ?? 1;

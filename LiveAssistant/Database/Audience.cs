@@ -13,7 +13,6 @@
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using LiveAssistant.Common;
@@ -28,6 +27,7 @@ namespace LiveAssistant.Database;
 
 internal class Audience : RealmObject, IPlatformSpecific, IPeople
 {
+    // ReSharper disable MemberCanBePrivate.Global
     [PrimaryKey] public string Id { get; private set; }
     [Indexed] public string UserId { get; private set; }
     [Indexed] public int Platform { get; private set; }
@@ -35,7 +35,9 @@ internal class Audience : RealmObject, IPlatformSpecific, IPeople
     public StringContent? DisplayName { get; set; }
     public ImageContent? Avatar { get; set; }
     public IList<Badge> Badges { get; }
+    public bool IsMember { get; set; }
     public int Type { get; set; } = (int)AudienceTypes.General;
+    // ReSharper restore MemberCanBePrivate.Global
 
     public Audience() { }
 
@@ -57,6 +59,7 @@ internal class Audience : RealmObject, IPlatformSpecific, IPeople
         string? displayName = null,
         string? avatar = null,
         List<Badge>? badges = null,
+        bool? isMember = null,
         AudienceTypes? type = null)
     {
         var existing = Db.Default.Realm.Find<Audience>(GetId(platform, userId));
@@ -79,6 +82,8 @@ internal class Audience : RealmObject, IPlatformSpecific, IPeople
                 (existing ?? audience).Badges.Clear();
                 badges.ForEach(badge => (existing ?? audience).Badges.Add(badge));
             }
+
+            if (isMember != null) (existing ?? audience).IsMember = (bool)isMember;
             if (type != null) (existing ?? audience).Type = (int)type.Value;
         });
 
@@ -96,16 +101,6 @@ internal class Audience : RealmObject, IPlatformSpecific, IPeople
         IsModerator = (AudienceTypes)Type is AudienceTypes.ChannelModerator,
         IsMember = IsMember,
     };
-
-    [Ignored] public bool IsMember
-    {
-        get
-        {
-            if (!IsManaged) return false;
-            var memberships = Db.Default.Realm.All<Membership>().Where(m => m.Sender == this);
-            return memberships.Any(m => m.EndTimestamp > DateTimeOffset.Now);
-        }
-    }
 
     [Ignored] public int Level => Badges.Any() ? Badges.Max(badge => badge.Level) : 0;
 }

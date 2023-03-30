@@ -80,8 +80,4 @@ Global
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {88A8EA67-20D1-42BD-9FA0-77B613340A14}
 	EndGlobalSection
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		LiveAssistant.Protocols.Shared\LiveAssistant.Protocols.Shared.projitems*{579a0be4-f5d1-4913-a35f-2e9ec9a0b252}*SharedItemsImports = 5
-		LiveAssistant.Protocols.Shared\LiveAssistant.Protocols.Shared.projitems*{e19728e9-7853-4ce7-88db-bb6e09cef375}*SharedItemsImports = 5
-	EndGlobalSection
 EndGlobal
