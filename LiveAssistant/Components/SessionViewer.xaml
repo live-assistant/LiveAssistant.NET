@@ -142,6 +142,7 @@
         </ListView>
 
         <components:EmptyState
+            x:Uid="SessionViewerEmptyStateMessage"
             Grid.Row="0"
             Grid.RowSpan="3"
             Grid.Column="0"
@@ -404,6 +405,7 @@
         </ListView>
 
         <components:EmptyState
+            x:Uid="SessionViewerEmptyStateSuperChat"
             Grid.Row="0"
             Grid.Column="2"
             Visibility="{x:Bind IsSuperChatsEmpty, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
@@ -436,6 +438,7 @@
         </ListView>
 
         <components:EmptyState
+            x:Uid="SessionViewerEmptyStateGift"
             Grid.Row="2"
             Grid.Column="2"
             Visibility="{x:Bind IsGiftsEmpty, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
@@ -505,6 +508,7 @@
         </ListView>
 
         <components:EmptyState
+            x:Uid="SessionViewerEmptyStateFollower"
             Grid.Row="0"
             Grid.Column="4"
             Visibility="{x:Bind IsFollowsEmpty, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
@@ -537,6 +541,7 @@
         </ListView>
 
         <components:EmptyState
+            x:Uid="SessionViewerEmptyStateMembership"
             Grid.Row="2"
             Grid.Column="4"
             Visibility="{x:Bind IsMembershipsEmpty, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"

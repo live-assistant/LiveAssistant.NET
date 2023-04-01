@@ -38,23 +38,14 @@
                 HorizontalAlignment="Center"
                 Foreground="{ThemeResource TextFillColorPrimary}"
                 Glyph="{x:Bind Glyph, Mode=OneWay}"
-                FontSize="32"
-                Margin="0 8"/>
-
-            <TextBlock
-                Visibility="{x:Bind Title, Mode=OneWay, Converter={StaticResource IsNullToVisibilityConverter}}"
-                HorizontalAlignment="Center"
-                Style="{ThemeResource SubtitleTextBlockStyle}"
-                Margin="0 2"
-                Foreground="{ThemeResource TextFillColorSecondary}"
-                Text="{x:Bind Title, Mode=OneWay}"/>
+                FontSize="24"/>
 
             <TextBlock
                 Visibility="{x:Bind Body, Mode=OneWay, Converter={StaticResource IsNullToVisibilityConverter}}"
                 HorizontalAlignment="Center"
                 Style="{ThemeResource BodyTextBlockStyle}"
-                Margin="0 2"
-                Foreground="{ThemeResource TextFillColorTertiary}"
+                Margin="0 8 0 0"
+                Foreground="{ThemeResource TextFillColorSecondary}"
                 Text="{x:Bind Body, Mode=OneWay}"/>
         </StackPanel>
     </Border>

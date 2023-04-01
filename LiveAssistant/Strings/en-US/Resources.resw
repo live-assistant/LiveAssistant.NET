@@ -66,12 +66,6 @@
   <data name="TermSuperChat" xml:space="preserve">
     <value>Super Chat</value>
   </data>
-  <data name="MessagesListEmptyState.Title" xml:space="preserve">
-    <value>No message</value>
-  </data>
-  <data name="GiftsListEmptyState.Title" xml:space="preserve">
-    <value>No gift</value>
-  </data>
   <data name="HostPickerHeader.Text" xml:space="preserve">
     <value>Hosts</value>
   </data>
@@ -89,9 +83,6 @@
   </data>
   <data name="MainWindowTabNameHistory" xml:space="preserve">
     <value>History</value>
-  </data>
-  <data name="HistoryEmptyState.Title" xml:space="preserve">
-    <value>No session</value>
   </data>
   <data name="HistoryEmptyState.Body" xml:space="preserve">
     <value>Record a session on the Recorder page to start using the history viewer</value>
@@ -162,7 +153,7 @@
   <data name="ExtensionMediaInfoHeader.Content" xml:space="preserve">
     <value>Media Info</value>
   </data>
-  <data name="ExtensionMediaInfoEmptyState.Title" xml:space="preserve">
+  <data name="ExtensionMediaInfoEmptyState.Body" xml:space="preserve">
     <value>No info</value>
   </data>
   <data name="SocketDataTypeMediaInfo" xml:space="preserve">
@@ -189,7 +180,7 @@
   <data name="ExtensionKaraokeStationMinimumIntervalNumberBox.Header" xml:space="preserve">
     <value>Minimum Interval (in seconds)</value>
   </data>
-  <data name="ExtensionKaraokeStationEmptyState.Title" xml:space="preserve">
+  <data name="ExtensionKaraokeStationEmptyState.Body" xml:space="preserve">
     <value>No song</value>
   </data>
   <data name="ExtensionKaraokeStationAddSongTextBox.PlaceholderText" xml:space="preserve">
@@ -368,5 +359,20 @@
   </data>
   <data name="OverlayPackageFileName" xml:space="preserve">
     <value>Live Assistant Overlay Package</value>
+  </data>
+  <data name="SessionViewerEmptyStateMessage.Body" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="SessionViewerEmptyStateSuperChat.Body" xml:space="preserve">
+    <value>Super Chat</value>
+  </data>
+  <data name="SessionViewerEmptyStateGift.Body" xml:space="preserve">
+    <value>Gift</value>
+  </data>
+  <data name="SessionViewerEmptyStateFollower.Body" xml:space="preserve">
+    <value>Follower</value>
+  </data>
+  <data name="SessionViewerEmptyStateMembership.Body" xml:space="preserve">
+    <value>Membership</value>
   </data>
 </root>

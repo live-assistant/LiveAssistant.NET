@@ -156,7 +156,7 @@
   <data name="ExtensionLiveCaptionPreviewPlaceholder" xml:space="preserve">
     <value>开始说话以查看预览</value>
   </data>
-  <data name="ExtensionMediaInfoEmptyState.Title" xml:space="preserve">
+  <data name="ExtensionMediaInfoEmptyState.Body" xml:space="preserve">
     <value>没有信息</value>
   </data>
   <data name="ExtensionMediaInfoHeader.Content" xml:space="preserve">
@@ -183,14 +183,8 @@
   <data name="ExtensionTTSTemplateMessage" xml:space="preserve">
     <value>{0}说{1}</value>
   </data>
-  <data name="GiftsListEmptyState.Title" xml:space="preserve">
-    <value>没有礼物</value>
-  </data>
   <data name="HistoryEmptyState.Body" xml:space="preserve">
     <value>在记录器页面录制一个新的场次来查看历史记录</value>
-  </data>
-  <data name="HistoryEmptyState.Title" xml:space="preserve">
-    <value>没有场次</value>
   </data>
   <data name="HostPickerHeader.Text" xml:space="preserve">
     <value>主播</value>
@@ -200,9 +194,6 @@
   </data>
   <data name="MainWindowTabNameRecorder" xml:space="preserve">
     <value>记录器</value>
-  </data>
-  <data name="MessagesListEmptyState.Title" xml:space="preserve">
-    <value>没有消息</value>
   </data>
   <data name="PasswordBox.PlaceholderText" xml:space="preserve">
     <value>密码</value>
@@ -267,7 +258,7 @@
   <data name="ExtensionKaraokeStationMinimumIntervalNumberBox.Header" xml:space="preserve">
     <value>最短间隔（秒）</value>
   </data>
-  <data name="ExtensionKaraokeStationEmptyState.Title" xml:space="preserve">
+  <data name="ExtensionKaraokeStationEmptyState.Body" xml:space="preserve">
     <value>没有歌曲</value>
   </data>
   <data name="ExtensionKaraokeStationAddSongTextBox.PlaceholderText" xml:space="preserve">
@@ -446,5 +437,20 @@
   </data>
   <data name="OverlayPackageFileName" xml:space="preserve">
     <value>直播助理覆盖层包</value>
+  </data>
+  <data name="SessionViewerEmptyStateMessage.Body" xml:space="preserve">
+    <value>消息</value>
+  </data>
+  <data name="SessionViewerEmptyStateSuperChat.Body" xml:space="preserve">
+    <value>醒目留言</value>
+  </data>
+  <data name="SessionViewerEmptyStateGift.Body" xml:space="preserve">
+    <value>礼物</value>
+  </data>
+  <data name="SessionViewerEmptyStateFollower.Body" xml:space="preserve">
+    <value>关注</value>
+  </data>
+  <data name="SessionViewerEmptyStateMembership.Body" xml:space="preserve">
+    <value>会员</value>
   </data>
 </root>
