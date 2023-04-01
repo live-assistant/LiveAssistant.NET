@@ -20,6 +20,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="using:LiveAssistant.Components"
     mc:Ignorable="d"
     VerticalAlignment="Stretch">
 
@@ -29,12 +30,14 @@
         Spacing="12">
 
         <ToggleButton
+            x:Name="ToggleRecordingButton"
             VerticalAlignment="Stretch"
             Content="{x:Bind SessionViewModel.IsConnected, Mode=OneWay, Converter={StaticResource IsOnAirToStateConverter}}"
             IsEnabled="{x:Bind SessionViewModel.ActiveHost, Mode=OneWay, Converter={StaticResource IsNullToBooleanConverter}}"
             IsChecked="{x:Bind SessionViewModel.IsConnected, Mode=TwoWay}"/>
 
         <Button
+            x:Name="AddHostButton"
             VerticalAlignment="Stretch"
             Padding="8 0"
             IsEnabled="{x:Bind SessionViewModel.IsConnected, Mode=OneWay, Converter={StaticResource BooleanInverseConverter}}">
@@ -57,5 +60,19 @@
             SelectedItem="{x:Bind SessionViewModel.ActiveHost, Mode=TwoWay}"
             Visibility="{x:Bind SessionViewModel.HasHost, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
             IsEnabled="{x:Bind SessionViewModel.IsConnected, Mode=OneWay, Converter={StaticResource BooleanInverseConverter}}"/>
+
+        <local:TutorialTip
+            x:Uid="TutorialTipIntroAddHost"
+            Target="{x:Bind AddHostButton}"
+            Placement="Right"
+            Tutorial="Intro"
+            Step="AddHost"/>
+
+        <local:TutorialTip
+            x:Uid="TutorialTipIntroRecord"
+            Target="{x:Bind ToggleRecordingButton}"
+            Placement="Top"
+            Tutorial="Intro"
+            Step="Record"/>
     </StackPanel>
 </UserControl>

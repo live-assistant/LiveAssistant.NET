@@ -18,8 +18,11 @@ using System.Collections.Generic;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using LiveAssistant.Common;
+using LiveAssistant.Database;
 using LiveAssistant.Extensions;
+using Realms;
 
 namespace LiveAssistant.ViewModels;
 
@@ -27,11 +30,10 @@ internal class TutorialViewModel : ObservableObject
 {
     public TutorialViewModel()
     {
-        if (!Intro)
-        {
-            StartTutorialCommand.Execute(nameof(Intro));
-        }
+        if (!Intro && !_hosts.Any()) Start(nameof(Intro));
     }
+
+    private readonly IQueryable<Host> _hosts = Db.Default.Realm.All<Host>();
 
     private readonly ExtensionSettingsManager _manager = new("tutorial", new Dictionary<string, string>
     {
@@ -54,20 +56,20 @@ internal class TutorialViewModel : ObservableObject
         }
     }
 
-    public List<string>? StepList
+    public List<StepData>? StepList
     {
         get
         {
             if (ActiveTutorial is null) return null;
-            _steps.TryGetValue(ActiveTutorial, out var list);
+            AllSteps.TryGetValue(ActiveTutorial, out var list);
             return list;
         }
     }
 
     public int TotalStepCount => StepList?.Count ?? 0;
 
-    private string? _step;
-    public string? Step
+    private StepData? _step;
+    public StepData? Step
     {
         get => _step;
         set
@@ -85,40 +87,42 @@ internal class TutorialViewModel : ObservableObject
         get
         {
             if (StepList is null || Step is null) return 0;
-            var index = StepList.IndexOf(Step);
+            var index = StepList.IndexOf((StepData)Step);
             return index + 1;
         }
     }
 
     public bool IsLastStep => StepIndex == TotalStepCount;
-    public string? ActionButtonText => IsLastStep ? null : (StepIndex is 0 ? "ButtonStart" : "ButtonNext").Localize();
-    public string CloseButtonText => (IsLastStep ? "ButtonFinish" : "ButtonSkip").Localize();
+    public string? ActionButtonText => IsLastStep ? null : StepIndex is 1 ? "ButtonStart".Localize() : Step?.IsNextEnabled ?? true ? "ButtonNext".Localize() : null;
+    public string? CloseButtonText => StepIndex is 1 ? "ButtonSkip".Localize() : IsLastStep ? "ButtonFinish".Localize() : null;
 
-    public RelayCommand<string> StartTutorialCommand => new(name =>
+    private void Start(string name)
     {
-        if (name is null) return;
-
         ActiveTutorial = name;
-        Step = _steps[name].FirstOrDefault();
-    });
+        var firstStep = AllSteps[name].FirstOrDefault();
+        firstStep.PreAction?.Invoke();
+        Step = firstStep;
+    }
 
     public RelayCommand<string> NextStepCommand => new(delegate
     {
         if (StepList is null || Step is null) return;
 
-        var stepIndex = StepList.IndexOf(Step);
-        if (stepIndex is -1) return;
-        if (stepIndex == StepList.Count - 1)
+        Step?.PostAction?.Invoke();
+        var index = StepIndex - 1;
+        if (index is -1) return;
+        if (index == StepList.Count - 1)
         {
-            ExitTutorialCommand.Execute(null);
+            SkipCommand.Execute(null);
         }
         else
         {
-            Step = StepList[stepIndex + 1];
+            Step = StepList[StepIndex];
+            Step?.PreAction?.Invoke();
         }
     });
 
-    public RelayCommand ExitTutorialCommand => new(delegate
+    public RelayCommand SkipCommand => new(delegate
     {
         if (ActiveTutorial is null) return;
 
@@ -127,13 +131,52 @@ internal class TutorialViewModel : ObservableObject
         Step = null;
     });
 
-    private readonly Dictionary<string, List<string>> _steps = new()
+    private Dictionary<string, List<StepData>> AllSteps => new()
     {
         {
             nameof(Intro),
-            new List<string>
+            new List<StepData>
             {
-                "Start",
+                new()
+                {
+                    Id = "Start",
+                },
+                new()
+                {
+                    Id = "AddHost",
+                    IsNextEnabled = false,
+                    PreAction = delegate
+                    {
+                        _hosts.SubscribeForNotifications((hosts, changes, error) =>
+                        {
+                            if (changes?.InsertedIndices.Any() ?? false) NextStepCommand.Execute(null);
+                        });
+                    },
+                },
+                new()
+                {
+                    Id = "Record",
+                    IsNextEnabled = false,
+                    PreAction = delegate
+                    {
+                        WeakReferenceMessenger.Default.Register<SessionIsConnectedChangedMessage>(this, (_, message) =>
+                        {
+                            if (message.Value) NextStepCommand.Execute(null);
+                        });
+                    },
+                },
+                new()
+                {
+                    Id = "Panels",
+                },
+                new()
+                {
+                    Id = "Summary",
+                },
+                new()
+                {
+                    Id = "End",
+                },
             }
         },
     };
@@ -143,4 +186,12 @@ internal class TutorialViewModel : ObservableObject
         get => Convert.ToBoolean(_manager.Settings[nameof(Intro)]);
         set => _manager.SaveSetting(nameof(Intro), value.ToString());
     }
+}
+
+public struct StepData
+{
+    public string Id;
+    public bool? IsNextEnabled;
+    public Action? PreAction;
+    public Action? PostAction;
 }

@@ -375,10 +375,10 @@
   <data name="SessionViewerEmptyStateMembership.Body" xml:space="preserve">
     <value>Membership</value>
   </data>
-  <data name="TutorialTeachingTipIntroStart.Title" xml:space="preserve">
+  <data name="TutorialTipIntroStart.Title" xml:space="preserve">
     <value>Welcome</value>
   </data>
-  <data name="TutorialTeachingTipIntroStart.Subtitle" xml:space="preserve">
+  <data name="TutorialTipIntroStart.Subtitle" xml:space="preserve">
     <value>This seems to be your first time using Live Assistant, do you want to go through a quick introduction tutorial?</value>
   </data>
   <data name="ButtonSkip" xml:space="preserve">
@@ -392,5 +392,20 @@
   </data>
   <data name="ButtonNext" xml:space="preserve">
     <value>Next</value>
+  </data>
+  <data name="TutorialTipIntroAddHost.Subtitle" xml:space="preserve">
+    <value>Click the + button to add a new host</value>
+  </data>
+  <data name="TutorialTipIntroRecord.Subtitle" xml:space="preserve">
+    <value>Click this button to start recording a new session</value>
+  </data>
+  <data name="TutorialTipIntroPanels.Subtitle" xml:space="preserve">
+    <value>There are five lists for messages, super chats, new followers, gifts and new members</value>
+  </data>
+  <data name="TutorialTipIntroSummary.Subtitle" xml:space="preserve">
+    <value>This is a quick overview of the current session</value>
+  </data>
+  <data name="TutorialTipIntroEnd.Subtitle" xml:space="preserve">
+    <value>The tutorial has completed, happy streaming!</value>
   </data>
 </root>

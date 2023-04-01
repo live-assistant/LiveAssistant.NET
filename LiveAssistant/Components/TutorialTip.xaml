@@ -24,10 +24,13 @@
 
     <TeachingTip
         IsOpen="{x:Bind IsOpen, Mode=OneWay}"
+        Title="{x:Bind TitleWithStep, Mode=OneWay}"
         Subtitle="{x:Bind Subtitle, Mode=OneWay}"
+        Target="{x:Bind Target, Mode=OneWay}"
+        PlacementMargin="12"
         PreferredPlacement="{x:Bind Placement, Mode=OneWay}"
         CloseButtonContent="{x:Bind ViewModel.CloseButtonText, Mode=OneWay}"
-        CloseButtonCommand="{x:Bind ViewModel.ExitTutorialCommand}"
+        CloseButtonCommand="{x:Bind ViewModel.SkipCommand}"
         ActionButtonContent="{x:Bind ViewModel.ActionButtonText, Mode=OneWay}"
         ActionButtonCommand="{x:Bind ViewModel.NextStepCommand}"/>
 </UserControl>

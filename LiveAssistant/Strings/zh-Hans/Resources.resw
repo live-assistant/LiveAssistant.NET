@@ -453,10 +453,10 @@
   <data name="SessionViewerEmptyStateMembership.Body" xml:space="preserve">
     <value>会员</value>
   </data>
-  <data name="TutorialTeachingTipIntroStart.Title" xml:space="preserve">
+  <data name="TutorialTipIntroStart.Title" xml:space="preserve">
     <value>欢迎</value>
   </data>
-  <data name="TutorialTeachingTipIntroStart.Subtitle" xml:space="preserve">
+  <data name="TutorialTipIntroStart.Subtitle" xml:space="preserve">
     <value>这好像是你第一次使用直播助理，是否需要开始一个快速介绍教程？</value>
   </data>
   <data name="ButtonFinish" xml:space="preserve">
@@ -470,5 +470,20 @@
   </data>
   <data name="ButtonNext" xml:space="preserve">
     <value>下一步</value>
+  </data>
+  <data name="TutorialTipIntroAddHost.Subtitle" xml:space="preserve">
+    <value>点击 + 按钮添加一个新的主播</value>
+  </data>
+  <data name="TutorialTipIntroRecord.Subtitle" xml:space="preserve">
+    <value>点击这个按钮来开始录制一个新的场次</value>
+  </data>
+  <data name="TutorialTipIntroPanels.Subtitle" xml:space="preserve">
+    <value>这里有显示消息、醒目留言、新关注、礼物和新会员的五个列表</value>
+  </data>
+  <data name="TutorialTipIntroSummary.Subtitle" xml:space="preserve">
+    <value>你可以在这里看到当前场次的概览</value>
+  </data>
+  <data name="TutorialTipIntroEnd.Subtitle" xml:space="preserve">
+    <value>教程已经结束，祝直播愉快！</value>
   </data>
 </root>

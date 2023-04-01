@@ -32,9 +32,14 @@ public sealed partial class TutorialTip : INotifyPropertyChanged
 
         ViewModel.PropertyChanged += (s, e) =>
         {
-            if (e.PropertyName is nameof(ViewModel.ActiveTutorial) or nameof(ViewModel.Step))
+            switch (e.PropertyName)
             {
-                OnPropertyChanged(nameof(IsOpen));
+                case nameof(ViewModel.ActiveTutorial) or nameof(ViewModel.Step):
+                    OnPropertyChanged(nameof(IsOpen));
+                    break;
+                case nameof(ViewModel.StepIndex) or nameof(ViewModel.TotalStepCount):
+                    OnPropertyChanged(nameof(TitleWithStep));
+                    break;
             }
         };
     }
@@ -65,7 +70,7 @@ public sealed partial class TutorialTip : INotifyPropertyChanged
     private static readonly DependencyProperty StepProperty =
         DependencyProperty.Register(nameof(Step), typeof(string), typeof(TutorialTip), new PropertyMetadata(null));
 
-    public bool IsOpen => Tutorial == ViewModel.ActiveTutorial && Step == ViewModel.Step;
+    public bool IsOpen => Tutorial == ViewModel.ActiveTutorial && Step == ViewModel.Step?.Id;
 
     public string Title
     {
@@ -75,6 +80,8 @@ public sealed partial class TutorialTip : INotifyPropertyChanged
     private static readonly DependencyProperty TitleProperty =
         DependencyProperty.Register(nameof(Title), typeof(string), typeof(TutorialTip), new PropertyMetadata(null));
 
+    public string TitleWithStep => $"{ViewModel.StepIndex}/{ViewModel.TotalStepCount}{(string.IsNullOrEmpty(Title) ? "" : $" {Title}")}";
+
     public string Subtitle
     {
         get => (string)GetValue(SubtitleProperty);
@@ -82,6 +89,14 @@ public sealed partial class TutorialTip : INotifyPropertyChanged
     }
     private static readonly DependencyProperty SubtitleProperty =
         DependencyProperty.Register(nameof(Subtitle), typeof(string), typeof(TutorialTip), new PropertyMetadata(null));
+
+    public FrameworkElement Target
+    {
+        get { return (FrameworkElement)GetValue(TargetProperty); }
+        set { SetValue(TargetProperty, value); }
+    }
+    private static readonly DependencyProperty TargetProperty =
+        DependencyProperty.Register(nameof(Target), typeof(FrameworkElement), typeof(TutorialTip), new PropertyMetadata(null));
 
     public TeachingTipPlacementMode Placement
     {

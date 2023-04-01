@@ -150,6 +150,7 @@
             Glyph="{StaticResource IconMessage}"/>
 
         <StackPanel
+            x:Name="Summary"
             Grid.Row="0"
             Grid.Column="0"
             Orientation="Horizontal"
@@ -307,6 +308,15 @@
                     Text="{x:Bind NewMembersCount, Mode=OneWay}"/>
             </StackPanel>
         </StackPanel>
+
+        <components:TutorialTip
+            x:Uid="TutorialTipIntroSummary"
+            Grid.Row="0"
+            Grid.Column="0"
+            Tutorial="Intro"
+            Step="Summary"
+            Target="{x:Bind Summary}"
+            Placement="Bottom"/>
 
         <Border
             Grid.Row="0"
