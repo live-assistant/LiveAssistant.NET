@@ -43,8 +43,8 @@
             <TextBlock
                 Visibility="{x:Bind Body, Mode=OneWay, Converter={StaticResource IsNullToVisibilityConverter}}"
                 HorizontalAlignment="Center"
-                Style="{ThemeResource BodyTextBlockStyle}"
-                Margin="0 8 0 0"
+                Style="{ThemeResource CaptionTextBlockStyle}"
+                Margin="0 12 0 0"
                 Foreground="{ThemeResource TextFillColorSecondary}"
                 Text="{x:Bind Body, Mode=OneWay}"/>
         </StackPanel>
