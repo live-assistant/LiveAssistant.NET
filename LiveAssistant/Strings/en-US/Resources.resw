@@ -375,4 +375,22 @@
   <data name="SessionViewerEmptyStateMembership.Body" xml:space="preserve">
     <value>Membership</value>
   </data>
+  <data name="TutorialTeachingTipIntroStart.Title" xml:space="preserve">
+    <value>Welcome</value>
+  </data>
+  <data name="TutorialTeachingTipIntroStart.Subtitle" xml:space="preserve">
+    <value>This seems to be your first time using Live Assistant, do you want to go through a quick introduction tutorial?</value>
+  </data>
+  <data name="ButtonSkip" xml:space="preserve">
+    <value>Skip</value>
+  </data>
+  <data name="ButtonFinish" xml:space="preserve">
+    <value>Finish</value>
+  </data>
+  <data name="ButtonStart" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="ButtonNext" xml:space="preserve">
+    <value>Next</value>
+  </data>
 </root>

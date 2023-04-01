@@ -453,4 +453,22 @@
   <data name="SessionViewerEmptyStateMembership.Body" xml:space="preserve">
     <value>会员</value>
   </data>
+  <data name="TutorialTeachingTipIntroStart.Title" xml:space="preserve">
+    <value>欢迎</value>
+  </data>
+  <data name="TutorialTeachingTipIntroStart.Subtitle" xml:space="preserve">
+    <value>这好像是你第一次使用直播助理，是否需要开始一个快速介绍教程？</value>
+  </data>
+  <data name="ButtonFinish" xml:space="preserve">
+    <value>完成</value>
+  </data>
+  <data name="ButtonSkip" xml:space="preserve">
+    <value>跳过</value>
+  </data>
+  <data name="ButtonStart" xml:space="preserve">
+    <value>开始</value>
+  </data>
+  <data name="ButtonNext" xml:space="preserve">
+    <value>下一步</value>
+  </data>
 </root>

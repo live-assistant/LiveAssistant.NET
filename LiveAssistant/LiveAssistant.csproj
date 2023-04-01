@@ -34,6 +34,7 @@
     <None Remove="Components\SessionController.xaml" />
     <None Remove="Components\SessionViewer.xaml" />
     <None Remove="Components\SocketServerController.xaml" />
+    <None Remove="Components\TutorialTip.xaml" />
     <None Remove="Dictionaries\Converters.xaml" />
     <None Remove="Dictionaries\Icons.xaml" />
     <None Remove="Dictionaries\Styles.xaml" />
@@ -143,6 +144,9 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Update="Components\SocketServerController.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Components\TutorialTip.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <None Update="Dictionaries\WinUI\Common_themeresources_any.xaml">
