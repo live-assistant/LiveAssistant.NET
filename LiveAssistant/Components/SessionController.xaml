@@ -49,7 +49,7 @@
             <Button.Flyout>
                 <MenuFlyout
                     x:Name="HostAddFlyout"
-                    Placement="BottomEdgeAlignedRight"/>
+                    Placement="TopEdgeAlignedLeft"/>
             </Button.Flyout>
         </Button>
 

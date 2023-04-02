@@ -53,4 +53,5 @@
     <x:String x:Key="IconWebsite">&#xEB41;</x:String>
     <x:String x:Key="IconOverlay">&#xE7C4;</x:String>
     <x:String x:Key="IconOverlayFields">&#xF259;</x:String>
+    <x:String x:Key="IconSettings">&#xE713;</x:String>
 </ResourceDictionary>

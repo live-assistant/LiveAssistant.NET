@@ -65,8 +65,7 @@
                 TodayBlackoutForeground="{ThemeResource AccentTextFillColorPrimaryBrush}"
                 MinDate="{x:Bind HistoryViewModel.MinDate, Mode=OneWay}"
                 MaxDate="{x:Bind HistoryViewModel.MaxDate, Mode=OneWay}"
-                SelectedDatesChanged="OnSelectedDatesChanged"
-                CalendarViewDayItemChanging="OnCalendarViewDayItemChanging"/>
+                SelectedDatesChanged="OnSelectedDatesChanged"/>
 
             <Border
                 Grid.Row="1"
@@ -88,36 +87,23 @@
                     <DataTemplate
                         x:DataType="database:Session">
 
-                        <StackPanel
-                            Orientation="Vertical"
-                            Spacing="1"
-                            Padding="0 6">
+                        <RichTextBlock
+                            Style="{ThemeResource BodyRichTextBlockStyle}"
+                            Foreground="{ThemeResource TextFillColorPrimary}"
+                            IsTextSelectionEnabled="False">
 
-                            <TextBlock
-                                Style="{ThemeResource BodyTextBlockStyle}"
-                                Foreground="{ThemeResource TextFillColorPrimary}"
-                                Text="{x:Bind StartTimestamp, Mode=OneWay, Converter={StaticResource DateTimeOffsetToNormalDateShortTimeConverter}}"/>
+                            <Paragraph>
+                                <Run Text="{x:Bind StartTimestamp, Mode=OneWay, Converter={StaticResource DateTimeOffsetToShortTimeConverter}}"/>
 
-                            <StackPanel
-                                Orientation="Horizontal"
-                                Spacing="2">
+                                <Run Text=" &#183; "/>
 
-                                <TextBlock
-                                    Style="{ThemeResource CaptionTextBlockStyle}"
-                                    Foreground="{ThemeResource TextFillColorTertiary}"
-                                    Text="{x:Bind Host, Mode=OneWay, Converter={StaticResource HostToDisplayNameConverter}}"/>
+                                <Run Text="{x:Bind Host, Mode=OneWay, Converter={StaticResource HostToDisplayNameConverter}}"/>
 
-                                <TextBlock
-                                    Style="{ThemeResource CaptionTextBlockStyle}"
-                                    Foreground="{ThemeResource TextFillColorTertiary}"
-                                    Text="&#183;"/>
+                                <Run Text=" &#183; "/>
 
-                                <TextBlock
-                                    Style="{ThemeResource CaptionTextBlockStyle}"
-                                    Foreground="{ThemeResource TextFillColorTertiary}"
-                                    Text="{x:Bind Platform, Mode=OneWay, Converter={StaticResource PlatformIntToTextConverter}}"/>
-                            </StackPanel>
-                        </StackPanel>
+                                <Run Text="{x:Bind Platform, Mode=OneWay, Converter={StaticResource PlatformIntToTextConverter}}"/>
+                            </Paragraph>
+                        </RichTextBlock>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

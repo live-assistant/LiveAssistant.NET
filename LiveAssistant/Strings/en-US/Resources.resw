@@ -169,16 +169,16 @@
     <value>Karaoke</value>
   </data>
   <data name="ExtensionKaraokeStationRequiresWearingBadgeCheckBox.Content" xml:space="preserve">
-    <value>Requires Wearing Badge</value>
+    <value>Requires wearing badge</value>
   </data>
   <data name="ExtensionKaraokeStationMinimumAudienceLevelNumberBox.Header" xml:space="preserve">
-    <value>Minimum Audience Level</value>
+    <value>Minimum audience level</value>
   </data>
   <data name="ExtensionKaraokeStationKeywordTextBox.Header" xml:space="preserve">
-    <value>Trigger Keyword</value>
+    <value>Trigger keyword</value>
   </data>
   <data name="ExtensionKaraokeStationMinimumIntervalNumberBox.Header" xml:space="preserve">
-    <value>Minimum Interval (in seconds)</value>
+    <value>Minimum interval (in seconds)</value>
   </data>
   <data name="ExtensionKaraokeStationEmptyState.Body" xml:space="preserve">
     <value>No song</value>
@@ -259,7 +259,7 @@
     <value>Add Provider</value>
   </data>
   <data name="OverlayExplorerPreviewBackgroundColorDropDownButton.Content" xml:space="preserve">
-    <value>Preview Background Color</value>
+    <value>Preview background color</value>
   </data>
   <data name="OverlayExplorerCopyUrlButton.Content" xml:space="preserve">
     <value>Copy URL</value>
@@ -349,10 +349,10 @@
     <value>Gifts</value>
   </data>
   <data name="SessionViewerSummaryNewMembersCount.Text" xml:space="preserve">
-    <value>New Members</value>
+    <value>Members</value>
   </data>
   <data name="SessionViewerSummaryNewFollowersCount.Text" xml:space="preserve">
-    <value>New Followers</value>
+    <value>Followers</value>
   </data>
   <data name="OverlayExceptionProtocolVersion" xml:space="preserve">
     <value>The protocol version is not supported</value>
@@ -407,5 +407,14 @@
   </data>
   <data name="TutorialTipIntroEnd.Subtitle" xml:space="preserve">
     <value>The tutorial has completed, happy streaming!</value>
+  </data>
+  <data name="OverlayExplorerEmptyStateOverlay.Body" xml:space="preserve">
+    <value>Overlays List</value>
+  </data>
+  <data name="OverlayExplorerEmptyStateConfig.Body" xml:space="preserve">
+    <value>Config</value>
+  </data>
+  <data name="OverlayExplorerEmptyStatePreview.Body" xml:space="preserve">
+    <value>Preview</value>
   </data>
 </root>

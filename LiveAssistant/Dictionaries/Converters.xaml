@@ -27,7 +27,7 @@
     <converters:IsSameValueToBooleanConverter x:Key="IsSameValueToBooleanConverter"/>
     <converters:IsNullToBooleanConverter x:Key="IsNullToBooleanConverter"/>
     <converters:IsNullToBooleanInverseConverter x:Key="IsNullToBooleanInverseConverter"/>
-    <converters:DateTimeOffsetToNormalDateShortTimeConverter x:Key="DateTimeOffsetToNormalDateShortTimeConverter"/>
+    <converters:DateTimeOffsetToShortTimeConverter x:Key="DateTimeOffsetToShortTimeConverter"/>
     <converters:LocalizedFallbackStringConverter x:Key="LocalizedFallbackStringConverter"/>
     <converters:IsStringNullOrEmptyToVisibilityConverter x:Key="IsStringNullOrEmptyToVisibilityConverter"/>
     <converters:EnumStringComparisonToVisibilityConverter x:Key="EnumStringComparisonToVisibilityConverter"/>

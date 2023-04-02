@@ -63,24 +63,14 @@
                 Visibility="{x:Bind Engine.Engine, Mode=OneWay, Converter={StaticResource EnumStringComparisonToVisibilityConverter}, ConverterParameter=AmazonPolly}"
                 Orientation="Vertical">
 
-                <Grid
-                    ColumnSpacing="12">
+                <PasswordBox
+                    x:Uid="ExtensionTTSAmazonPollyKeyPasswordBox"
+                    Password="{x:Bind PollyKey, Mode=TwoWay}"/>
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <PasswordBox
-                        x:Uid="ExtensionTTSAmazonPollyKeyPasswordBox"
-                        Grid.Column="0"
-                        Password="{x:Bind PollyKey, Mode=TwoWay}"/>
-
-                    <PasswordBox
-                        x:Uid="ExtensionTTSAmazonPollySecretPasswordBox"
-                        Grid.Column="1"
-                        Password="{x:Bind PollySecret, Mode=TwoWay}"/>
-                </Grid>
+                <PasswordBox
+                    x:Uid="ExtensionTTSAmazonPollySecretPasswordBox"
+                    Margin="0 12 0 0"
+                    Password="{x:Bind PollySecret, Mode=TwoWay}"/>
 
                 <ComboBox
                     x:Uid="VoiceComboBox"

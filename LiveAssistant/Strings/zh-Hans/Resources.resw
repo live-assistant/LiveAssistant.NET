@@ -427,10 +427,10 @@
     <value>礼物</value>
   </data>
   <data name="SessionViewerSummaryNewMembersCount.Text" xml:space="preserve">
-    <value>新会员</value>
+    <value>会员</value>
   </data>
   <data name="SessionViewerSummaryNewFollowersCount.Text" xml:space="preserve">
-    <value>新关注</value>
+    <value>关注</value>
   </data>
   <data name="OverlayExceptionProtocolVersion" xml:space="preserve">
     <value>协议版本不受支持</value>
@@ -485,5 +485,14 @@
   </data>
   <data name="TutorialTipIntroEnd.Subtitle" xml:space="preserve">
     <value>教程已经结束，祝直播愉快！</value>
+  </data>
+  <data name="OverlayExplorerEmptyStateConfig.Body" xml:space="preserve">
+    <value>配置</value>
+  </data>
+  <data name="OverlayExplorerEmptyStateOverlay.Body" xml:space="preserve">
+    <value>覆盖层列表</value>
+  </data>
+  <data name="OverlayExplorerEmptyStatePreview.Body" xml:space="preserve">
+    <value>预览</value>
   </data>
 </root>
