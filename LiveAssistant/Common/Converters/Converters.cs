@@ -110,11 +110,11 @@ internal class IsNullToBooleanInverseConverter : IValueConverter
     public object ConvertBack(object value, Type targetType, object parameter, string language) => throw new NotImplementedException();
 }
 
-internal class DateTimeOffsetToNormalDateShortTimeConverter : IValueConverter
+internal class DateTimeOffsetToShortTimeConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, string language)
     {
-        return ((DateTimeOffset)value).ToLocalTime().ToString("g");
+        return ((DateTimeOffset)value).ToLocalTime().ToString("t");
     }
 
     public object ConvertBack(object value, Type targetType, object parameter, string language) => throw new NotImplementedException();

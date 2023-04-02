@@ -34,101 +34,102 @@
         </Grid.ColumnDefinitions>
 
         <Grid
+            RowSpacing="12"
             Grid.Column="0"
             Padding="12">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="1"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Grid
+            <StackPanel
                 Grid.Row="0"
-                ColumnSpacing="12">
+                Orientation="Vertical">
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
+                <Grid
+                    ColumnSpacing="12">
 
-                <Button
-                    x:Uid="OverlayExplorerAddButton"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="2"
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button
+                        x:Uid="OverlayExplorerAddButton"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        HorizontalAlignment="Stretch"
+                        Style="{StaticResource AccentButtonStyle}"
+                        Visibility="{x:Bind _viewModel.IsProvidersEmpty, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        Command="{x:Bind _viewModel.AddProviderCommand}"/>
+
+                    <DropDownButton
+                        Grid.Column="0"
+                        HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Left"
+                        Visibility="{x:Bind _viewModel.IsProvidersEmpty, Mode=OneWay, Converter={StaticResource BooleanToVisibilityInverseConverter}}"
+                        Content="{x:Bind _viewModel.Provider.Name, Mode=OneWay}">
+
+                        <DropDownButton.Flyout>
+                            <MenuFlyout
+                                x:Name="ProvidersMenu"
+                                Placement="BottomEdgeAlignedLeft"/>
+                        </DropDownButton.Flyout>
+                    </DropDownButton>
+
+                    <Button
+                        Grid.Column="1"
+                        VerticalAlignment="Stretch"
+                        Padding="8 0"
+                        Visibility="{x:Bind _viewModel.IsProvidersEmpty, Mode=OneWay, Converter={StaticResource BooleanToVisibilityInverseConverter}}"
+                        Command="{x:Bind _viewModel.AddProviderCommand}">
+
+                        <FontIcon
+                            Glyph="{StaticResource IconAdd}"/>
+                    </Button>
+                </Grid>
+
+                <Grid
+                    Visibility="{x:Bind _viewModel.Provider, Mode=OneWay, Converter={StaticResource IsNullToVisibilityConverter}}"
+                    Margin="0 12 0 0"
                     HorizontalAlignment="Stretch"
-                    Style="{StaticResource AccentButtonStyle}"
-                    Visibility="{x:Bind _viewModel.IsProvidersEmpty, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
-                    Command="{x:Bind _viewModel.AddProviderCommand}"/>
+                    ColumnSpacing="12">
 
-                <DropDownButton
-                    Grid.Column="0"
-                    HorizontalAlignment="Stretch"
-                    HorizontalContentAlignment="Left"
-                    Visibility="{x:Bind _viewModel.IsProvidersEmpty, Mode=OneWay, Converter={StaticResource BooleanToVisibilityInverseConverter}}"
-                    Content="{x:Bind _viewModel.Provider.Name, Mode=OneWay}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-                    <DropDownButton.Flyout>
-                        <MenuFlyout
-                            x:Name="ProvidersMenu"
-                            Placement="BottomEdgeAlignedLeft"/>
-                    </DropDownButton.Flyout>
-                </DropDownButton>
+                    <Button
+                        x:Uid="OverlayExplorerReloadProviderButton"
+                        Grid.Column="0"
+                        HorizontalAlignment="Stretch"
+                        Command="{x:Bind _viewModel.ReloadProviderCommand}"
+                        CommandParameter="{x:Bind _viewModel.Provider, Mode=OneWay}"/>
 
-                <Button
-                    Grid.Column="1"
-                    VerticalAlignment="Stretch"
-                    Padding="8 0"
-                    Visibility="{x:Bind _viewModel.IsProvidersEmpty, Mode=OneWay, Converter={StaticResource BooleanToVisibilityInverseConverter}}"
-                    Command="{x:Bind _viewModel.AddProviderCommand}">
-
-                    <FontIcon
-                        Glyph="{StaticResource IconAdd}"/>
-                </Button>
-            </Grid>
+                    <Button
+                        x:Uid="OverlayExplorerRemoveProviderButton"
+                        Grid.Column="1"
+                        HorizontalAlignment="Stretch"
+                        Command="{x:Bind _viewModel.RemoveProviderCommand}"
+                        CommandParameter="{x:Bind _viewModel.Provider, Mode=OneWay}"/>
+                </Grid>
+            </StackPanel>
 
             <Border
                 Grid.Row="1"
-                HorizontalAlignment="Stretch"
-                Height="1"
-                Margin="0 12 0 0"
                 Background="{ThemeResource DividerStrokeColorDefault}"/>
 
             <ListView
                 Grid.Row="2"
-                Padding="0 12"
-                Margin="-4 0"
+                Padding="0 8"
+                Margin="-4 -12"
                 ItemsSource="{x:Bind _viewModel.Overlays, Mode=OneWay}"
                 Visibility="{x:Bind _viewModel.IsOverlaysEmpty, Mode=OneWay, Converter={StaticResource BooleanToVisibilityInverseConverter}}"
                 SelectionMode="Single"
                 SelectedValue="{x:Bind _viewModel.Overlay, Mode=TwoWay}">
-
-                <ListView.Header>
-                    <Grid
-                        HorizontalAlignment="Stretch"
-                        ColumnSpacing="12"
-                        Margin="4 0 4 8">
-
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <Button
-                            x:Uid="OverlayExplorerReloadProviderButton"
-                            Grid.Column="0"
-                            HorizontalAlignment="Stretch"
-                            Command="{x:Bind _viewModel.ReloadProviderCommand}"
-                            CommandParameter="{x:Bind _viewModel.Provider, Mode=OneWay}"/>
-
-                        <Button
-                            x:Uid="OverlayExplorerRemoveProviderButton"
-                            Grid.Column="1"
-                            HorizontalAlignment="Stretch"
-                            Command="{x:Bind _viewModel.RemoveProviderCommand}"
-                            CommandParameter="{x:Bind _viewModel.Provider, Mode=OneWay}"/>
-                    </Grid>
-                </ListView.Header>
 
                 <ListView.ItemTemplate>
                     <DataTemplate
@@ -153,6 +154,7 @@
             </ListView>
 
             <components:EmptyState
+                x:Uid="OverlayExplorerEmptyStateOverlay"
                 Grid.Row="2"
                 Visibility="{x:Bind _viewModel.IsOverlaysEmpty, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
                 Glyph="{StaticResource IconOverlay}"/>
@@ -225,12 +227,14 @@
             </ScrollViewer>
 
             <components:EmptyState
+                x:Uid="OverlayExplorerEmptyStateConfig"
                 Grid.Row="2"
                 Visibility="{x:Bind _viewModel.IsFieldsEmpty, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
                 Glyph="{StaticResource IconOverlayFields}"/>
         </Grid>
 
         <components:EmptyState
+            x:Uid="OverlayExplorerEmptyStateConfig"
             Grid.Column="2"
             Visibility="{x:Bind _viewModel.Overlay, Mode=OneWay, Converter={StaticResource IsNullToVisibilityInverseConverter}}"
             Glyph="{StaticResource IconOverlayFields}"/>
@@ -255,6 +259,7 @@
                 DefaultBackgroundColor="{x:Bind _viewModel.BackgroundColor, Mode=OneWay}"/>
 
             <components:EmptyState
+                x:Uid="OverlayExplorerEmptyStatePreview"
                 Grid.Row="0"
                 Grid.Column="0"
                 HorizontalAlignment="Stretch"

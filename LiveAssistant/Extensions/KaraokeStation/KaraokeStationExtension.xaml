@@ -35,75 +35,35 @@
         </Expander.Header>
 
         <StackPanel
-            Orientation="Vertical"
-            Spacing="12">
-
-            <Grid
-                RowSpacing="12"
-                ColumnSpacing="12">
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-                <TextBox
-                    x:Name="KeywordTextBox"
-                    x:Uid="ExtensionKaraokeStationKeywordTextBox"
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    Text="{x:Bind TriggerKeyword, Mode=TwoWay}"/>
-
-                <NumberBox
-                    x:Uid="ExtensionKaraokeStationMinimumIntervalNumberBox"
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    Value="{x:Bind MinimumInterval, Mode=TwoWay}"
-                    Minimum="0"
-                    SpinButtonPlacementMode="Compact"/>
-
-                <NumberBox
-                    x:Uid="ExtensionKaraokeStationMinimumAudienceLevelNumberBox"
-                    Grid.Row="0"
-                    Grid.Column="2"
-                    Value="{x:Bind MinimumAudienceLevel, Mode=TwoWay}"
-                    Minimum="0"
-                    SpinButtonPlacementMode="Compact"/>
-
-                <CheckBox
-                    x:Uid="ExtensionKaraokeStationRequiresWearingBadgeCheckBox"
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="3"
-                    IsChecked="{x:Bind RequiresWearingBadge, Mode=TwoWay}"/>
-            </Grid>
-
-            <Border
-                Height="1"
-                Background="{ThemeResource DividerStrokeColorDefault}"/>
+            Orientation="Vertical">
 
             <Grid
                 ColumnSpacing="12">
 
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
+
+                <ToggleButton
+                    Grid.Column="0"
+                    VerticalAlignment="Stretch"
+                    Padding="8 0"
+                    IsChecked="{x:Bind IsSettingsOpen, Mode=TwoWay}">
+
+                    <FontIcon
+                        Glyph="{StaticResource IconSettings}"/>
+                </ToggleButton>
 
                 <TextBox
                     x:Uid="ExtensionKaraokeStationAddSongTextBox"
-                    Grid.Column="0"
+                    Grid.Column="1"
                     TextChanged="OnSongChanged"
                     Text="{x:Bind Song, Mode=TwoWay}"/>
 
                 <Button
-                    Grid.Column="1"
+                    Grid.Column="2"
                     VerticalAlignment="Stretch"
                     Padding="8 0"
                     IsEnabled="{x:Bind IsSongEmpty, Mode=OneWay, Converter={StaticResource BooleanInverseConverter}}"
@@ -115,6 +75,7 @@
             </Grid>
 
             <ListView
+                Margin="0 12 0 0"
                 SelectionMode="None"
                 ItemsSource="{x:Bind _list, Mode=OneWay}">
 
@@ -177,6 +138,38 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+
+            <StackPanel
+                Margin="0 12 0 0"
+                Visibility="{x:Bind IsSettingsOpen, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+                Orientation="Vertical"
+                Spacing="12">
+
+                <Border
+                    Height="1"
+                    Background="{ThemeResource DividerStrokeColorDefault}"/>
+
+                <TextBox
+                    x:Name="KeywordTextBox"
+                    x:Uid="ExtensionKaraokeStationKeywordTextBox"
+                    Text="{x:Bind TriggerKeyword, Mode=TwoWay}"/>
+
+                <NumberBox
+                    x:Uid="ExtensionKaraokeStationMinimumIntervalNumberBox"
+                    Value="{x:Bind MinimumInterval, Mode=TwoWay}"
+                    Minimum="0"
+                    SpinButtonPlacementMode="Inline"/>
+
+                <NumberBox
+                    x:Uid="ExtensionKaraokeStationMinimumAudienceLevelNumberBox"
+                    Value="{x:Bind MinimumAudienceLevel, Mode=TwoWay}"
+                    Minimum="0"
+                    SpinButtonPlacementMode="Inline"/>
+
+                <CheckBox
+                    x:Uid="ExtensionKaraokeStationRequiresWearingBadgeCheckBox"
+                    IsChecked="{x:Bind RequiresWearingBadge, Mode=TwoWay}"/>
+            </StackPanel>
         </StackPanel>
     </Expander>
 </UserControl>

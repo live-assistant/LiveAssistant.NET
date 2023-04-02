@@ -41,17 +41,4 @@ internal sealed partial class HistoryPage
         var dates = sender.SelectedDates;
         HistoryViewModel.SelectedDate = dates.FirstOrDefault();
     }
-
-    private void OnCalendarViewDayItemChanging(CalendarView sender, CalendarViewDayItemChangingEventArgs args)
-    {
-        if (args.InRecycleQueue) return;
-
-        // Set sessions count
-        var item = args.Item;
-        var start = item.Date;
-        var end = start.AddHours(24).Subtract(TimeSpan.FromSeconds(1));
-        var sessionsInDay = _sessions.Where(s => s.StartTimestamp >= start && s.StartTimestamp < end);
-        item.SetDensityColors(sessionsInDay.ToList().Select(_ => App.Current.Resources["AccentFillColorDefaultBrush"].As<SolidColorBrush>().Color));
-        item.IsBlackout = !sessionsInDay.Any();
-    }
 }

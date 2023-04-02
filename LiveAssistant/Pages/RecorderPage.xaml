@@ -45,6 +45,13 @@
             IsRecording="True"
             Session="{x:Bind SessionViewModel.ActiveSession, Mode=OneWay}"/>
 
+        <components:TutorialTip
+            x:Uid="TutorialTipIntroPanels"
+            Grid.Column="0"
+            Tutorial="Intro"
+            Step="Panels"
+            Placement="Center"/>
+
         <Border
             Grid.Column="1"
             Margin="0 12"
@@ -72,5 +79,19 @@
                 <audioSpectrum:AudioSpectrumExtension/>
             </StackPanel>
         </ScrollViewer>
+
+        <components:TutorialTip
+            x:Uid="TutorialTipIntroStart"
+            Grid.Column="0"
+            Grid.Row="0"
+            Tutorial="Intro"
+            Step="Start"/>
+
+        <components:TutorialTip
+            x:Uid="TutorialTipIntroEnd"
+            Grid.Column="0"
+            Grid.Row="0"
+            Tutorial="Intro"
+            Step="End"/>
     </Grid>
 </Page>

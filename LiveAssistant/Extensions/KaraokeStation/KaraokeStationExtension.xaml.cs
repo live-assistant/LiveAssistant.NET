@@ -55,6 +55,13 @@ public sealed partial class KaraokeStationExtension : INotifyPropertyChanged
         { nameof(RequiresWearingBadge), false.ToString() },
     });
 
+    private bool _isSettingsOpen;
+    public bool IsSettingsOpen
+    {
+        get => _isSettingsOpen;
+        set => SetField(ref _isSettingsOpen, value);
+    }
+
     private static string DefaultKeyword => "ExtensionKaraokeStationKeywordDefault".Localize();
     private string TriggerKeyword
     {

@@ -122,6 +122,7 @@
                     <RichTextBlock
                         TextTrimming="CharacterEllipsis"
                         TextWrapping="NoWrap"
+                        Style="{ThemeResource BodyRichTextBlockStyle}"
                         Foreground="{ThemeResource TextFillColorTertiary}">
 
                         <Paragraph>

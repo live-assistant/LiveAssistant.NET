@@ -35,9 +35,9 @@
 
         <NumberBox
             x:Uid="PortNumberBox"
-            Width="80"
+            Width="104"
             IsEnabled="{x:Bind _viewModel.State, Mode=OneWay, Converter={StaticResource WebServerStateToIsEnabledConverter}}"
-            SpinButtonPlacementMode="Compact"
+            SpinButtonPlacementMode="Hidden"
             Value="{x:Bind _viewModel.Port, Mode=TwoWay}"/>
 
         <DropDownButton
@@ -45,7 +45,7 @@
 
             <DropDownButton.Flyout>
                 <MenuFlyout
-                    Placement="BottomEdgeAlignedRight">
+                    Placement="TopEdgeAlignedRight">
 
                     <MenuFlyoutItem
                         x:Uid="SocketServerPasswordMenuCopy"

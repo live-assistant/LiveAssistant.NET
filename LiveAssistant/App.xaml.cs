@@ -185,6 +185,7 @@ public partial class App
             .AddSingleton<SessionViewModel>()
             .AddSingleton<HistoryViewModel>()
             .AddSingleton(new OverlayViewModel())
+            .AddSingleton<TutorialViewModel>()
             .BuildServiceProvider();
 
         Ioc.Default.ConfigureServices(serviceProvider);

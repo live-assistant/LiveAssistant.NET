@@ -156,7 +156,7 @@
   <data name="ExtensionLiveCaptionPreviewPlaceholder" xml:space="preserve">
     <value>开始说话以查看预览</value>
   </data>
-  <data name="ExtensionMediaInfoEmptyState.Title" xml:space="preserve">
+  <data name="ExtensionMediaInfoEmptyState.Body" xml:space="preserve">
     <value>没有信息</value>
   </data>
   <data name="ExtensionMediaInfoHeader.Content" xml:space="preserve">
@@ -183,14 +183,8 @@
   <data name="ExtensionTTSTemplateMessage" xml:space="preserve">
     <value>{0}说{1}</value>
   </data>
-  <data name="GiftsListEmptyState.Title" xml:space="preserve">
-    <value>没有礼物</value>
-  </data>
   <data name="HistoryEmptyState.Body" xml:space="preserve">
     <value>在记录器页面录制一个新的场次来查看历史记录</value>
-  </data>
-  <data name="HistoryEmptyState.Title" xml:space="preserve">
-    <value>没有场次</value>
   </data>
   <data name="HostPickerHeader.Text" xml:space="preserve">
     <value>主播</value>
@@ -200,9 +194,6 @@
   </data>
   <data name="MainWindowTabNameRecorder" xml:space="preserve">
     <value>记录器</value>
-  </data>
-  <data name="MessagesListEmptyState.Title" xml:space="preserve">
-    <value>没有消息</value>
   </data>
   <data name="PasswordBox.PlaceholderText" xml:space="preserve">
     <value>密码</value>
@@ -267,7 +258,7 @@
   <data name="ExtensionKaraokeStationMinimumIntervalNumberBox.Header" xml:space="preserve">
     <value>最短间隔（秒）</value>
   </data>
-  <data name="ExtensionKaraokeStationEmptyState.Title" xml:space="preserve">
+  <data name="ExtensionKaraokeStationEmptyState.Body" xml:space="preserve">
     <value>没有歌曲</value>
   </data>
   <data name="ExtensionKaraokeStationAddSongTextBox.PlaceholderText" xml:space="preserve">
@@ -436,15 +427,72 @@
     <value>礼物</value>
   </data>
   <data name="SessionViewerSummaryNewMembersCount.Text" xml:space="preserve">
-    <value>新会员</value>
+    <value>会员</value>
   </data>
   <data name="SessionViewerSummaryNewFollowersCount.Text" xml:space="preserve">
-    <value>新关注</value>
+    <value>关注</value>
   </data>
   <data name="OverlayExceptionProtocolVersion" xml:space="preserve">
     <value>协议版本不受支持</value>
   </data>
   <data name="OverlayPackageFileName" xml:space="preserve">
     <value>直播助理覆盖层包</value>
+  </data>
+  <data name="SessionViewerEmptyStateMessage.Body" xml:space="preserve">
+    <value>消息</value>
+  </data>
+  <data name="SessionViewerEmptyStateSuperChat.Body" xml:space="preserve">
+    <value>醒目留言</value>
+  </data>
+  <data name="SessionViewerEmptyStateGift.Body" xml:space="preserve">
+    <value>礼物</value>
+  </data>
+  <data name="SessionViewerEmptyStateFollower.Body" xml:space="preserve">
+    <value>关注</value>
+  </data>
+  <data name="SessionViewerEmptyStateMembership.Body" xml:space="preserve">
+    <value>会员</value>
+  </data>
+  <data name="TutorialTipIntroStart.Title" xml:space="preserve">
+    <value>欢迎</value>
+  </data>
+  <data name="TutorialTipIntroStart.Subtitle" xml:space="preserve">
+    <value>这好像是你第一次使用直播助理，是否需要开始一个快速介绍教程？</value>
+  </data>
+  <data name="ButtonFinish" xml:space="preserve">
+    <value>完成</value>
+  </data>
+  <data name="ButtonSkip" xml:space="preserve">
+    <value>跳过</value>
+  </data>
+  <data name="ButtonStart" xml:space="preserve">
+    <value>开始</value>
+  </data>
+  <data name="ButtonNext" xml:space="preserve">
+    <value>下一步</value>
+  </data>
+  <data name="TutorialTipIntroAddHost.Subtitle" xml:space="preserve">
+    <value>点击 + 按钮添加一个新的主播</value>
+  </data>
+  <data name="TutorialTipIntroRecord.Subtitle" xml:space="preserve">
+    <value>点击这个按钮来开始录制一个新的场次</value>
+  </data>
+  <data name="TutorialTipIntroPanels.Subtitle" xml:space="preserve">
+    <value>这里有显示消息、醒目留言、新关注、礼物和新会员的五个列表</value>
+  </data>
+  <data name="TutorialTipIntroSummary.Subtitle" xml:space="preserve">
+    <value>你可以在这里看到当前场次的概览</value>
+  </data>
+  <data name="TutorialTipIntroEnd.Subtitle" xml:space="preserve">
+    <value>教程已经结束，祝直播愉快！</value>
+  </data>
+  <data name="OverlayExplorerEmptyStateConfig.Body" xml:space="preserve">
+    <value>配置</value>
+  </data>
+  <data name="OverlayExplorerEmptyStateOverlay.Body" xml:space="preserve">
+    <value>覆盖层列表</value>
+  </data>
+  <data name="OverlayExplorerEmptyStatePreview.Body" xml:space="preserve">
+    <value>预览</value>
   </data>
 </root>
