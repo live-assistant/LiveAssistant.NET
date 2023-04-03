@@ -150,7 +150,7 @@ public partial class App
                 var fileArgs = args.Data.As<IFileActivatedEventArgs>();
                 var file = fileArgs.Files[0];
                 var path = file.Path;
-                if (!path.EndsWith(".lapack")) return;
+                if (!path.EndsWith(".ovpak")) return;
 
                 MainQueue.TryEnqueue(delegate
                 {

@@ -11,7 +11,7 @@
   <Identity
     Name="C6218F8A.LiveAssistant"
     Publisher="CN=1A5EB892-3A4A-4954-A376-66602BD00D72"
-    Version="0.13.1.0" />
+    Version="0.13.2.0" />
 
   <Properties>
     <DisplayName>Live Assistant</DisplayName>
@@ -51,10 +51,10 @@
         <uap:Extension Category="windows.fileTypeAssociation">
           <uap:FileTypeAssociation Name="live-assistant-overlay-package">
             <uap:SupportedFileTypes>
-              <uap:FileType ContentType="application/zip">.lapack</uap:FileType>
+              <uap:FileType ContentType="application/zip">.ovpak</uap:FileType>
             </uap:SupportedFileTypes>
             <uap:DisplayName>ms-resource:OverlayPackageFileName</uap:DisplayName>
-            <uap:Logo>Images\Package\VisualTemplateIcon.png</uap:Logo>
+            <uap:Logo>Images\OverlayPackage.png</uap:Logo>
             <uap:InfoTip>ms-resource:OverlayPackageFileName</uap:InfoTip>
             <uap:EditFlags OpenIsSafe="true"/>
           </uap:FileTypeAssociation>
