@@ -23,6 +23,8 @@ internal enum Platforms
     Twitch = 1,
     YouTube = 2,
 
+    Test = 200,
+
     Aws = 100,
     GoogleCloud = 101,
     Azure = 102,

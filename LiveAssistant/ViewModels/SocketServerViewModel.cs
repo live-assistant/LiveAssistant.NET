@@ -25,6 +25,7 @@ using System.Linq;
 using System.Windows;
 using CommunityToolkit.Mvvm.Messaging.Messages;
 using LiveAssistant.Common;
+using LiveAssistant.Common.Connectors;
 using LiveAssistant.SocketServer;
 
 namespace LiveAssistant.ViewModels;
@@ -182,16 +183,16 @@ internal class SocketServerViewModel : ObservableObject
 
             if (value)
             {
-                _tester.Start();
+                _tester.Connect();
             }
             else
             {
-                _tester.Stop();
+                _tester.Disconnect();
             }
         }
     }
 
-    private readonly Tester _tester = new();
+    private readonly TestConnector _tester = new(false);
 }
 
 public class SocketSeverTestModeIsEnabledChangeMessage : ValueChangedMessage<bool>

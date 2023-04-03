@@ -40,6 +40,14 @@ public sealed partial class SessionController
             Text = "PlatformTwitch".Localize(),
             Command = TwitchConnector.AddHost,
         });
+
+#if DEBUG
+        HostAddFlyout.Items.Add(new MenuFlyoutItem
+        {
+            Text = "PlatformTest".Localize(),
+            Command = TestConnector.AddHost,
+        });
+#endif
     }
 
     private SessionViewModel SessionViewModel => App.Current.Services.GetService<SessionViewModel>() ?? throw new NullReferenceException();

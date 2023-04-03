@@ -147,6 +147,7 @@ internal class SessionViewModel : ObservableObject
         {
             Platforms.Bilibili => new Common.Connectors.Bilibili.BilibiliConnector(ActiveHost),
             Platforms.Twitch => new TwitchConnector(ActiveHost),
+            Platforms.Test => new TestConnector(true),
             _ => null,
         };
 

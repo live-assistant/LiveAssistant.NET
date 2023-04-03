@@ -16,19 +16,22 @@
 using System;
 using System.Linq;
 using System.Timers;
+using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using LiveAssistant.Common;
 using LiveAssistant.Common.Messages;
 using LiveAssistant.Common.Types;
 using LiveAssistant.Database;
 using NLipsum.Core;
 
-namespace LiveAssistant.SocketServer;
+namespace LiveAssistant.Common.Connectors;
 
-internal class Tester
+internal class TestConnector : IConnector
 {
-    public Tester()
+    public TestConnector(
+        bool persist)
     {
+        _persist = persist;
+
         _enterTimer.Elapsed += OnEnter;
         _followTimer.Elapsed += OnFollow;
         _messageTimer.Elapsed += OnMessage;
@@ -39,6 +42,29 @@ internal class Tester
         _captionTimer.Elapsed += OnCaption;
         _heartRateTimer.Elapsed += OnHeartRate;
     }
+
+    private readonly bool _persist;
+
+    private const string TesterId = "tester";
+    public static RelayCommand AddHost => new(delegate
+    {
+        var host = new Host(
+            Platforms.Test,
+            TesterId)
+        {
+            AuthTime = DateTimeOffset.Now,
+            ChannelId = TesterId,
+            DisplayName = StringContent.Create("TestHostDisplayName".Localize()),
+        };
+
+        Db.Default.Realm.Write(delegate
+        {
+            Db.Default.Realm.Add(host);
+        });
+    });
+
+    public event EventHandler<Exception>? OnError;
+    public event EventHandler<Exception>? OnFatalError;
 
     private readonly Random _random = new();
     private readonly LipsumGenerator _generator = new();
@@ -99,12 +125,14 @@ internal class Tester
             DisplayName = StringContent.Create(string.Join(" ", _generator.GenerateWords(2))),
             Image = RandomAvatar(platform),
             Amount = (float)_random.NextDouble() * 100,
+            Currency = "TCR",
         };
 
         return sku;
     }
 
     // Enter
+    public event EventHandler<Enter>? Entered;
     private readonly Timer _enterTimer = new();
     private void OnEnter(object? sender, ElapsedEventArgs e)
     {
@@ -116,7 +144,8 @@ internal class Tester
                 platform,
                 RandomAudience(platform));
 
-            WeakReferenceMessenger.Default.Send(new EnterEventMessage(enter));
+            if (_persist) Entered?.Invoke(this, enter);
+            else WeakReferenceMessenger.Default.Send(new EnterEventMessage(enter));
         });
 
         _enterTimer.Interval = _random.Next(4000, 10000);
@@ -124,6 +153,7 @@ internal class Tester
     }
 
     // Follow
+    public event EventHandler<Follow>? Followed;
     private readonly Timer _followTimer = new();
     private void OnFollow(object? sender, ElapsedEventArgs e)
     {
@@ -135,7 +165,8 @@ internal class Tester
                 platform,
                 RandomAudience(platform));
 
-            WeakReferenceMessenger.Default.Send(new FollowEventMessage(enter));
+            if (_persist) Followed?.Invoke(this, enter);
+            else WeakReferenceMessenger.Default.Send(new FollowEventMessage(enter));
         });
 
         _followTimer.Interval = _random.Next(10000, 30000);
@@ -143,6 +174,7 @@ internal class Tester
     }
 
     // Message
+    public event EventHandler<Message>? MessageReceived;
     private readonly Timer _messageTimer = new();
     private void OnMessage(object? _, ElapsedEventArgs e)
     {
@@ -157,7 +189,8 @@ internal class Tester
                 RandomAudience(platform),
                 StringContent.Create(_generator.GenerateSentences(1).FirstOrDefault() ?? ""));
 
-            WeakReferenceMessenger.Default.Send(new MessageEventMessage(message));
+            if (_persist) MessageReceived?.Invoke(this, message);
+            else WeakReferenceMessenger.Default.Send(new MessageEventMessage(message));
         });
 
         _messageTimer.Interval = _random.Next(250, 5000);
@@ -165,6 +198,7 @@ internal class Tester
     }
 
     // Super chat
+    public event EventHandler<SuperChat>? SuperChatReceived;
     private readonly Timer _superChatTimer = new();
     private void OnSuperChat(object? sender, ElapsedEventArgs e)
     {
@@ -182,7 +216,8 @@ internal class Tester
                 DateTimeOffset.Now,
                 DateTimeOffset.Now.AddSeconds(_random.Next(30, 30000)));
 
-            WeakReferenceMessenger.Default.Send(new SuperChatEventMessage(superChat));
+            if (_persist) SuperChatReceived?.Invoke(this, superChat);
+            else WeakReferenceMessenger.Default.Send(new SuperChatEventMessage(superChat));
         });
 
         _superChatTimer.Interval = _random.Next(3000, 10000);
@@ -190,6 +225,7 @@ internal class Tester
     }
 
     // Gift
+    public event EventHandler<Gift>? GiftReceived;
     private readonly Timer _giftTimer = new();
     private void OnGift(object? sender, ElapsedEventArgs e)
     {
@@ -206,7 +242,8 @@ internal class Tester
                 count: _random.Next(1, 100),
                 sender: RandomAudience(platform));
 
-            WeakReferenceMessenger.Default.Send(new GiftEventMessage(gift));
+            if (_persist) GiftReceived?.Invoke(this, gift);
+            else WeakReferenceMessenger.Default.Send(new GiftEventMessage(gift));
         });
 
         _giftTimer.Interval = _random.Next(1000, 5000);
@@ -214,6 +251,7 @@ internal class Tester
     }
 
     // Membership
+    public event EventHandler<Membership>? MembershipReceived;
     private readonly Timer _membershipTimer = new();
     private void OnMembership(object? sender, ElapsedEventArgs e)
     {
@@ -232,7 +270,8 @@ internal class Tester
                 end: DateTimeOffset.Now.AddMonths(count),
                 count: count);
 
-            WeakReferenceMessenger.Default.Send(new MembershipEventMessage(membership));
+            if (_persist) MembershipReceived?.Invoke(this, membership);
+            else WeakReferenceMessenger.Default.Send(new MembershipEventMessage(membership));
         });
 
         _membershipTimer.Interval = _random.Next(10000, 30000);
@@ -240,6 +279,7 @@ internal class Tester
     }
 
     // Viewers count
+    public event EventHandler<ViewersCount>? ViewersCountChanged;
     private readonly Timer _viewersCountTimer = new()
     {
         Interval = 50000,
@@ -249,10 +289,13 @@ internal class Tester
     {
         App.Current.MainQueue.TryEnqueue(delegate
         {
-            WeakReferenceMessenger.Default.Send(new ViewersCountEventMessage(new ViewersCount(
+            var viewersCount = new ViewersCount(
                 RandomPlatform(),
                 _random.Next(90, 150),
-                DateTimeOffset.Now)));
+                DateTimeOffset.Now);
+
+            if (_persist) ViewersCountChanged?.Invoke(this, viewersCount);
+            else WeakReferenceMessenger.Default.Send(new ViewersCountEventMessage(viewersCount));
         });
     }
 
@@ -288,7 +331,7 @@ internal class Tester
         });
     }
 
-    public void Start()
+    public void Connect()
     {
         _enterTimer.Start();
         _followTimer.Start();
@@ -301,7 +344,7 @@ internal class Tester
         _heartRateTimer.Start();
     }
 
-    public void Stop()
+    public void Disconnect()
     {
         _enterTimer.Stop();
         _followTimer.Stop();

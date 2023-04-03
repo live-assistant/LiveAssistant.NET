@@ -417,4 +417,10 @@
   <data name="OverlayExplorerEmptyStatePreview.Body" xml:space="preserve">
     <value>Preview</value>
   </data>
+  <data name="TestHostDisplayName" xml:space="preserve">
+    <value>Tester</value>
+  </data>
+  <data name="PlatformTest" xml:space="preserve">
+    <value>Test Platform</value>
+  </data>
 </root>
