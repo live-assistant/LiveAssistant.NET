@@ -52,7 +52,7 @@
     <value>Twitch</value>
   </data>
   <data name="BilibiliHostDialogTitle" xml:space="preserve">
-    <value>Add Bilibili Host</value>
+    <value>Add Bilibili host</value>
   </data>
   <data name="ButtonCancel" xml:space="preserve">
     <value>Cancel</value>
@@ -76,7 +76,7 @@
     <value>Disconnect</value>
   </data>
   <data name="ExtensionTTSHeader.Content" xml:space="preserve">
-    <value>Text to Speech</value>
+    <value>Text-to-Speech</value>
   </data>
   <data name="MainWindowTabNameRecorder" xml:space="preserve">
     <value>Recorder</value>
@@ -91,7 +91,7 @@
     <value>{0} says {1}</value>
   </data>
   <data name="AudioDeviceComboBox.Header" xml:space="preserve">
-    <value>Audio Device</value>
+    <value>Audio device</value>
   </data>
   <data name="VoiceComboBox.Header" xml:space="preserve">
     <value>Voice</value>
@@ -136,19 +136,19 @@
     <value>Membership</value>
   </data>
   <data name="SocketDataTypeViewersCount" xml:space="preserve">
-    <value>Viewers Count</value>
+    <value>Viewers count</value>
   </data>
   <data name="SocketDataTypeCaption" xml:space="preserve">
     <value>Caption</value>
   </data>
   <data name="SocketDataTypeHeartRate" xml:space="preserve">
-    <value>Heart Rate</value>
+    <value>Heart rate</value>
   </data>
   <data name="ExtensionHeartRateHeader.Content" xml:space="preserve">
     <value>Heart Rate</value>
   </data>
   <data name="ExtensionHeartRateHypeRateIdTextBox.PlaceholderText" xml:space="preserve">
-    <value>HypeRate Session ID</value>
+    <value>HypeRate session ID</value>
   </data>
   <data name="ExtensionMediaInfoHeader.Content" xml:space="preserve">
     <value>Media Info</value>
@@ -157,7 +157,7 @@
     <value>No info</value>
   </data>
   <data name="SocketDataTypeMediaInfo" xml:space="preserve">
-    <value>Media Info</value>
+    <value>Media info</value>
   </data>
   <data name="SocketServerTestModeToggleButtonToolTip.Content" xml:space="preserve">
     <value>Test mode</value>
@@ -187,7 +187,7 @@
     <value>Add song</value>
   </data>
   <data name="SocketDataTypeKaraokeStation" xml:space="preserve">
-    <value>Karaoke Station</value>
+    <value>Karaoke station</value>
   </data>
   <data name="ExtensionMediaInfoArtistFallbackValue" xml:space="preserve">
     <value>Artist</value>
@@ -205,13 +205,13 @@
     <value>System Input Info</value>
   </data>
   <data name="SocketDataTypeMousePosition" xml:space="preserve">
-    <value>Mouse Position</value>
+    <value>Mouse position</value>
   </data>
   <data name="SocketDataTypeMouseButton" xml:space="preserve">
-    <value>Mouse Button</value>
+    <value>Mouse button</value>
   </data>
   <data name="SocketDataTypeKeyboardButton" xml:space="preserve">
-    <value>Keyboard Button</value>
+    <value>Keyboard button</value>
   </data>
   <data name="SocketDataTypeGamepad" xml:space="preserve">
     <value>Gamepad</value>
@@ -226,16 +226,16 @@
     <value>Game pad</value>
   </data>
   <data name="ExtensionTTSAmazonPollyKeyPasswordBox.Header" xml:space="preserve">
-    <value>Access Key</value>
+    <value>Access key</value>
   </data>
   <data name="ExtensionTTSAmazonPollySecretPasswordBox.Header" xml:space="preserve">
-    <value>Access Key Secret</value>
+    <value>Access key secret</value>
   </data>
   <data name="SocketDataTypeAudienceUpdate" xml:space="preserve">
-    <value>Audience Data Update</value>
+    <value>Audience data update</value>
   </data>
   <data name="SocketDataTypeEnter" xml:space="preserve">
-    <value>Audience Enter</value>
+    <value>Audience enter</value>
   </data>
   <data name="SocketDataTypeFollow" xml:space="preserve">
     <value>Follow</value>
@@ -253,10 +253,10 @@
     <value>Add</value>
   </data>
   <data name="OverlayExplorerAddButton.Content" xml:space="preserve">
-    <value>Add Provider</value>
+    <value>Add provider</value>
   </data>
   <data name="OverlayExplorerAddProviderDialogTitle" xml:space="preserve">
-    <value>Add Provider</value>
+    <value>Add provider</value>
   </data>
   <data name="OverlayExplorerPreviewBackgroundColorDropDownButton.Content" xml:space="preserve">
     <value>Preview background color</value>
@@ -286,10 +286,10 @@
     <value>Audio Spectrum</value>
   </data>
   <data name="SocketDataTypeInputAudioSpectrum" xml:space="preserve">
-    <value>Input Audio Spectrum</value>
+    <value>Input audio spectrum</value>
   </data>
   <data name="SocketDataTypeOutputAudioSpectrum" xml:space="preserve">
-    <value>Output Audio Spectrum</value>
+    <value>Output audio spectrum</value>
   </data>
   <data name="ExceptionInfoBarTitle" xml:space="preserve">
     <value>An exception occured</value>
@@ -301,10 +301,10 @@
     <value>Cannot connect to the server</value>
   </data>
   <data name="AudioDeviceInputComboBox.Header" xml:space="preserve">
-    <value>Audio Input Device</value>
+    <value>Audio input device</value>
   </data>
   <data name="AudioDeviceOutputComboBox.Header" xml:space="preserve">
-    <value>Audio Output Device</value>
+    <value>Audio output device</value>
   </data>
   <data name="MainWindowTabNameSettings" xml:space="preserve">
     <value>Settings</value>
@@ -325,19 +325,19 @@
     <value>License</value>
   </data>
   <data name="SettingsSpecialThanks.Header" xml:space="preserve">
-    <value>Special Thanks</value>
+    <value>Special thanks</value>
   </data>
   <data name="SettingsTrademarks.Text" xml:space="preserve">
     <value>Bilibili, Twitch, YouTube, Amazon and HypeRate are trademarks of their respective owners.</value>
   </data>
   <data name="SessionViewerSummaryViewersCount" xml:space="preserve">
-    <value>Viewers Count</value>
+    <value>Viewers count</value>
   </data>
   <data name="SessionViewerSummaryDuration.Text" xml:space="preserve">
     <value>Duration</value>
   </data>
   <data name="SessionViewerSummaryPeakViewersCount" xml:space="preserve">
-    <value>Peak Viewers Count</value>
+    <value>Peak viewers count</value>
   </data>
   <data name="SessionViewerSummaryMessagesCount.Text" xml:space="preserve">
     <value>Messages</value>
@@ -409,7 +409,7 @@
     <value>The tutorial has completed, happy streaming!</value>
   </data>
   <data name="OverlayExplorerEmptyStateOverlay.Body" xml:space="preserve">
-    <value>Overlays List</value>
+    <value>Overlays list</value>
   </data>
   <data name="OverlayExplorerEmptyStateConfig.Body" xml:space="preserve">
     <value>Config</value>
