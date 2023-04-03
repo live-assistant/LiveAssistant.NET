@@ -179,6 +179,18 @@ internal sealed partial class SessionViewer : INotifyPropertyChanged
     public bool IsMessagesEmpty => !Messages.Any();
     private int MessagesCount => Messages.Count();
 
+    private double _messageBubbleMaxWidth;
+    public double MessageBubbleMaxWidth
+    {
+        get => _messageBubbleMaxWidth;
+        private set => SetField(ref _messageBubbleMaxWidth, value);
+    }
+
+    private void OnMessagesListSizeChange(object _, SizeChangedEventArgs e)
+    {
+        MessageBubbleMaxWidth = Math.Min(560, e.NewSize.Width - 72);
+    }
+
     private IEnumerable<SuperChat> SuperChats => Session?.SuperChats ?? new ObservableCollection<SuperChat>(Array.Empty<SuperChat>());
     private IDisposable? _superChatToken;
     public bool IsSuperChatsEmpty => !SuperChats.Any();

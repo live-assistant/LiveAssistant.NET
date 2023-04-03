@@ -495,4 +495,10 @@
   <data name="OverlayExplorerEmptyStatePreview.Body" xml:space="preserve">
     <value>预览</value>
   </data>
+  <data name="TestHostDisplayName" xml:space="preserve">
+    <value>测试员</value>
+  </data>
+  <data name="PlatformTest" xml:space="preserve">
+    <value>测试平台</value>
+  </data>
 </root>

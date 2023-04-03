@@ -42,17 +42,20 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <Image
-                    Grid.Row="0">
+                <PersonPicture
+                    Grid.Row="0"
+                    Width="36"
+                    Height="36"
+                    DisplayName="{x:Bind Sku.DisplayName, Mode=OneWay}">
 
-                    <Image.Source>
+                    <PersonPicture.ProfilePicture>
                         <BitmapImage
                             UriSource="{x:Bind Sku.Image.Url, Mode=OneWay}"
                             DecodePixelType="Logical"
                             DecodePixelWidth="36"
                             DecodePixelHeight="36"/>
-                    </Image.Source>
-                </Image>
+                    </PersonPicture.ProfilePicture>
+                </PersonPicture>
 
                 <InfoBadge
                     Grid.Row="0"
