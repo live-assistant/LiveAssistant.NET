@@ -67,8 +67,7 @@
 
             <StackPanel
                 Orientation="Vertical"
-                VerticalAlignment="Center"
-                Spacing="1">
+                VerticalAlignment="Center">
 
                 <TextBlock
                     Style="{ThemeResource CaptionTextBlockStyle}"
