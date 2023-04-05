@@ -125,7 +125,7 @@ internal sealed partial class OverlayPage
                         IsChecked = Convert.ToBoolean(defaultValue),
                     };
                     toggleButton.Click += (button, _) =>
-                        SendUpdate(key, ((ToggleButton)button).IsChecked.ToString() ?? "");
+                        SendUpdate(key, ((ToggleButton)button).IsChecked.ToString()?.ToLowerInvariant() ?? "");
                     FieldsPanel.Children.Add(toggleButton);
                     break;
                 }
