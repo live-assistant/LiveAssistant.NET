@@ -103,4 +103,5 @@ internal class Audience : RealmObject, IPlatformSpecific, IPeople
     };
 
     [Ignored] public int Level => Badges.Any() ? Badges.Max(badge => badge.Level) : 0;
+    [Ignored] public string? DisplayNameOrUsername => DisplayName?.String ?? Username?.String;
 }

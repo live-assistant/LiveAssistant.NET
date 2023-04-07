@@ -180,7 +180,7 @@
   <data name="VoiceComboBox.Header" xml:space="preserve">
     <value>声音</value>
   </data>
-  <data name="ExtensionTTSTemplateMessage" xml:space="preserve">
+  <data name="ExtensionTTSTemplateMessageWithName" xml:space="preserve">
     <value>{0}说{1}</value>
   </data>
   <data name="HistoryEmptyState.Body" xml:space="preserve">
@@ -500,5 +500,47 @@
   </data>
   <data name="PlatformTest" xml:space="preserve">
     <value>测试平台</value>
+  </data>
+  <data name="ExtensionTTSTemplateEnter" xml:space="preserve">
+    <value>欢迎 {0}</value>
+  </data>
+  <data name="ExtensionTTSTemplateFollow" xml:space="preserve">
+    <value>{0} 关注了你</value>
+  </data>
+  <data name="ExtensionTTSTemplateMonetization" xml:space="preserve">
+    <value>收到了 {0} 个 {1}</value>
+  </data>
+  <data name="ExtensionTTSTemplateSuperChatWithName" xml:space="preserve">
+    <value>{0} 发送了一则醒目留言：{1}</value>
+  </data>
+  <data name="ExtensionTTSTemplateMonetizationWithName" xml:space="preserve">
+    <value>{0} 赠送了 {1} 个 {2}</value>
+  </data>
+  <data name="ExtensionTTSTemplateMessage" xml:space="preserve">
+    <value>匿名观众说 {0}</value>
+  </data>
+  <data name="ExtensionTTSTemplateSuperChat" xml:space="preserve">
+    <value>收到了一则匿名醒目留言：{0}</value>
+  </data>
+  <data name="ExtensionTTSReadEnter.Content" xml:space="preserve">
+    <value>进场</value>
+  </data>
+  <data name="ExtensionTTSReadFollow.Content" xml:space="preserve">
+    <value>新关注者</value>
+  </data>
+  <data name="ExtensionTTSReadGift.Content" xml:space="preserve">
+    <value>礼物</value>
+  </data>
+  <data name="ExtensionTTSReadMembership.Content" xml:space="preserve">
+    <value>新会员</value>
+  </data>
+  <data name="ExtensionTTSReadSuperChat.Content" xml:space="preserve">
+    <value>醒目留言</value>
+  </data>
+  <data name="ExtensionTTSReadFollowing.Text" xml:space="preserve">
+    <value>读出以下内容</value>
+  </data>
+  <data name="ExtensionTTSReadMessage.Content" xml:space="preserve">
+    <value>消息</value>
   </data>
 </root>

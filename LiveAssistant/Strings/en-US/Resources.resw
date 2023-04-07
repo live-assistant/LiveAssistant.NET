@@ -87,7 +87,7 @@
   <data name="HistoryEmptyState.Body" xml:space="preserve">
     <value>Record a session on the Recorder page to start using the history viewer</value>
   </data>
-  <data name="ExtensionTTSTemplateMessage" xml:space="preserve">
+  <data name="ExtensionTTSTemplateMessageWithName" xml:space="preserve">
     <value>{0} says {1}</value>
   </data>
   <data name="AudioDeviceComboBox.Header" xml:space="preserve">
@@ -422,5 +422,47 @@
   </data>
   <data name="PlatformTest" xml:space="preserve">
     <value>Test Platform</value>
+  </data>
+  <data name="ExtensionTTSTemplateEnter" xml:space="preserve">
+    <value>Welcome {0}</value>
+  </data>
+  <data name="ExtensionTTSTemplateSuperChatWithName" xml:space="preserve">
+    <value>{0} sends a super chat: {1}</value>
+  </data>
+  <data name="ExtensionTTSTemplateMonetization" xml:space="preserve">
+    <value>Received {0} of {1}</value>
+  </data>
+  <data name="ExtensionTTSTemplateFollow" xml:space="preserve">
+    <value>{0} followed you</value>
+  </data>
+  <data name="ExtensionTTSTemplateMonetizationWithName" xml:space="preserve">
+    <value>{0} sends {1} of {2}</value>
+  </data>
+  <data name="ExtensionTTSTemplateMessage" xml:space="preserve">
+    <value>Anonymous audience says {0}</value>
+  </data>
+  <data name="ExtensionTTSTemplateSuperChat" xml:space="preserve">
+    <value>Received an anonymous super chat: {0}</value>
+  </data>
+  <data name="ExtensionTTSReadEnter.Content" xml:space="preserve">
+    <value>Enter</value>
+  </data>
+  <data name="ExtensionTTSReadFollow.Content" xml:space="preserve">
+    <value>New follower</value>
+  </data>
+  <data name="ExtensionTTSReadSuperChat.Content" xml:space="preserve">
+    <value>Super Chat</value>
+  </data>
+  <data name="ExtensionTTSReadGift.Content" xml:space="preserve">
+    <value>Gift</value>
+  </data>
+  <data name="ExtensionTTSReadMembership.Content" xml:space="preserve">
+    <value>New member</value>
+  </data>
+  <data name="ExtensionTTSReadFollowing.Text" xml:space="preserve">
+    <value>Read out the following</value>
+  </data>
+  <data name="ExtensionTTSReadMessage.Content" xml:space="preserve">
+    <value>Message</value>
   </data>
 </root>

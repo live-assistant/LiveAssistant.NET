@@ -68,7 +68,7 @@ internal sealed partial class OverlayPage
             var type = Enum.Parse<OverlayFieldType>(field.Type, true);
             var key = field.Key;
 
-            var defaultValue = overlay.SavedFields.ContainsKey(key) ? overlay.SavedFields[key] : field.DefaultValue;
+            var defaultValue = overlay.SavedFields.TryGetValue(key, out string? savedField) ? savedField : field.DefaultValue;
 
             switch (type)
             {
@@ -230,10 +230,4 @@ internal sealed partial class OverlayPage
 
     private OverlayViewModel _viewModel = App.Current.Services.GetService<OverlayViewModel>() ?? throw new NullReferenceException();
     private readonly SocketServerViewModel _socketServerViewModel = App.Current.Services.GetService<SocketServerViewModel>() ?? throw new NullReferenceException();
-
-    private void OnClickRemoveProvider(object sender, RoutedEventArgs e)
-    {
-        var button = (Button)sender;
-        _viewModel.RemoveProviderCommand.Execute((OverlayProvider)button.DataContext);
-    }
 }

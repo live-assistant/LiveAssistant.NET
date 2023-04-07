@@ -35,8 +35,78 @@
         <StackPanel
             Orientation="Vertical">
 
+            <Grid
+                RowSpacing="8"
+                ColumnSpacing="8">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="1"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock
+                    x:Uid="ExtensionTTSReadFollowing"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Style="{ThemeResource BodyTextBlockStyle}"
+                    Foreground="{ThemeResource TextFillColorPrimary}"/>
+
+                <CheckBox
+                    x:Uid="ExtensionTTSReadEnter"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    IsChecked="{x:Bind ReadEnter, Mode=TwoWay}"/>
+
+                <CheckBox
+                    x:Uid="ExtensionTTSReadFollow"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    IsChecked="{x:Bind ReadFollow, Mode=TwoWay}"/>
+
+                <CheckBox
+                    x:Uid="ExtensionTTSReadMessage"
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    IsChecked="{x:Bind ReadMessage, Mode=TwoWay}"/>
+
+                <CheckBox
+                    x:Uid="ExtensionTTSReadSuperChat"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    IsChecked="{x:Bind ReadSuperChat, Mode=TwoWay}"/>
+
+                <CheckBox
+                    x:Uid="ExtensionTTSReadGift"
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    IsChecked="{x:Bind ReadGift, Mode=TwoWay}"/>
+
+                <CheckBox
+                    x:Uid="ExtensionTTSReadMembership"
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    IsChecked="{x:Bind ReadMembership, Mode=TwoWay}"/>
+
+                <Border
+                    HorizontalAlignment="Stretch"
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Background="{ThemeResource DividerStrokeColorDefault}"/>
+            </Grid>
+
             <ComboBox
                 x:Uid="AudioDeviceComboBox"
+                Margin="0 12 0 0"
                 HorizontalAlignment="Stretch"
                 ItemsSource="{x:Bind _devicesManager.Devices, Mode=OneWay}"
                 SelectedItem="{x:Bind AudioDevice, Mode=TwoWay}"

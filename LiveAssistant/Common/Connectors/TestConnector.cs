@@ -99,7 +99,8 @@ internal class TestConnector : IConnector
             platform,
             RandomId())
         {
-            Username = StringContent.Create(string.Join(" ", _generator.GenerateWords(2))),
+            Username = StringContent.Create(string.Join(" ", _generator.GenerateWords(1))),
+            DisplayName = StringContent.Create(string.Join(" ", _generator.GenerateWords(2))),
             Avatar = RandomAvatar(platform),
             Badges =
             {
@@ -122,7 +123,7 @@ internal class TestConnector : IConnector
             RandomId(),
             _random.Next(0, 5))
         {
-            DisplayName = StringContent.Create(string.Join(" ", _generator.GenerateWords(2))),
+            DisplayName = StringContent.Create(string.Join(" ", _generator.GenerateWords(1))),
             Image = RandomAvatar(platform),
             Amount = (float)_random.NextDouble() * 100,
             Currency = "TCR",
