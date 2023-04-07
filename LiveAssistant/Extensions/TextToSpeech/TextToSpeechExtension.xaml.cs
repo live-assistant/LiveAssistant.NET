@@ -29,6 +29,7 @@ using Amazon.Runtime;
 using CommunityToolkit.Mvvm.Messaging;
 using LiveAssistant.Common;
 using LiveAssistant.Common.Messages;
+using LiveAssistant.Database.Interface;
 using NAudio.Wave;
 using WinRT;
 using NAudio.CoreAudioApi;
@@ -73,7 +74,13 @@ public sealed partial class TextToSpeechExtension : INotifyPropertyChanged, IDis
 
     private readonly ExtensionSettingsManager _manager = new("tts", new Dictionary<string, string>
     {
-        { nameof(Engine), ((int)(AudioEngines.SystemSpeechSynthesis)).ToString() },
+        { nameof(ReadEnter), true.ToString() },
+        { nameof(ReadFollow), true.ToString() },
+        { nameof(ReadMessage), true.ToString() },
+        { nameof(ReadSuperChat), true.ToString() },
+        { nameof(ReadGift), true.ToString() },
+        { nameof(ReadMembership), true.ToString() },
+        { nameof(Engine), ((int)AudioEngines.SystemSpeechSynthesis).ToString() },
         { nameof(AudioDevice), "" },
         { nameof(SynthVoice), "" },
         { nameof(PollyKey), "" },
@@ -85,8 +92,19 @@ public sealed partial class TextToSpeechExtension : INotifyPropertyChanged, IDis
     {
         if (_manager.IsRunning)
         {
-            if (WeakReferenceMessenger.Default.IsRegistered<MessageEventMessage>(this)) return;
-            WeakReferenceMessenger.Default.Register<MessageEventMessage>(this, OnMessage);
+            try
+            {
+                WeakReferenceMessenger.Default.Register<EnterEventMessage>(this, OnEnter);
+                WeakReferenceMessenger.Default.Register<FollowEventMessage>(this, OnFollow);
+                WeakReferenceMessenger.Default.Register<MessageEventMessage>(this, OnMessage);
+                WeakReferenceMessenger.Default.Register<SuperChatEventMessage>(this, OnSuperChat);
+                WeakReferenceMessenger.Default.Register<GiftEventMessage>(this, OnGift);
+                WeakReferenceMessenger.Default.Register<MembershipEventMessage>(this, OnMembership);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+            }
         }
         else
         {
@@ -95,18 +113,125 @@ public sealed partial class TextToSpeechExtension : INotifyPropertyChanged, IDis
         }
     }
 
-    private void OnMessage(object recipient, MessageEventMessage e)
+    private bool ReadEnter
     {
+        get => Convert.ToBoolean(_manager.Settings[nameof(ReadEnter)]);
+        set => _manager.SaveSetting(nameof(ReadEnter), value.ToString());
+    }
+    private void OnEnter(object _, EnterEventMessage e)
+    {
+        if (!ReadEnter) return;
+        App.Current.MainQueue.TryEnqueue(delegate
+        {
+            _queue.Add(string.Format(
+                "ExtensionTTSTemplateEnter".Localize(),
+                e.Value.Audience.DisplayNameOrUsername));
+            Play();
+        });
+    }
+
+    private bool ReadFollow
+    {
+        get => Convert.ToBoolean(_manager.Settings[nameof(ReadFollow)]);
+        set => _manager.SaveSetting(nameof(ReadFollow), value.ToString());
+    }
+    private void OnFollow(object _, FollowEventMessage e)
+    {
+        if (!ReadFollow) return;
+        App.Current.MainQueue.TryEnqueue(delegate
+        {
+            _queue.Add(string.Format(
+               "ExtensionTTSTemplateFollow".Localize(),
+               e.Value.Audience.DisplayNameOrUsername));
+            Play();
+        });
+    }
+
+    private bool ReadMessage
+    {
+        get => Convert.ToBoolean(_manager.Settings[nameof(ReadMessage)]);
+        set => _manager.SaveSetting(nameof(ReadMessage), value.ToString());
+    }
+    private void OnMessage(object _, MessageEventMessage e)
+    {
+        if (!ReadMessage) return;
         App.Current.MainQueue.TryEnqueue(delegate
         {
             var message = e.Value;
-            _queue.Add(new TextToSpeechItem
-            {
-                Content = message.Content.String,
-                Time = message.Timestamp,
-                SenderId = message.Sender?.Id,
-                SenderName = message.Sender?.Username?.String,
-            });
+            var content = message.Content.String;
+            var name = message.Sender?.DisplayNameOrUsername;
+
+            _queue.Add(name is null ? string.Format(
+                "ExtensionTTSTemplateMessage".Localize(),
+                content) : string.Format(
+                "ExtensionTTSTemplateMessageWithName".Localize(),
+                name,
+                content));
+            Play();
+        });
+    }
+
+    private bool ReadSuperChat
+    {
+        get => Convert.ToBoolean(_manager.Settings[nameof(ReadSuperChat)]);
+        set => _manager.SaveSetting(nameof(ReadSuperChat), value.ToString());
+    }
+    private void OnSuperChat(object _, SuperChatEventMessage e)
+    {
+        if (!ReadSuperChat) return;
+        App.Current.MainQueue.TryEnqueue(delegate
+        {
+            var superChat = e.Value;
+            var content = superChat.Content.String;
+            var name = superChat.Sender?.DisplayNameOrUsername;
+
+            _queue.Add(name is null ? string.Format(
+                "ExtensionTTSTemplateSuperChat".Localize(),
+                content) : string.Format(
+                "ExtensionTTSTemplateSuperChatWithName".Localize(),
+                name,
+                content));
+            Play();
+        });
+    }
+
+    private bool ReadGift
+    {
+        get => Convert.ToBoolean(_manager.Settings[nameof(ReadGift)]);
+        set => _manager.SaveSetting(nameof(ReadGift), value.ToString());
+    }
+    private void OnGift(object _, GiftEventMessage e)
+    {
+        if (!ReadGift) return;
+        OnIMonetization(e.Value);
+    }
+
+    private bool ReadMembership
+    {
+        get => Convert.ToBoolean(_manager.Settings[nameof(ReadMembership)]);
+        set => _manager.SaveSetting(nameof(ReadMembership), value.ToString());
+    }
+    private void OnMembership(object _, MembershipEventMessage e)
+    {
+        if (!ReadMembership) return;
+        OnIMonetization(e.Value);
+    }
+
+    private void OnIMonetization(IMonetization monetization)
+    {
+        App.Current.MainQueue.TryEnqueue(delegate
+        {
+            var name = monetization.Sender?.DisplayNameOrUsername;
+            var count = monetization.Count;
+            var sku = monetization.Sku.DisplayName.String;
+            _queue.Add(name is null ? string.Format(
+                "ExtensionTTSTemplateMonetization".Localize(),
+                count,
+                sku) : string.Format(
+                "ExtensionTTSTemplateMonetizationWithName".Localize(),
+                name,
+                count,
+                sku));
             Play();
         });
     }
@@ -150,8 +275,7 @@ public sealed partial class TextToSpeechExtension : INotifyPropertyChanged, IDis
 
     // Player
     private bool _isPlaying;
-    private readonly IList<TextToSpeechItem> _queue = new List<TextToSpeechItem>();
-    private TextToSpeechItem? _lastMessage;
+    private readonly IList<string> _queue = new List<string>();
 
     private void Play()
     {
@@ -160,21 +284,7 @@ public sealed partial class TextToSpeechExtension : INotifyPropertyChanged, IDis
             if (!_manager.IsRunning || !_queue.Any() || _isPlaying || AudioDevice is null) return;
             _isPlaying = true;
 
-            var message = _queue.First();
-            var shouldReadName = true;
-
-            if (_lastMessage.HasValue)
-            {
-                var span = message.Time.Subtract(_lastMessage.Value.Time);
-                shouldReadName = (span.Seconds > 20 || message.SenderId != _lastMessage.Value.SenderId) && message.SenderName is not null;
-            }
-
-            var text = shouldReadName ? string.Format(
-                "ExtensionTTSTemplateMessage".Localize(),
-                message.SenderName,
-                message.Content) : message.Content;
-
-            _lastMessage = message;
+            var text = _queue.First();
             if (_queue.Any()) _queue.RemoveAt(0);
 
             var engine = Engine.Engine;
@@ -328,12 +438,4 @@ public sealed partial class TextToSpeechExtension : INotifyPropertyChanged, IDis
         _synth.Dispose();
         _pollyClient?.Dispose();
     }
-}
-
-internal struct TextToSpeechItem
-{
-    public string Content;
-    public DateTimeOffset Time;
-    public string? SenderId;
-    public string? SenderName;
 }
