@@ -30,7 +30,7 @@ internal class ExtensionSettingsManager : INotifyPropertyChanged
 {
     public ExtensionSettingsManager(string id, Dictionary<string, string>? defaultSettings = null)
     {
-        _settings = ExtensionSettings.Get($"{Constants.ExtensionIdPrefix}.{id}");
+        _settings = ExtensionSettings.Get(Helpers.GetExtensionId(id));
 
         Db.Default.Realm.Write(delegate
         {
@@ -54,7 +54,7 @@ internal class ExtensionSettingsManager : INotifyPropertyChanged
             IsRunningChanged?.Invoke(this, IsRunning);
         });
 
-        WeakReferenceMessenger.Default.Register<SocketSeverTestModeIsEnabledChangeMessage>(this, (_, message) =>
+        WeakReferenceMessenger.Default.Register<SeverTestModeIsEnabledChangeMessage>(this, (_, message) =>
         {
             _isSocketServerTestModeEnabled = message.Value;
             OnPropertyChanged(nameof(IsRunning));

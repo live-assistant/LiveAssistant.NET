@@ -16,16 +16,15 @@
 using System;
 using LiveAssistant.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.UI.Xaml.Controls;
 
 namespace LiveAssistant.Components;
 
-public sealed partial class SocketServerController : UserControl
+internal sealed partial class ServerController
 {
-    public SocketServerController()
+    public ServerController()
     {
         InitializeComponent();
     }
 
-    private SocketServerViewModel _viewModel = App.Current.Services.GetService<SocketServerViewModel>() ?? throw new NullReferenceException();
+    private ServerViewModel ViewModel => App.Current.Services.GetService<ServerViewModel>() ?? throw new NullReferenceException();
 }

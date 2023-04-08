@@ -178,11 +178,11 @@ public partial class App
     private static IServiceProvider ConfigureServices()
     {
         var serviceProvider = new ServiceCollection()
-            .AddSingleton<SocketServerViewModel>()
             .AddSingleton(new AppSettingsViewModel())
-            .AddSingleton(new DataProcessorViewModel())
             .AddSingleton(new TwitchOAuthViewModel())
+            .AddSingleton<ServerViewModel>()
             .AddSingleton<SessionViewModel>()
+            .AddSingleton(new DataProcessorViewModel())
             .AddSingleton<HistoryViewModel>()
             .AddSingleton(new OverlayViewModel())
             .AddSingleton<TutorialViewModel>()

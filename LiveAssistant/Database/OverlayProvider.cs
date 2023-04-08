@@ -26,8 +26,8 @@ namespace LiveAssistant.Database;
 internal class OverlayProvider : RealmObject
 {
     // ReSharper disable MemberCanBePrivate.Global
-    [PrimaryKey] public string BasePath { get; private set; }
-    public string ProductId { get; private set; }
+    [PrimaryKey] public string ProductId { get; private set; }
+    public string BasePath { get; private set; }
     public string? ConfigUrl { get; private set; }
     public string Name { get; private set; }
     public int ProtocolVersion { get; private set; }
@@ -38,8 +38,10 @@ internal class OverlayProvider : RealmObject
     public OverlayProvider() { }
 
     private OverlayProvider(
+        string id,
         string basePath)
     {
+        ProductId = id;
         BasePath = basePath;
     }
 
@@ -49,9 +51,10 @@ internal class OverlayProvider : RealmObject
         string? configUrl = null)
     {
         var basePath = data.BasePath;
-        var existing = Db.Default.Realm.Find<OverlayProvider>(basePath);
+        var id = data.ProductId;
+        var existing = Db.Default.Realm.Find<OverlayProvider>(id);
 
-        var provider = new OverlayProvider(basePath);
+        var provider = new OverlayProvider(id, basePath);
 
         Db.Default.Realm.Write(delegate
         {
@@ -60,7 +63,6 @@ internal class OverlayProvider : RealmObject
                 Db.Default.Realm.Add(provider);
             }
 
-            (existing ?? provider).ProductId = data.ProductId;
             (existing ?? provider).ProtocolVersion = data.ProtocolVersion;
             (existing ?? provider).IsPackage = isPackage;
             (existing ?? provider).ConfigUrl = configUrl;

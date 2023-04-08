@@ -30,7 +30,6 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using CommunityToolkit.Mvvm.Messaging.Messages;
-using EmbedIO;
 using LiveAssistant.Common;
 using LiveAssistant.Common.Messages;
 using LiveAssistant.Database;
@@ -60,7 +59,7 @@ internal class OverlayViewModel : ObservableObject, IDisposable
 
         Provider = Providers.FirstOrDefault();
 
-        _socketServerSettings.Settings.SubscribeForNotifications(delegate
+        _serverSettings.Settings.SubscribeForNotifications(delegate
         {
             OnPropertyChanged(nameof(PreviewUri));
         });
@@ -88,24 +87,13 @@ internal class OverlayViewModel : ObservableObject, IDisposable
             });
         });
 
-        // Setup server
-        if (!Directory.Exists(Constants.OverlayPackagesFolderPath))
-        {
-            Directory.CreateDirectory(Constants.OverlayPackagesFolderPath);
-        }
-        _packageServer = new WebServer(o => o
-            .WithUrlPrefix(Constants.OverlayPackageServerBasePath)
-            .WithMode(HttpListenerMode.EmbedIO))
-            .WithStaticFolder("/", Constants.OverlayPackagesFolderPath, false);
-        _packageServer.RunAsync();
-
         WeakReferenceMessenger.Default.Register<MainWindowClosedMessage>(this, delegate
         {
             Dispose();
         });
     }
 
-    private readonly ExtensionSettings _socketServerSettings = ExtensionSettings.Get($"{Constants.ExtensionIdPrefix}.{Constants.ExtensionIdSocketServer}");
+    private readonly ExtensionSettings _serverSettings = ExtensionSettings.Get(Helpers.GetExtensionId(Constants.ExtensionIdServer));
 
     public readonly IQueryable<OverlayProvider> Providers = Db.Default.Realm.All<OverlayProvider>();
     public bool IsProvidersEmpty => !Providers.Any();
@@ -232,7 +220,7 @@ internal class OverlayViewModel : ObservableObject, IDisposable
 
             // Get provider
             var provider = JsonSerializer.Deserialize<OverlayProviderPayload>(configString, Constants.DefaultJsonSerializerOptions);
-            provider.BasePath = $"{Constants.OverlayPackageServerBasePath}/{provider.ProductId}/{provider.BasePath}";
+            provider.BasePath = $"http://localhost:{{port}}/{provider.ProductId}/{provider.BasePath}";
 
             // Move package
             var packFolderPath = $"{Constants.OverlayPackagesFolderPath}\\{provider.ProductId}\\";
@@ -252,9 +240,6 @@ internal class OverlayViewModel : ObservableObject, IDisposable
             WeakReferenceMessenger.Default.Send(new ShowInfoBarMessage(Helpers.GetExceptionInfoBar(e)));
         }
     }
-
-    // Package server
-    private readonly WebServer _packageServer;
 
     // Provider
     private OverlayProvider? _provider;
@@ -320,22 +305,16 @@ internal class OverlayViewModel : ObservableObject, IDisposable
             if (Provider is null || Overlay is null) return new Uri("about:blank");
 
             var passwordTemplate = $"{{{Constants.ExtensionSettingKeySocketServerPassword.ToLower()}}}";
-            var password = _socketServerSettings.Settings[Constants.ExtensionSettingKeySocketServerPassword];
-
-            var portTemplate = $"{{{Constants.ExtensionSettingKeySocketServerPort.ToLower()}}}";
-            var port = _socketServerSettings.Settings[Constants.ExtensionSettingKeySocketServerPort];
+            var password = _serverSettings.Settings[Constants.ExtensionSettingKeySocketServerPassword];
 
             var basePath = Provider.BasePath
-                .Replace(portTemplate,
-                    port)
-                .Replace(passwordTemplate,
-                    password);
+                .Replace(Constants.OverlayPreviewUriPortTemplate, Constants.ServerPort.ToString())
+                .Replace(passwordTemplate, password);
 
             var queryValues = _queries.Select(pair => $"{pair.Key}={pair.Value}").ToList();
 
-            queryValues.Add($"server=http://localhost:{port}");
-            if (!Provider.BasePath.Contains(passwordTemplate)) queryValues.Add($"password={password}");
-            if (!Provider.BasePath.Contains(portTemplate)) queryValues.Add($"port={port}");
+            queryValues.Add($"password={password}");
+            queryValues.Add($"port={Constants.ServerPort}");
 
             var query = string.Join("&", queryValues);
             var uri = new Uri($"{basePath}{Overlay.Path}?{query}");
@@ -368,7 +347,6 @@ internal class OverlayViewModel : ObservableObject, IDisposable
     public void Dispose()
     {
         _httpClient.Dispose();
-        _packageServer.Dispose();
     }
 }
 

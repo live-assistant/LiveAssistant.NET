@@ -62,15 +62,15 @@
                         Grid.ColumnSpan="2"
                         HorizontalAlignment="Stretch"
                         Style="{StaticResource AccentButtonStyle}"
-                        Visibility="{x:Bind _viewModel.IsProvidersEmpty, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
-                        Command="{x:Bind _viewModel.AddProviderCommand}"/>
+                        Visibility="{x:Bind ViewModel.IsProvidersEmpty, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        Command="{x:Bind ViewModel.AddProviderCommand}"/>
 
                     <DropDownButton
                         Grid.Column="0"
                         HorizontalAlignment="Stretch"
                         HorizontalContentAlignment="Left"
-                        Visibility="{x:Bind _viewModel.IsProvidersEmpty, Mode=OneWay, Converter={StaticResource BooleanToVisibilityInverseConverter}}"
-                        Content="{x:Bind _viewModel.Provider.Name, Mode=OneWay}">
+                        Visibility="{x:Bind ViewModel.IsProvidersEmpty, Mode=OneWay, Converter={StaticResource BooleanToVisibilityInverseConverter}}"
+                        Content="{x:Bind ViewModel.Provider.Name, Mode=OneWay}">
 
                         <DropDownButton.Flyout>
                             <MenuFlyout
@@ -83,8 +83,8 @@
                         Grid.Column="1"
                         VerticalAlignment="Stretch"
                         Padding="8 0"
-                        Visibility="{x:Bind _viewModel.IsProvidersEmpty, Mode=OneWay, Converter={StaticResource BooleanToVisibilityInverseConverter}}"
-                        Command="{x:Bind _viewModel.AddProviderCommand}">
+                        Visibility="{x:Bind ViewModel.IsProvidersEmpty, Mode=OneWay, Converter={StaticResource BooleanToVisibilityInverseConverter}}"
+                        Command="{x:Bind ViewModel.AddProviderCommand}">
 
                         <FontIcon
                             Glyph="{StaticResource IconAdd}"/>
@@ -92,7 +92,7 @@
                 </Grid>
 
                 <Grid
-                    Visibility="{x:Bind _viewModel.Provider, Mode=OneWay, Converter={StaticResource IsNullToVisibilityConverter}}"
+                    Visibility="{x:Bind ViewModel.Provider, Mode=OneWay, Converter={StaticResource IsNullToVisibilityConverter}}"
                     Margin="0 12 0 0"
                     HorizontalAlignment="Stretch"
                     ColumnSpacing="12">
@@ -106,15 +106,15 @@
                         x:Uid="OverlayExplorerReloadProviderButton"
                         Grid.Column="0"
                         HorizontalAlignment="Stretch"
-                        Command="{x:Bind _viewModel.ReloadProviderCommand}"
-                        CommandParameter="{x:Bind _viewModel.Provider, Mode=OneWay}"/>
+                        Command="{x:Bind ViewModel.ReloadProviderCommand}"
+                        CommandParameter="{x:Bind ViewModel.Provider, Mode=OneWay}"/>
 
                     <Button
                         x:Uid="OverlayExplorerRemoveProviderButton"
                         Grid.Column="1"
                         HorizontalAlignment="Stretch"
-                        Command="{x:Bind _viewModel.RemoveProviderCommand}"
-                        CommandParameter="{x:Bind _viewModel.Provider, Mode=OneWay}"/>
+                        Command="{x:Bind ViewModel.RemoveProviderCommand}"
+                        CommandParameter="{x:Bind ViewModel.Provider, Mode=OneWay}"/>
                 </Grid>
             </StackPanel>
 
@@ -126,10 +126,10 @@
                 Grid.Row="2"
                 Padding="0 8"
                 Margin="-4 -12"
-                ItemsSource="{x:Bind _viewModel.Overlays, Mode=OneWay}"
-                Visibility="{x:Bind _viewModel.IsOverlaysEmpty, Mode=OneWay, Converter={StaticResource BooleanToVisibilityInverseConverter}}"
+                ItemsSource="{x:Bind ViewModel.Overlays, Mode=OneWay}"
+                Visibility="{x:Bind ViewModel.IsOverlaysEmpty, Mode=OneWay, Converter={StaticResource BooleanToVisibilityInverseConverter}}"
                 SelectionMode="Single"
-                SelectedValue="{x:Bind _viewModel.Overlay, Mode=TwoWay}">
+                SelectedValue="{x:Bind ViewModel.Overlay, Mode=TwoWay}">
 
                 <ListView.ItemTemplate>
                     <DataTemplate
@@ -156,7 +156,7 @@
             <components:EmptyState
                 x:Uid="OverlayExplorerEmptyStateOverlay"
                 Grid.Row="2"
-                Visibility="{x:Bind _viewModel.IsOverlaysEmpty, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+                Visibility="{x:Bind ViewModel.IsOverlaysEmpty, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
                 Glyph="{StaticResource IconOverlay}"/>
         </Grid>
 
@@ -167,7 +167,7 @@
 
         <Grid
             Grid.Column="2"
-            Visibility="{x:Bind _viewModel.Overlay, Mode=OneWay, Converter={StaticResource IsNullToVisibilityConverter}}">
+            Visibility="{x:Bind ViewModel.Overlay, Mode=OneWay, Converter={StaticResource IsNullToVisibilityConverter}}">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -184,7 +184,7 @@
                     x:Uid="OverlayExplorerCopyUrlButton"
                     HorizontalAlignment="Stretch"
                     Style="{StaticResource AccentButtonStyle}"
-                    Command="{x:Bind _viewModel.CopyUrlCommand}"/>
+                    Command="{x:Bind ViewModel.CopyUrlCommand}"/>
 
                 <DropDownButton
                     x:Uid="OverlayExplorerPreviewBackgroundColorDropDownButton"
@@ -195,19 +195,10 @@
                     <DropDownButton.Flyout>
                         <Flyout>
                             <ColorPicker
-                                Color="{x:Bind _viewModel.BackgroundColor, Mode=TwoWay}"/>
+                                Color="{x:Bind ViewModel.BackgroundColor, Mode=TwoWay}"/>
                         </Flyout>
                     </DropDownButton.Flyout>
                 </DropDownButton>
-
-                <InfoBar
-                    x:Uid="OverlayExplorerServerInfoBar"
-                    Margin="0 12 0 0"
-                    HorizontalAlignment="Stretch"
-                    IsOpen="True"
-                    IsClosable="False"
-                    Severity="Informational"
-                    Visibility="{x:Bind _socketServerViewModel.Manager.IsRunning, Mode=OneWay, Converter={StaticResource BooleanToVisibilityInverseConverter}}"/>
             </StackPanel>
 
             <Border
@@ -229,14 +220,14 @@
             <components:EmptyState
                 x:Uid="OverlayExplorerEmptyStateConfig"
                 Grid.Row="2"
-                Visibility="{x:Bind _viewModel.IsFieldsEmpty, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+                Visibility="{x:Bind ViewModel.IsFieldsEmpty, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
                 Glyph="{StaticResource IconOverlayFields}"/>
         </Grid>
 
         <components:EmptyState
             x:Uid="OverlayExplorerEmptyStateConfig"
             Grid.Column="2"
-            Visibility="{x:Bind _viewModel.Overlay, Mode=OneWay, Converter={StaticResource IsNullToVisibilityInverseConverter}}"
+            Visibility="{x:Bind ViewModel.Overlay, Mode=OneWay, Converter={StaticResource IsNullToVisibilityInverseConverter}}"
             Glyph="{StaticResource IconOverlayFields}"/>
 
         <Grid
@@ -252,11 +243,11 @@
                 Grid.Column="0"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
-                Visibility="{x:Bind _viewModel.Overlay, Mode=OneWay, Converter={StaticResource IsNullToVisibilityConverter}}"
-                Source="{x:Bind _viewModel.PreviewUri, Mode=OneWay}"
+                Visibility="{x:Bind ViewModel.Overlay, Mode=OneWay, Converter={StaticResource IsNullToVisibilityConverter}}"
+                Source="{x:Bind ViewModel.PreviewUri, Mode=OneWay}"
                 CanGoBack="False"
                 CanGoForward="False"
-                DefaultBackgroundColor="{x:Bind _viewModel.BackgroundColor, Mode=OneWay}"/>
+                DefaultBackgroundColor="{x:Bind ViewModel.BackgroundColor, Mode=OneWay}"/>
 
             <components:EmptyState
                 x:Uid="OverlayExplorerEmptyStatePreview"
@@ -264,7 +255,7 @@
                 Grid.Column="0"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
-                Visibility="{x:Bind _viewModel.Overlay, Mode=OneWay, Converter={StaticResource IsNullToVisibilityInverseConverter}}"
+                Visibility="{x:Bind ViewModel.Overlay, Mode=OneWay, Converter={StaticResource IsNullToVisibilityInverseConverter}}"
                 Glyph="{StaticResource IconWebsite}"/>
         </Grid>
     </Grid>
