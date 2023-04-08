@@ -24,15 +24,19 @@ namespace LiveAssistant.Common;
 internal static class Constants
 {
     public static string DocumentsBaseFolderPath => $"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\\Live Assistant\\";
-    public static string OverlayPackagesFolderPath => $"{DocumentsBaseFolderPath}Overlay Packages\\";
-    public static string OverlayPackagesTempFolderPath => $"{DocumentsBaseFolderPath}Temp Package\\";
-    public static string OverlayPackagesTempConfigFilePath => $"{OverlayPackagesTempFolderPath}config.json";
-    public static string OverlayPackagesTempStaticFolderPath => $"{OverlayPackagesTempFolderPath}\\static";
-    public const string OverlayPackageServerBasePath = "http://localhost:57941";
 
     public const string VaultRealmName = "LiveAssistantData";
     public const string VaultUserNameRealmKey = "LiveAssistantKey";
     public const string VaultResourceName = "app.live-assitant.credentials";
+
+    public const int ServerPort = 63472;
+    public static string ServerBasePath => $"http://localhost:{ServerPort}";
+
+    public static string OverlayPackagesFolderPath => $"{DocumentsBaseFolderPath}Overlay Packages\\";
+    public static string OverlayPackagesTempFolderPath => $"{DocumentsBaseFolderPath}Temp Package\\";
+    public static string OverlayPackagesTempConfigFilePath => $"{OverlayPackagesTempFolderPath}config.json";
+    public static string OverlayPackagesTempStaticFolderPath => $"{OverlayPackagesTempFolderPath}\\static";
+    public const string OverlayPreviewUriPortTemplate = "{port}";
 
     public const int CurrencyCodeCny = 156;
     public const int CurrencyCodeUsd = 840;
@@ -49,8 +53,7 @@ internal static class Constants
     };
 
     public const string ExtensionIdPrefix = "app.live-assistant.extensions";
-    public const string ExtensionIdSocketServer = "socket-server";
-    public const string ExtensionSettingKeySocketServerPort = "Port";
+    public const string ExtensionIdServer = "server";
     public const string ExtensionSettingKeySocketServerPassword = "Password";
 
     public const string SecretNameIdToken = "IdToken";

@@ -39,19 +39,19 @@ internal sealed partial class OverlayPage
     {
         InitializeComponent();
 
-        _viewModel.OverlayChanged += OnOverlayChanged;
+        ViewModel.OverlayChanged += OnOverlayChanged;
 
-        _viewModel.Providers.SubscribeForNotifications(delegate
+        ViewModel.Providers.SubscribeForNotifications(delegate
         {
             ProvidersMenu.Items.Clear();
-            foreach (var provider in _viewModel.Providers)
+            foreach (var provider in ViewModel.Providers)
             {
                 ProvidersMenu.Items.Add(new MenuFlyoutItem
                 {
                     Text = provider.Name,
                     Command = new RelayCommand(delegate
                     {
-                        _viewModel.Provider = provider;
+                        ViewModel.Provider = provider;
                     }),
                 });
             }
@@ -228,6 +228,5 @@ internal sealed partial class OverlayPage
             new OverlayExplorerUpdateQueryMessage(new Tuple<string, string>(key, value)));
     }
 
-    private OverlayViewModel _viewModel = App.Current.Services.GetService<OverlayViewModel>() ?? throw new NullReferenceException();
-    private readonly SocketServerViewModel _socketServerViewModel = App.Current.Services.GetService<SocketServerViewModel>() ?? throw new NullReferenceException();
+    private OverlayViewModel ViewModel => App.Current.Services.GetService<OverlayViewModel>() ?? throw new NullReferenceException();
 }

@@ -31,9 +31,9 @@
     <None Remove="Assets\StoreLogo.scale-150.png" />
     <None Remove="Components\CredentialsDialog.xaml" />
     <None Remove="Components\EmptyState.xaml" />
+    <None Remove="Components\ServerController.xaml" />
     <None Remove="Components\SessionController.xaml" />
     <None Remove="Components\SessionViewer.xaml" />
-    <None Remove="Components\SocketServerController.xaml" />
     <None Remove="Components\TutorialTip.xaml" />
     <None Remove="Dictionaries\Converters.xaml" />
     <None Remove="Dictionaries\Icons.xaml" />
@@ -147,7 +147,7 @@
     <Page Update="Components\SessionViewer.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Update="Components\SocketServerController.xaml">
+    <Page Update="Components\ServerController.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Update="Components\TutorialTip.xaml">

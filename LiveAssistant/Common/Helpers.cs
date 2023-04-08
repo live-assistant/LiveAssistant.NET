@@ -207,6 +207,8 @@ internal static class Helpers
             Message = e.Message,
         };
     }
+
+    public static string GetExtensionId(string name) => $"{Constants.ExtensionIdPrefix}.{name}";
 }
 
 internal class WindowsSystemDispatcherQueueHelper

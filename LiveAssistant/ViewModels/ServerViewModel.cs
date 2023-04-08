@@ -13,44 +13,67 @@
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.IO;
+using System.Linq;
+using System.Windows;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using EmbedIO;
-using LiveAssistant.Extensions;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System;
-using System.Linq;
-using System.Windows;
 using CommunityToolkit.Mvvm.Messaging.Messages;
+using EmbedIO;
 using LiveAssistant.Common;
 using LiveAssistant.Common.Connectors;
+using LiveAssistant.Extensions;
+using LiveAssistant.Pages;
 using LiveAssistant.SocketServer;
 
 namespace LiveAssistant.ViewModels;
 
-internal class SocketServerViewModel : ObservableObject
+class ServerViewModel : ObservableObject, IDisposable
 {
-    public SocketServerViewModel()
+    public ServerViewModel()
     {
-        Manager.IsRunningChanged += delegate
-        {
-            ApplyState();
-        };
-
-        WeakReferenceMessenger.Default.Register<SessionIsConnectedChangedMessage>(this, (_, message) =>
-        {
-            if (message.Value && IsTestModeEnabled) IsTestModeEnabled = false;
-        });
-
         // Set a initial password
         if (string.IsNullOrEmpty(Password))
         {
             RegeneratePasswordCommand.Execute(null);
         }
 
-        // Listen to messages
+        // Create folder for overlay packages
+        if (!Directory.Exists(Constants.OverlayPackagesFolderPath))
+        {
+            Directory.CreateDirectory(Constants.OverlayPackagesFolderPath);
+        }
+
+        // Setup server and run
+        _server = new WebServer(o => o
+                .WithUrlPrefix(Constants.ServerBasePath)
+                .WithMode(HttpListenerMode.EmbedIO)).WithLocalSessionManager()
+                .WithModule(new SocketServerModule("/socket", true)
+                {
+                    Password = Password,
+                })
+                .WithStaticFolder("/", Constants.OverlayPackagesFolderPath, false);
+
+        _server.StateChanged += OnServerStateChange;
+        _server.RunAsync();
+
+        // Handle app exit
+        WeakReferenceMessenger.Default.Register<MainWindowClosedMessage>(this, delegate
+        {
+            Dispose();
+        });
+
+        // Stop test mode once session starts recording
+        WeakReferenceMessenger.Default.Register<SessionIsConnectedChangedMessage>(this, (_, message) =>
+        {
+            if (message.Value && IsTestModeEnabled) IsTestModeEnabled = false;
+        });
+
+        // Handle socket clients
         WeakReferenceMessenger.Default.Register<NewSocketClientMessage>(this, (_, m) =>
         {
             var client = m.Value;
@@ -76,84 +99,17 @@ internal class SocketServerViewModel : ObservableObject
         });
     }
 
-    public readonly ExtensionSettingsManager Manager = new(Constants.ExtensionIdSocketServer, new Dictionary<string, string>
+    public readonly ExtensionSettingsManager Manager = new(Constants.ExtensionIdServer, new Dictionary<string, string>
     {
-        { nameof(Port), 7196.ToString() },
-        { nameof(Password), "" },
+        { Constants.ExtensionSettingKeySocketServerPassword, "" },
     });
 
-    // Server
-    private WebServer? _server;
-    private void SetupServer()
+    private string Password
     {
-        StopServer();
-
-        _server = new WebServer(options => options
-            .WithUrlPrefix($"http://localhost:{Port}/")
-            .WithMode(HttpListenerMode.EmbedIO));
-        _server.WithLocalSessionManager()
-            .WithModule(new SocketServerModule("/socket", true)
-            {
-                Password = Password,
-            });
-        _server.StateChanged += OnServerStateChange;
-        _server.RunAsync();
-    }
-
-    private void StopServer()
-    {
-        if (_server == null) return;
-
-        _server.StateChanged -= OnServerStateChange;
-        if (_server.State is WebServerState.Listening)
-        {
-            _server.Dispose();
-        }
-
-        State = WebServerState.Stopped;
-
-        _server = null;
-    }
-
-    private void ApplyState()
-    {
-        if (Manager.IsRunning)
-        {
-            SetupServer();
-        }
-        else
-        {
-            StopServer();
-        }
-    }
-
-    private WebServerState _state = WebServerState.Stopped;
-    public WebServerState State
-    {
-        get => _state;
-        private set => SetProperty(ref _state, value);
-    }
-
-    private void OnServerStateChange(object sender, WebServerStateChangedEventArgs e)
-    {
-        State = e.NewState;
-    }
-
-    public int Port
-    {
-        get => Convert.ToInt32(Manager.Settings[Common.Constants.ExtensionSettingKeySocketServerPort]);
+        get => Manager.Settings[Constants.ExtensionSettingKeySocketServerPassword];
         set
         {
-            Manager.SaveSetting(Common.Constants.ExtensionSettingKeySocketServerPort, value.ToString());
-        }
-    }
-
-    public string Password
-    {
-        get => Manager.Settings[Common.Constants.ExtensionSettingKeySocketServerPassword];
-        set
-        {
-            Manager.SaveSetting(Common.Constants.ExtensionSettingKeySocketServerPassword, value);
+            Manager.SaveSetting(Constants.ExtensionSettingKeySocketServerPassword, value);
         }
     }
 
@@ -167,6 +123,20 @@ internal class SocketServerViewModel : ObservableObject
         Password = Helpers.GetUniqueKey(20);
     });
 
+    private readonly WebServer _server;
+
+    private WebServerState _state = WebServerState.Stopped;
+    public WebServerState State
+    {
+        get => _state;
+        private set => SetProperty(ref _state, value);
+    }
+
+    private void OnServerStateChange(object sender, WebServerStateChangedEventArgs e)
+    {
+        State = e.NewState;
+    }
+
     // Clients
     public readonly ObservableCollection<SocketClient> Clients = new();
     public bool IsClientsEmpty => !Clients.Any();
@@ -179,7 +149,7 @@ internal class SocketServerViewModel : ObservableObject
         set
         {
             SetProperty(ref _isTestModeEnabled, value);
-            WeakReferenceMessenger.Default.Send(new SocketSeverTestModeIsEnabledChangeMessage(value));
+            WeakReferenceMessenger.Default.Send(new SeverTestModeIsEnabledChangeMessage(value));
 
             if (value)
             {
@@ -193,9 +163,14 @@ internal class SocketServerViewModel : ObservableObject
     }
 
     private readonly TestConnector _tester = new(false);
+
+    public void Dispose()
+    {
+        _server.Dispose();
+    }
 }
 
-public class SocketSeverTestModeIsEnabledChangeMessage : ValueChangedMessage<bool>
+public class SeverTestModeIsEnabledChangeMessage : ValueChangedMessage<bool>
 {
-    public SocketSeverTestModeIsEnabledChangeMessage(bool value) : base(value) { }
+    public SeverTestModeIsEnabledChangeMessage(bool value) : base(value) { }
 }

@@ -83,7 +83,7 @@
             <components:SessionController
                 Grid.Column="0"/>
 
-            <components:SocketServerController
+            <components:ServerController
                 Grid.Column="2"/>
         </Grid>
 

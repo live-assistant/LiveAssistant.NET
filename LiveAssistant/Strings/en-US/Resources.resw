@@ -279,9 +279,6 @@
   <data name="SocketServerPasswordMenuCopy.Text" xml:space="preserve">
     <value>Copy</value>
   </data>
-  <data name="OverlayExplorerServerInfoBar.Message" xml:space="preserve">
-    <value>Make sure the server is running when you are testing a overlay</value>
-  </data>
   <data name="ExtensionAudioSpectrumHeader.Content" xml:space="preserve">
     <value>Audio Spectrum</value>
   </data>

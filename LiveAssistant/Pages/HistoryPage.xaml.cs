@@ -20,8 +20,6 @@ using LiveAssistant.Database;
 using LiveAssistant.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Media;
-using WinRT;
 
 namespace LiveAssistant.Pages;
 
