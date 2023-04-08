@@ -87,7 +87,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AWSSDK.Polly" Version="3.7.106.19" />
+    <PackageReference Include="AWSSDK.Polly" Version="3.7.106.36" />
     <PackageReference Include="CommunityToolkit.HighPerformance" Version="8.1.0" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
     <PackageReference Include="EmbedIO" Version="3.5.2" />
@@ -102,8 +102,8 @@
     <PackageReference Include="PInvoke.Hid" Version="0.7.124" />
     <PackageReference Include="PInvoke.SHCore" Version="0.7.124" />
     <PackageReference Include="PInvoke.User32" Version="0.7.124" />
-    <PackageReference Include="RawInput.Sharp" Version="0.0.4" />
-    <PackageReference Include="Realm" Version="10.20.0" />
+    <PackageReference Include="RawInput.Sharp" Version="0.1.1" />
+    <PackageReference Include="Realm" Version="10.21.0" />
     <PackageReference Include="Sentry" Version="3.29.1" />
     <PackageReference Include="System.IO.Pipelines" Version="7.0.0" />
     <PackageReference Include="System.Speech" Version="7.0.0" />
