@@ -8,7 +8,7 @@
     <Authors>LiveAssistant</Authors>
     <Copyright>Copyright (c) 2023 LiveAssistant.Protocols.Overlay Authors</Copyright>
     <Title>LiveAssistant.Protocols.Overlay</Title>
-    <VersionPrefix>0.22.0</VersionPrefix>
+    <VersionPrefix>0.1.0</VersionPrefix>
     <AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
     <FileVersion>$(VersionPrefix)</FileVersion>
     <AnalysisLevel>6.0-recommended</AnalysisLevel>
