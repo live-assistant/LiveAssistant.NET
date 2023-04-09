@@ -52,7 +52,7 @@ class ServerViewModel : ObservableObject, IDisposable
         _server = new WebServer(o => o
                 .WithUrlPrefix(Constants.ServerBasePath)
                 .WithMode(HttpListenerMode.EmbedIO)).WithLocalSessionManager()
-                .WithModule(new SocketServerModule("/socket", true)
+                .WithModule(new SocketServerModule("/data", true)
                 {
                     Password = Password,
                 })
