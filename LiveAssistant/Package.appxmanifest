@@ -59,6 +59,17 @@
             <uap:EditFlags OpenIsSafe="true"/>
           </uap:FileTypeAssociation>
         </uap:Extension>
+        <uap:Extension Category="windows.fileTypeAssociation">
+          <uap:FileTypeAssociation Name="live-assistant-emote-package">
+            <uap:SupportedFileTypes>
+              <uap:FileType ContentType="application/zip">.empak</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap:DisplayName>ms-resource:EmotePackageFileName</uap:DisplayName>
+            <uap:InfoTip>ms-resource:EmotePackageFileName</uap:InfoTip>
+            <uap:Logo>Images\EmotePackage.png</uap:Logo>
+            <uap:EditFlags OpenIsSafe="true"/>
+          </uap:FileTypeAssociation>
+        </uap:Extension>
       </Extensions>
     </Application>
   </Applications>

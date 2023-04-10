@@ -462,4 +462,7 @@
   <data name="ExtensionTTSReadMessage.Content" xml:space="preserve">
     <value>Message</value>
   </data>
+  <data name="EmotePackageFileName" xml:space="preserve">
+    <value>Live Assistant Emotes Package</value>
+  </data>
 </root>
