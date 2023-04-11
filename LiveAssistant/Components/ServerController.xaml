@@ -40,7 +40,7 @@
 
                     <MenuFlyoutItem
                         x:Uid="SocketServerPasswordMenuRegenerate"
-                        IsEnabled="{x:Bind ViewModel.State, Mode=OneWay, Converter={StaticResource WebServerStateToIsEnabledConverter}}"
+                        IsEnabled="{x:Bind ViewModel.IsRegeneratePasswordEnabled, Mode=OneWay}"
                         Command="{x:Bind ViewModel.RegeneratePasswordCommand}"/>
                 </MenuFlyout>
             </DropDownButton.Flyout>

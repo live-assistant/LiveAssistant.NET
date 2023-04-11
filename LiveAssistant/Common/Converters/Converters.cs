@@ -217,16 +217,6 @@ internal class PeopleInterfaceToDisplayNameConverter : IValueConverter
     public object ConvertBack(object value, Type targetType, object parameter, string language) => throw new NotImplementedException();
 }
 
-internal class WebServerStateToIsEnabledConverter : IValueConverter
-{
-    public object Convert(object value, Type targetType, object parameter, string language)
-    {
-        return (WebServerState)value == WebServerState.Stopped;
-    }
-
-    public object ConvertBack(object value, Type targetType, object parameter, string language) => throw new NotImplementedException();
-}
-
 internal class DataTypesToSingleStringConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, string language)

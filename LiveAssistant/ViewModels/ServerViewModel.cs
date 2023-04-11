@@ -71,6 +71,8 @@ class ServerViewModel : ObservableObject, IDisposable
         WeakReferenceMessenger.Default.Register<SessionIsConnectedChangedMessage>(this, (_, message) =>
         {
             if (message.Value && IsTestModeEnabled) IsTestModeEnabled = false;
+            _isConnected = message.Value;
+            OnPropertyChanged(nameof(IsRegeneratePasswordEnabled));
         });
 
         // Handle socket clients
@@ -123,6 +125,8 @@ class ServerViewModel : ObservableObject, IDisposable
         Password = Helpers.GetUniqueKey(20);
     });
 
+    private bool _isConnected;
+
     private readonly WebServer _server;
 
     private WebServerState _state = WebServerState.Stopped;
@@ -137,6 +141,8 @@ class ServerViewModel : ObservableObject, IDisposable
         State = e.NewState;
     }
 
+    public bool IsRegeneratePasswordEnabled => !(IsTestModeEnabled || _isConnected);
+
     // Clients
     public readonly ObservableCollection<SocketClient> Clients = new();
     public bool IsClientsEmpty => !Clients.Any();
@@ -149,6 +155,7 @@ class ServerViewModel : ObservableObject, IDisposable
         set
         {
             SetProperty(ref _isTestModeEnabled, value);
+            OnPropertyChanged(nameof(IsRegeneratePasswordEnabled));
             WeakReferenceMessenger.Default.Send(new SeverTestModeIsEnabledChangeMessage(value));
 
             if (value)
