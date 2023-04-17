@@ -80,13 +80,12 @@ internal sealed partial class OverlayPage
                         Header = field.Name,
                         AcceptsReturn = true,
                         TextWrapping = TextWrapping.Wrap,
+                        Text = defaultValue,
                     };
                     textBox.TextChanged += (input, _) =>
                     {
                         SendUpdate(key, ((TextBox)input).Text);
                     };
-                    textBox.Text = defaultValue;
-
                     FieldsPanel.Children.Add(textBox);
                     break;
                 }
