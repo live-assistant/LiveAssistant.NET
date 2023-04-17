@@ -19,9 +19,14 @@ using Microsoft.UI.Xaml.Data;
 
 namespace LiveAssistant.Extensions.MediaInfo;
 
-internal class RequireMediaInfoMessage : ValueChangedMessage<bool>
+internal class RequireMediaInfoPayloadMessage : ValueChangedMessage<bool>
 {
-    public RequireMediaInfoMessage() : base(true) { }
+    public RequireMediaInfoPayloadMessage() : base(true) { }
+}
+
+internal class RequireMediaPlaybackPayloadMessage : ValueChangedMessage<bool>
+{
+    public RequireMediaPlaybackPayloadMessage() : base(true) { }
 }
 
 internal class SourceAppUserModelIdToNameConverter : IValueConverter

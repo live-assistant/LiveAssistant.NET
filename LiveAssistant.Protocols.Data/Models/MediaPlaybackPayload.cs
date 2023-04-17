@@ -20,14 +20,12 @@
 
 namespace LiveAssistant.Protocols.Data.Models;
 
-public struct MediaInfoPayload
+public struct MediaPlaybackPayload
 {
-    public string Type;
-    public string Title;
-    public string Album;
-    public ImageContentPayload? Cover;
-    public int TrackCount;
-    public int TrackNumber;
-    public string Artist;
-    public string[] Genres;
+    public string Status;
+    public string RepeatMode;
+    public bool Shuffle;
+    public double Rate;
+    public int Duration;
+    public int Position;
 }

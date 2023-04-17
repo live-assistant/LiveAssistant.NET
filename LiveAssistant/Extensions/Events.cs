@@ -23,6 +23,11 @@ internal class MediaInfoPayloadMessage : ValueChangedMessage<MediaInfoPayload>
     public MediaInfoPayloadMessage(MediaInfoPayload value) : base(value) { }
 }
 
+internal class MediaPlaybackPayloadMessage : ValueChangedMessage<MediaPlaybackPayload>
+{
+    public MediaPlaybackPayloadMessage(MediaPlaybackPayload value) : base(value) { }
+}
+
 internal class KaraokeStationPayloadMessage : ValueChangedMessage<KaraokeStationPayload>
 {
     public KaraokeStationPayloadMessage(KaraokeStationPayload value) : base(value) { }

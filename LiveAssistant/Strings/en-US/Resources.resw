@@ -465,4 +465,7 @@
   <data name="EmotePackageFileName" xml:space="preserve">
     <value>Live Assistant Emotes Package</value>
   </data>
+  <data name="SocketDataTypeMediaPlayback" xml:space="preserve">
+    <value>Media playback</value>
+  </data>
 </root>

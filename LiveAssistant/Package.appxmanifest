@@ -11,7 +11,7 @@
   <Identity
     Name="C6218F8A.LiveAssistant"
     Publisher="CN=1A5EB892-3A4A-4954-A376-66602BD00D72"
-    Version="0.15.1.0" />
+    Version="0.16.0.0" />
 
   <Properties>
     <DisplayName>Live Assistant</DisplayName>
