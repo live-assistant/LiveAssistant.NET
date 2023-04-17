@@ -29,6 +29,7 @@ using LiveAssistant.Protocols.Overlay;
 using Microsoft.UI;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Realms;
+using Swan;
 using WinRT;
 
 namespace LiveAssistant.Pages;
@@ -77,12 +78,15 @@ internal sealed partial class OverlayPage
                     var textBox = new TextBox
                     {
                         Header = field.Name,
-                        Text = defaultValue,
+                        AcceptsReturn = true,
+                        TextWrapping = TextWrapping.Wrap,
                     };
                     textBox.TextChanged += (input, _) =>
                     {
                         SendUpdate(key, ((TextBox)input).Text);
                     };
+                    textBox.Text = defaultValue;
+
                     FieldsPanel.Children.Add(textBox);
                     break;
                 }

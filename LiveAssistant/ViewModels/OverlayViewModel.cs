@@ -23,6 +23,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Web;
 using System.Windows;
 using Windows.Storage;
 using Windows.UI;
@@ -38,6 +39,7 @@ using LiveAssistant.Protocols.Overlay.Models;
 using Microsoft.UI;
 using Microsoft.UI.Xaml.Controls;
 using Realms;
+using Swan;
 
 namespace LiveAssistant.ViewModels;
 
@@ -311,7 +313,7 @@ internal class OverlayViewModel : ObservableObject, IDisposable
                 .Replace(Constants.OverlayPreviewUriPortTemplate, Constants.ServerPort.ToString())
                 .Replace(passwordTemplate, password);
 
-            var queryValues = _queries.Select(pair => $"{pair.Key}={pair.Value}").ToList();
+            var queryValues = _queries.Select(pair => $"{pair.Key}={HttpUtility.UrlEncode(pair.Value.ReplaceLineEndings("\n"))}").ToList();
 
             queryValues.Add($"password={password}");
             queryValues.Add($"port={Constants.ServerPort}");
