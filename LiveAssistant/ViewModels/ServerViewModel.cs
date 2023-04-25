@@ -79,8 +79,7 @@ class ServerViewModel : ObservableObject, IDisposable
         WeakReferenceMessenger.Default.Register<NewSocketClientMessage>(this, (_, m) =>
         {
             var client = m.Value;
-            var existingClient = Clients.FirstOrDefault(c => c.Socket == client.Socket);
-            if (existingClient != null)
+            if (Clients.Any(c => c.Host == client.Host && c.Types.OrderBy(t => t).SequenceEqual(client.Types.OrderBy(t => t))))
             {
                 client.Socket.CloseAsync();
                 return;
