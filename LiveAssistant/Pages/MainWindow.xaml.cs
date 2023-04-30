@@ -130,7 +130,7 @@ internal sealed partial class MainWindow
         TitleBar.ButtonBackgroundColor = Colors.Transparent;
         TitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
         MinWidth = 1280;
-        MinHeight = 800;
+        MinHeight = 720;
 
         // Set icon for the preview popup
         Helpers.SetWindowIcon(WindowHandle, "Images/Package/WindowIcon.ico");

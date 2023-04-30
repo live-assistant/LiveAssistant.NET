@@ -134,7 +134,14 @@ internal class SocketClient
                     {
                         SendData(RequestedDataType.MediaInfo, message.Value);
                     });
-                    WeakReferenceMessenger.Default.Send(new RequireMediaInfoMessage());
+                    WeakReferenceMessenger.Default.Send(new RequireMediaInfoPayloadMessage());
+                    break;
+                case RequestedDataType.MediaPlayback:
+                    WeakReferenceMessenger.Default.Register<MediaPlaybackPayloadMessage>(this, (_, message) =>
+                    {
+                        SendData(RequestedDataType.MediaPlayback, message.Value);
+                    });
+                    WeakReferenceMessenger.Default.Send(new RequireMediaPlaybackPayloadMessage());
                     break;
                 case RequestedDataType.InputAudioSpectrum:
                     WeakReferenceMessenger.Default.Register<InputAudioSpectrumPayloadMessage>(this, (_, message) =>

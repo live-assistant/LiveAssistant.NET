@@ -481,4 +481,10 @@
   <data name="ExtensionTTSReadMessage.Content" xml:space="preserve">
     <value>消息</value>
   </data>
+  <data name="EmotePackageFileName" xml:space="preserve">
+    <value>直播助理表情包</value>
+  </data>
+  <data name="SocketDataTypeMediaPlayback" xml:space="preserve">
+    <value>媒体状态</value>
+  </data>
 </root>

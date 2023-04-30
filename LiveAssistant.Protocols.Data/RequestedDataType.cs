@@ -33,6 +33,7 @@ public enum RequestedDataType
     Caption,
     HeartRate,
     MediaInfo,
+    MediaPlayback,
     InputAudioSpectrum,
     OutputAudioSpectrum,
     KaraokeStation,

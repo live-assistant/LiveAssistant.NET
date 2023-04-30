@@ -38,6 +38,5 @@
     <converters:SkuToAmountStringConverter x:Key="SkuToAmountStringConverter"/>
     <converters:HostToDisplayNameConverter x:Key="HostToDisplayNameConverter"/>
     <converters:PeopleInterfaceToDisplayNameConverter x:Key="PeopleInterfaceToDisplayNameConverter"/>
-    <converters:WebServerStateToIsEnabledConverter x:Key="WebServerStateToIsEnabledConverter"/>
     <converters:DataTypesToSingleStringConverter x:Key="DataTypesToSingleStringConverter"/>
 </ResourceDictionary>

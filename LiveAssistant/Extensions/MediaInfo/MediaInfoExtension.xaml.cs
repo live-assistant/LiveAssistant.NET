@@ -40,9 +40,14 @@ public sealed partial class MediaInfoExtension : INotifyPropertyChanged
         // Init manager
         SetupManager();
 
-        WeakReferenceMessenger.Default.Register<RequireMediaInfoMessage>(this, delegate
+        WeakReferenceMessenger.Default.Register<RequireMediaInfoPayloadMessage>(this, delegate
         {
-            SendPayload();
+            SendInfoPayload();
+        });
+
+        WeakReferenceMessenger.Default.Register<RequireMediaPlaybackPayloadMessage>(this, delegate
+        {
+            SendPlaybackPayload();
         });
     }
 
@@ -190,7 +195,7 @@ public sealed partial class MediaInfoExtension : INotifyPropertyChanged
         UpdateTimeline();
     }
 
-    private void SendPayload()
+    private void SendInfoPayload()
     {
         if (!_manager.IsRunning) return;
 
@@ -207,6 +212,15 @@ public sealed partial class MediaInfoExtension : INotifyPropertyChanged
             TrackNumber = Media?.TrackNumber ?? 1,
             Artist = Media?.Artist ?? "",
             Genres = Media?.Genres.ToArray() ?? Array.Empty<string>(),
+        }));
+    }
+
+    private void SendPlaybackPayload()
+    {
+        if (!_manager.IsRunning) return;
+
+        WeakReferenceMessenger.Default.Send(new MediaPlaybackPayloadMessage(new MediaPlaybackPayload()
+        {
             Status = (Playback?.PlaybackStatus ?? GlobalSystemMediaTransportControlsSessionPlaybackStatus.Stopped).ToString().ToCamelCase(),
             RepeatMode = (Playback?.AutoRepeatMode ?? MediaPlaybackAutoRepeatMode.None).ToString().ToCamelCase(),
             Shuffle = Playback?.IsShuffleActive ?? false,
@@ -253,7 +267,7 @@ public sealed partial class MediaInfoExtension : INotifyPropertyChanged
                 WeakReferenceMessenger.Default.Send(new ShowInfoBarMessage(Helpers.GetExceptionInfoBar(e)));
             }
 
-            SendPayload();
+            SendInfoPayload();
         });
     }
 
@@ -271,7 +285,7 @@ public sealed partial class MediaInfoExtension : INotifyPropertyChanged
                 WeakReferenceMessenger.Default.Send(new ShowInfoBarMessage(Helpers.GetExceptionInfoBar(e)));
             }
 
-            SendPayload();
+            SendPlaybackPayload();
         });
     }
 
@@ -289,7 +303,7 @@ public sealed partial class MediaInfoExtension : INotifyPropertyChanged
                 WeakReferenceMessenger.Default.Send(new ShowInfoBarMessage(Helpers.GetExceptionInfoBar(e)));
             }
 
-            SendPayload();
+            SendPlaybackPayload();
         });
     }
 
