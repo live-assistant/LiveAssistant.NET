@@ -16,8 +16,6 @@
 using System;
 using System.Collections.Generic;
 using Windows.Storage;
-using LiveAssistant.ViewModels;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml.Controls;
 
 namespace LiveAssistant.Pages;
@@ -39,8 +37,6 @@ public sealed partial class SettingsPage
 
         WriteTexts();
     }
-
-    private AppSettingsViewModel _settingsViewModel = App.Current.Services.GetService<AppSettingsViewModel>() ?? throw new NullReferenceException();
 
     private readonly Dictionary<string, string> _licenses = new()
     {

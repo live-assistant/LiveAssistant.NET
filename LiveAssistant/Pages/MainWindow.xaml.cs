@@ -36,6 +36,7 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 using WinUIEx;
 using WinUIEx.Messaging;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace LiveAssistant.Pages;
 
@@ -113,6 +114,9 @@ internal sealed partial class MainWindow
         });
 
         Closed += OnClosed;
+
+        App.Current.Services.GetService<TwitchOAuthViewModel>();
+        App.Current.Services.GetService<OverlayViewModel>();
 
         Activate();
     }

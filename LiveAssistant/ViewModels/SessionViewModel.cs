@@ -70,7 +70,6 @@ internal class SessionViewModel : ObservableObject
         });
     }
 
-    private readonly AppSettings _appSettings = AppSettings.Get();
     public readonly IQueryable<Host> Hosts = Db.Default.Realm.All<Host>();
     public bool HasHost => Hosts.Any();
 
@@ -84,13 +83,11 @@ internal class SessionViewModel : ObservableObject
 
     public Host? ActiveHost
     {
-        get => _appSettings.ActiveHost;
+        get => Hosts.FirstOrDefault(h => h.Id == Settings.Default.ActiveHost);
         set
         {
-            Db.Default.Realm.Write(delegate
-            {
-                _appSettings.ActiveHost = value;
-            });
+            if (value == null) return;
+            Settings.Default.ActiveHost = value.Id;
         }
     }
 

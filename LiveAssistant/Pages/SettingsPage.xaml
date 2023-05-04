@@ -20,6 +20,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:common="using:LiveAssistant.Common"
     mc:Ignorable="d">
 
     <ScrollViewer
@@ -70,7 +71,7 @@
                     Grid.Column="1"
                     VerticalAlignment="Center"
                     MinWidth="0"
-                    IsOn="{x:Bind _settingsViewModel.SendDiagnosticData, Mode=TwoWay}"/>
+                    IsOn="{x:Bind common:Settings.Default.SendDiagnosticData, Mode=TwoWay}"/>
             </Grid>
 
             <Expander

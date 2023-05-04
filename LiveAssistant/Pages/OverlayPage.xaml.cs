@@ -29,7 +29,6 @@ using LiveAssistant.Protocols.Overlay;
 using Microsoft.UI;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Realms;
-using Swan;
 using WinRT;
 
 namespace LiveAssistant.Pages;
