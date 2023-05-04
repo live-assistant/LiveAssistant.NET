@@ -23,7 +23,6 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.Windows.ApplicationModel.Resources;
-using EmbedIO;
 using System.Collections.Generic;
 using System.Linq;
 

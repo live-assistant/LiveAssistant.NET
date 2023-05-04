@@ -39,7 +39,6 @@ using LiveAssistant.Protocols.Overlay.Models;
 using Microsoft.UI;
 using Microsoft.UI.Xaml.Controls;
 using Realms;
-using Swan;
 
 namespace LiveAssistant.ViewModels;
 

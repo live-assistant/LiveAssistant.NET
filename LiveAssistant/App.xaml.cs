@@ -21,7 +21,6 @@ using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Messaging;
 using LiveAssistant.Common;
 using LiveAssistant.Common.Messages;
-using LiveAssistant.Database;
 using Microsoft.UI.Xaml;
 using LiveAssistant.Pages;
 using LiveAssistant.ViewModels;
@@ -40,7 +39,7 @@ public partial class App
 {
     public App()
     {
-        if (_appSettings.SendDiagnosticData)
+        if (Settings.Default.SendDiagnosticData)
         {
             SentrySdk.Init(options =>
             {
@@ -66,8 +65,6 @@ public partial class App
 
         InitializeComponent();
     }
-
-    private readonly AppSettings _appSettings = AppSettings.Get();
 
     /// <summary>
     /// Invoked when the application is launched normally by the end user.  Other entry points
@@ -178,13 +175,12 @@ public partial class App
     private static IServiceProvider ConfigureServices()
     {
         var serviceProvider = new ServiceCollection()
-            .AddSingleton(new AppSettingsViewModel())
-            .AddSingleton(new TwitchOAuthViewModel())
+            .AddSingleton<TwitchOAuthViewModel>()
             .AddSingleton<ServerViewModel>()
             .AddSingleton<SessionViewModel>()
-            .AddSingleton(new DataProcessorViewModel())
+            .AddSingleton<DataProcessorViewModel>()
             .AddSingleton<HistoryViewModel>()
-            .AddSingleton(new OverlayViewModel())
+            .AddSingleton<OverlayViewModel>()
             .AddSingleton<TutorialViewModel>()
             .BuildServiceProvider();
 

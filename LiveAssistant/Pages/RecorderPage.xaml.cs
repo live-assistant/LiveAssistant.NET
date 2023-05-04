@@ -23,6 +23,8 @@ internal sealed partial class RecorderPage
 {
     public RecorderPage()
     {
+        App.Current.Services.GetService<DataProcessorViewModel>();
+
         InitializeComponent();
     }
 

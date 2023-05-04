@@ -29,14 +29,14 @@ using LiveAssistant.ViewModels;
 using Microsoft.UI;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
-using Microsoft.UI.Composition.SystemBackdrops;
-using Microsoft.UI.Composition;
 using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Navigation;
 using WinRT;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
 using WinUIEx;
 using WinUIEx.Messaging;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace LiveAssistant.Pages;
 
@@ -51,8 +51,8 @@ internal sealed partial class MainWindow
         InitializeComponent();
 
         // Setup window
+        SystemBackdrop = new MicaBackdrop();
         Setup();
-        TrySetMicaBackdrop();
         SetupNavigationView();
 
         // Register handlers
@@ -115,6 +115,9 @@ internal sealed partial class MainWindow
 
         Closed += OnClosed;
 
+        App.Current.Services.GetService<TwitchOAuthViewModel>();
+        App.Current.Services.GetService<OverlayViewModel>();
+
         Activate();
     }
 
@@ -134,81 +137,6 @@ internal sealed partial class MainWindow
 
         // Set icon for the preview popup
         Helpers.SetWindowIcon(WindowHandle, "Images/Package/WindowIcon.ico");
-    }
-
-    // Theme
-    private WindowsSystemDispatcherQueueHelper? _dispatcherQueueHelper;
-    private MicaController? _micaController;
-    private SystemBackdropConfiguration? _configurationSource;
-
-    /// <summary>
-    /// Try to setup Mica background for the window.
-    /// </summary>
-    private void TrySetMicaBackdrop()
-    {
-        if (!MicaController.IsSupported())
-        {
-            return;
-        }
-
-        _dispatcherQueueHelper = new WindowsSystemDispatcherQueueHelper();
-        _dispatcherQueueHelper.EnsureWindowsSystemDispatcherQueueController();
-
-        // Hooking up the policy object
-        _configurationSource = new SystemBackdropConfiguration();
-        Activated += Window_Activated;
-        Closed += Window_Closed;
-        ((FrameworkElement)Content).ActualThemeChanged += Window_ThemeChanged;
-
-        // Initial configuration state.
-        _configurationSource.IsInputActive = true;
-        SetConfigurationSourceTheme();
-
-        _micaController = new MicaController();
-
-        // Enable the system backdrop.
-        // Note: Be sure to have "using WinRT;" to support the Window.As<...>() call.
-        _micaController.AddSystemBackdropTarget(this.As<ICompositionSupportsSystemBackdrop>());
-        _micaController.SetSystemBackdropConfiguration(_configurationSource);
-    }
-
-    private void Window_Activated(object sender, WindowActivatedEventArgs args)
-    {
-        if (_configurationSource is null) return;
-        _configurationSource.IsInputActive = args.WindowActivationState != WindowActivationState.Deactivated;
-    }
-
-    private void Window_Closed(object sender, WindowEventArgs args)
-    {
-        // Make sure any Mica/Acrylic controller is disposed so it doesn't try to
-        // use this closed window.
-        if (_micaController != null)
-        {
-            _micaController.Dispose();
-            _micaController = null;
-        }
-        Activated -= Window_Activated;
-        _configurationSource = null;
-    }
-
-    private void Window_ThemeChanged(FrameworkElement sender, object args)
-    {
-        if (_configurationSource != null)
-        {
-            SetConfigurationSourceTheme();
-        }
-    }
-
-    private void SetConfigurationSourceTheme()
-    {
-        if (_configurationSource is null) return;
-        _configurationSource.Theme = ((FrameworkElement)Content).ActualTheme switch
-        {
-            ElementTheme.Dark => SystemBackdropTheme.Dark,
-            ElementTheme.Light => SystemBackdropTheme.Light,
-            ElementTheme.Default => SystemBackdropTheme.Default,
-            _ => _configurationSource.Theme
-        };
     }
 
     // Draggable title bar area
