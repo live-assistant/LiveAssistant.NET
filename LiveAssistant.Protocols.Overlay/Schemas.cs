@@ -70,7 +70,7 @@ public static class Schemas
             (nameof(Models.OverlayProviderPayload.ProductId).ToCamelCase(), new JsonSchemaBuilder().Type(SchemaValueType.String).Pattern(new Regex(@"^[a-z]{2,10}\.(?:[a-z]|\d){1}(?:[a-z]|\d|\-)*(?:[a-z]|\d){1}\.(?:[a-z]|\d){1}(?:[a-z]|\d|\-|\.)*(?:[a-z]|\d){1}$"))),
             (nameof(Models.OverlayProviderPayload.ProtocolVersion).ToCamelCase(), new JsonSchemaBuilder().Type(SchemaValueType.Number).Maximum(Constants.ProtocolVersion)),
             (nameof(Models.OverlayProviderPayload.Name).ToCamelCase(), new JsonSchemaBuilder().Type(SchemaValueType.String)),
-            (nameof(Models.OverlayProviderPayload.BasePath).ToCamelCase(), new JsonSchemaBuilder().Type(SchemaValueType.String).Pattern(new Regex(@"^https?:\/\/\w+(\.\w+)*(:[0-9]+)?\/?(\/[.\w]*)*$"))),
+            (nameof(Models.OverlayProviderPayload.BasePath).ToCamelCase(), new JsonSchemaBuilder().Type(SchemaValueType.String).Pattern(new Regex(@"^https?:\/\/[\w\-\.]+(\.\w+)*(:[0-9]+)?\/?(\/[.\w]*)*(?:[a-z]|[A-Z]|\-|\d){1}$"))),
             (nameof(Models.OverlayProviderPayload.Overlays).ToCamelCase(), new JsonSchemaBuilder().Type(SchemaValueType.Array).Items(OverlaySchema)))
         .Required(
             nameof(Models.OverlayProviderPayload.ProductId).ToCamelCase(),
