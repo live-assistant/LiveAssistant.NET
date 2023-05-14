@@ -49,7 +49,7 @@ class OverlayField : RealmObject
         Type = data.Type.ToString();
     }
 
-    private static string GetId(string path, OverlayFieldPayload data) => $"{path}.{data.Key}";
+    private static string GetId(string path, OverlayFieldPayload data) => $"{path}/{data.Key}";
 
     public static OverlayField Create(
         string path,

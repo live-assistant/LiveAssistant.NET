@@ -46,6 +46,7 @@ public sealed partial class SettingsPage
         { "EmbedIO", "https://raw.githubusercontent.com/unosquare/embedio/master/LICENSE" },
         { "FftSharp", "https://licenses.nuget.org/MIT" },
         { "ISO.4217.CurrencyCodes", "https://raw.githubusercontent.com/maisak/iso.resolvers/master/LICENSE" },
+        { "JsonSchema.Net", "https://github.com/gregsdennis/json-everything/blob/master/LICENSE" },
         { "LiveAssistant.Protocols", "https://licenses.nuget.org/MIT" },
         { "Microsoft.Extensions.DependencyInjection", "https://licenses.nuget.org/MIT" },
         { "Microsoft.Graphics.Win2D", "https://raw.githubusercontent.com/microsoft/Win2D/reunion_master/LICENSE.txt" },

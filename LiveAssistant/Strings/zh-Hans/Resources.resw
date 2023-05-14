@@ -370,9 +370,6 @@
   <data name="SessionViewerSummaryNewFollowersCount.Text" xml:space="preserve">
     <value>关注</value>
   </data>
-  <data name="OverlayExceptionProtocolVersion" xml:space="preserve">
-    <value>协议版本不受支持</value>
-  </data>
   <data name="OverlayPackageFileName" xml:space="preserve">
     <value>直播助理覆盖层包</value>
   </data>
@@ -486,5 +483,8 @@
   </data>
   <data name="SocketDataTypeMediaPlayback" xml:space="preserve">
     <value>媒体状态</value>
+  </data>
+  <data name="OverlayExceptionParseProvider" xml:space="preserve">
+    <value>无法添加来源，可能的原因包括无效的配置或者不支持的协议版本。请联系作者或者更新直播助理应用。</value>
   </data>
 </root>

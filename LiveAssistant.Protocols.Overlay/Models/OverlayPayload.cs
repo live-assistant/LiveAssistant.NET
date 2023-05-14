@@ -21,9 +21,14 @@
 // ReSharper disable UnassignedField.Global
 #pragma warning disable CA1051
 
+using Json.Schema.Serialization;
+// ReSharper disable ClassNeverInstantiated.Global
+#pragma warning disable CS8618
+
 namespace LiveAssistant.Protocols.Overlay.Models;
 
-public struct OverlayPayload
+[JsonSchema(typeof(Schemas), nameof(Schemas.OverlaySchema))]
+public class OverlayPayload
 {
     public string Path;
     public string Name;
