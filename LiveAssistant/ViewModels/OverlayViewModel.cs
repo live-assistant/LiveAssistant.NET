@@ -22,6 +22,7 @@ using System.IO.Compression;
 using System.Linq;
 using System.Net.Http;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Web;
 using System.Windows;
@@ -31,6 +32,8 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using CommunityToolkit.Mvvm.Messaging.Messages;
+using Json.Schema;
+using Json.Schema.Serialization;
 using LiveAssistant.Common;
 using LiveAssistant.Common.Messages;
 using LiveAssistant.Database;
@@ -186,18 +189,47 @@ internal class OverlayViewModel : ObservableObject, IDisposable
     });
 
     private readonly HttpClient _httpClient = new();
+
+    private static OverlayProviderPayload ParseOverlayProviderPayload(string source)
+    {
+        var options = new JsonSerializerOptions
+        {
+            IncludeFields = true,
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+            Converters =
+            {
+                new ValidatingJsonConverter
+                {
+                    OutputFormat = OutputFormat.List,
+                },
+                new JsonStringEnumConverter(),
+            },
+        };
+
+        try
+        {
+            var payload = JsonSerializer.Deserialize<OverlayProviderPayload>(source, options) ?? throw new NullReferenceException();
+            return payload;
+        }
+        catch (Exception e)
+        {
+            Debug.WriteLine(e);
+            throw new Exception("OverlayExceptionParseProvider".Localize());
+        }
+    }
+
     private async Task LoadProvider(string url)
     {
         try
         {
             var response = await _httpClient.GetStringAsync(new Uri(url));
-            var data = JsonSerializer.Deserialize<OverlayProviderPayload>(response, Constants.DefaultJsonSerializerOptions);
-            if (data.ProtocolVersion < Protocols.Overlay.Constants.ProtocolVersion)
+            var payload = ParseOverlayProviderPayload(response);
+            if (string.IsNullOrEmpty(payload.BasePath))
             {
-                throw new Exception("OverlayExceptionProtocolVersion".Localize());
+                throw new Exception("OverlayExceptionParseProvider".Localize());
             }
 
-            OverlayProvider.Create(false, data, configUrl: url);
+            OverlayProvider.Create(false, payload, configUrl: url);
         }
         catch (Exception e)
         {
@@ -220,17 +252,17 @@ internal class OverlayViewModel : ObservableObject, IDisposable
             var configString = await File.ReadAllTextAsync(Constants.OverlayPackagesTempConfigFilePath);
 
             // Get provider
-            var provider = JsonSerializer.Deserialize<OverlayProviderPayload>(configString, Constants.DefaultJsonSerializerOptions);
-            provider.BasePath = $"http://localhost:{{port}}/{provider.ProductId}/{provider.BasePath}";
+            var payload = ParseOverlayProviderPayload(configString);
+            payload.BasePath = $"http://localhost:{{port}}/{payload.ProductId}/{payload.BasePath}";
 
             // Move package
-            var packFolderPath = $"{Constants.OverlayPackagesFolderPath}\\{provider.ProductId}\\";
+            var packFolderPath = $"{Constants.OverlayPackagesFolderPath}\\{payload.ProductId}\\";
             if (Directory.Exists(packFolderPath))
             {
                 Directory.Delete(packFolderPath, true);
             }
             Directory.Move(Constants.OverlayPackagesTempStaticFolderPath, packFolderPath);
-            OverlayProvider.Create(true, provider);
+            OverlayProvider.Create(true, payload);
 
             // Clear temp
             Directory.Delete(Constants.OverlayPackagesTempFolderPath, true);
@@ -318,7 +350,7 @@ internal class OverlayViewModel : ObservableObject, IDisposable
             queryValues.Add($"port={Constants.ServerPort}");
 
             var query = string.Join("&", queryValues);
-            var uri = new Uri($"{basePath}{Overlay.Path}?{query}");
+            var uri = new Uri($"{basePath}/{Overlay.Path}?{query}");
 
             return uri;
         }

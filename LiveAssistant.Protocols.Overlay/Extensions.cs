@@ -18,18 +18,14 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#pragma warning disable CA1051
-using Json.Schema.Serialization;
-#pragma warning disable CS8618
+// ReSharper disable UnassignedField.Global
 
-namespace LiveAssistant.Protocols.Overlay.Models;
+namespace LiveAssistant.Protocols.Overlay;
 
-[JsonSchema(typeof(Schemas), nameof(Schemas.OverlayProviderSchema))]
-public class OverlayProviderPayload
+internal static class Extensions
 {
-    public string ProductId;
-    public int ProtocolVersion;
-    public string Name;
-    public string? BasePath;
-    public OverlayPayload[] Overlays;
+    public static string ToCamelCase(this string str)
+    {
+        return char.ToLowerInvariant(str[0]) + str[1..];
+    }
 }

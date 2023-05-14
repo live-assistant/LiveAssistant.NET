@@ -351,9 +351,6 @@
   <data name="SessionViewerSummaryNewFollowersCount.Text" xml:space="preserve">
     <value>Followers</value>
   </data>
-  <data name="OverlayExceptionProtocolVersion" xml:space="preserve">
-    <value>The protocol version is not supported</value>
-  </data>
   <data name="OverlayPackageFileName" xml:space="preserve">
     <value>Live Assistant Overlay Package</value>
   </data>
@@ -467,5 +464,8 @@
   </data>
   <data name="SocketDataTypeMediaPlayback" xml:space="preserve">
     <value>Media playback</value>
+  </data>
+  <data name="OverlayExceptionParseProvider" xml:space="preserve">
+    <value>Unable to add this provider, it could be caused by invalid configuration or unsupported protocol version. Please contact the author or update the Live Assistant app.</value>
   </data>
 </root>

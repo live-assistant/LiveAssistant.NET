@@ -52,7 +52,7 @@ internal class Overlay : RealmObject
         Path = data.Path;
     }
 
-    private static string GetId(string basePath, OverlayPayload data) => $"{basePath}.{data.Path}";
+    private static string GetId(string basePath, OverlayPayload data) => $"{basePath}/{data.Path}";
 
     public static Overlay Create(
         string basePath,
