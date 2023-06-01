@@ -14,7 +14,9 @@
 //    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 using System;
+using System.Collections.Generic;
 using CommunityToolkit.Mvvm.Messaging.Messages;
+using LiveAssistant.Common;
 using Microsoft.UI.Xaml.Data;
 
 namespace LiveAssistant.Extensions.MediaInfo;
@@ -29,12 +31,24 @@ internal class RequireMediaPlaybackPayloadMessage : ValueChangedMessage<bool>
     public RequireMediaPlaybackPayloadMessage() : base(true) { }
 }
 
+internal static class Constants
+{
+    internal static readonly Dictionary<string, string> AllowedMediaApps = new()
+    {
+        { "SpotifyAB.SpotifyMusic", "MediaAppNameSpotify".Localize() },
+        { "AppleInc.AppleMusic", "MediaAppNameAppleMusic".Localize() },
+    };
+}
+
 internal class SourceAppUserModelIdToNameConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, string language)
     {
         var id = (string)value;
-        if (id.Contains("Spotify")) return "Spotify";
+        foreach ((string? key, string? name) in Constants.AllowedMediaApps)
+        {
+            if (id.Contains(key)) return name;
+        }
         return id;
     }
 

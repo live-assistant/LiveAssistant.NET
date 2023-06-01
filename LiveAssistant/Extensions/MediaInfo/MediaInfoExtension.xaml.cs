@@ -128,28 +128,6 @@ public sealed partial class MediaInfoExtension : INotifyPropertyChanged
         }
     }
 
-    private readonly string[] _fullMatchAmuid =
-    {
-        "Chrome",
-        "ChromeBeta",
-        "MSEdge",
-        "MSEdgeDev",
-        "MSEdgeBeta",
-    };
-
-    private readonly string[] _prefixMatchAmuid =
-    {
-        "ChromeCanary.",
-        "MSEdgeCanary.",
-        "Mozilla.",
-        "OperaSoftware.",
-        "Brave.",
-        "Tencent.QQBrowser.",
-        "360se",
-        "360ent",
-        "360ChromeX",
-    };
-
     private void SetupSessions()
     {
         if (_sessionManager is null) return;
@@ -161,8 +139,7 @@ public sealed partial class MediaInfoExtension : INotifyPropertyChanged
             foreach (var session in _sessionManager.GetSessions())
             {
                 var id = session.SourceAppUserModelId;
-                if (_fullMatchAmuid.Any(f => f == id)) continue;
-                if (_prefixMatchAmuid.Any(p => id.StartsWith(p))) continue;
+                if (Constants.AllowedMediaApps.Keys.All(key => !id.StartsWith(key))) return;
                 _sessions.Add(session);
             }
             OnPropertyChanged(nameof(_sessions));

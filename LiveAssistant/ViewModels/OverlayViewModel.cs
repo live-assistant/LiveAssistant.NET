@@ -190,25 +190,25 @@ internal class OverlayViewModel : ObservableObject, IDisposable
 
     private readonly HttpClient _httpClient = new();
 
+    private static readonly JsonSerializerOptions ProviderJsonSerializerOptions = new JsonSerializerOptions
+    {
+        IncludeFields = true,
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+        Converters =
+        {
+            new ValidatingJsonConverter
+            {
+                OutputFormat = OutputFormat.List,
+            },
+            new JsonStringEnumConverter(),
+        },
+    };
+
     private static OverlayProviderPayload ParseOverlayProviderPayload(string source)
     {
-        var options = new JsonSerializerOptions
-        {
-            IncludeFields = true,
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-            Converters =
-            {
-                new ValidatingJsonConverter
-                {
-                    OutputFormat = OutputFormat.List,
-                },
-                new JsonStringEnumConverter(),
-            },
-        };
-
         try
         {
-            var payload = JsonSerializer.Deserialize<OverlayProviderPayload>(source, options) ?? throw new NullReferenceException();
+            var payload = JsonSerializer.Deserialize<OverlayProviderPayload>(source, ProviderJsonSerializerOptions) ?? throw new NullReferenceException();
             return payload;
         }
         catch (Exception e)
