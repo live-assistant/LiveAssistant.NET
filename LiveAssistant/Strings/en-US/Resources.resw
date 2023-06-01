@@ -468,4 +468,10 @@
   <data name="OverlayExceptionParseProvider" xml:space="preserve">
     <value>Unable to add this provider, it could be caused by invalid configuration or unsupported protocol version. Please contact the author or update the Live Assistant app.</value>
   </data>
+  <data name="MediaAppNameSpotify" xml:space="preserve">
+    <value>Spotify</value>
+  </data>
+  <data name="MediaAppNameAppleMusic" xml:space="preserve">
+    <value>Apple Music</value>
+  </data>
 </root>

@@ -3,7 +3,8 @@
     "LiveAssistant (Package)": {
       "commandName": "MsixPackage",
       "remoteDebugEnabled": false,
-      "remoteDebugMachine": "WINDOWS10DEBUG"
+      "remoteDebugMachine": "WINDOWS10DEBUG",
+      "authenticationMode": "Windows"
     },
     "LiveAssistant (Unpackaged)": {
       "commandName": "Project"
