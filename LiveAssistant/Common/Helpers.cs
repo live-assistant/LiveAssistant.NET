@@ -168,10 +168,11 @@ internal static class Helpers
     /// <param name="link"></param>
     public static void OpenLinkInBrowser(string link)
     {
-        Process.Start(new ProcessStartInfo(link)
+        var info = new ProcessStartInfo(link)
         {
             UseShellExecute = true,
-        });
+        };
+        Process.Start(info);
     }
 
     /// <summary>
