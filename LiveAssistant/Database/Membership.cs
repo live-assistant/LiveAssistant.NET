@@ -56,7 +56,7 @@ internal class Membership : RealmObject, IMonetization, ITimeSpan
         Platform = (int)platform;
         Id = Helpers.GetPlatformPrefixedId(
             platform,
-            id ?? ObjectId.GenerateNewId().ToString(),
+            id ?? ObjectId.GenerateNewId().ToString() ?? "",
             "membership");
         Sku = sku;
         Timestamp = DateTimeOffset.Now;

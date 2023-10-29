@@ -50,7 +50,7 @@ internal class Gift : RealmObject, IMonetization
         Platform = (int)platform;
         Id = Helpers.GetPlatformPrefixedId(
             platform,
-            id ?? ObjectId.GenerateNewId().ToString(),
+            id ?? ObjectId.GenerateNewId().ToString() ?? "",
             "gift");
         Timestamp = time;
         Sku = sku;
