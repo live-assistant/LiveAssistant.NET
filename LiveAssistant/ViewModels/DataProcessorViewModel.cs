@@ -34,7 +34,7 @@ internal class DataProcessorViewModel : ObservableObject
         _images.SubscribeForNotifications(OnImageContentNotification);
     }
 
-    private void OnImageContentNotification(IRealmCollection<ImageContent> images, ChangeSet? changes, Exception error)
+    private void OnImageContentNotification(IRealmCollection<ImageContent> images, ChangeSet? changes)
     {
         if (changes is null || !changes.InsertedIndices.Any()) return;
 

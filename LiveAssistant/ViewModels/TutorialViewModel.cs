@@ -147,7 +147,7 @@ internal class TutorialViewModel : ObservableObject
                     IsNextEnabled = false,
                     PreAction = delegate
                     {
-                        _hosts.SubscribeForNotifications((hosts, changes, error) =>
+                        _hosts.SubscribeForNotifications((_, changes) =>
                         {
                             if (changes?.InsertedIndices.Any() ?? false) NextStepCommand.Execute(null);
                         });

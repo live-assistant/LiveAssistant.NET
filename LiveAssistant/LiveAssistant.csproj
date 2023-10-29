@@ -108,7 +108,7 @@
     <PackageReference Include="PInvoke.SHCore" Version="0.7.124" />
     <PackageReference Include="PInvoke.User32" Version="0.7.124" />
     <PackageReference Include="RawInput.Sharp" Version="0.1.1" />
-    <PackageReference Include="Realm" Version="10.21.1" />
+    <PackageReference Include="Realm" Version="11.5.0" />
     <PackageReference Include="Sentry" Version="3.40.1" />
     <PackageReference Include="System.IO.Pipelines" Version="7.0.0" />
     <PackageReference Include="System.Speech" Version="7.0.0" />
