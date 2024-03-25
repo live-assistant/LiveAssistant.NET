@@ -16,10 +16,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "解决方案项", "解决�
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveAssistant", "LiveAssistant\LiveAssistant.csproj", "{E8375D21-197D-4708-9F59-AEF9D7A1479D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{59E3F154-D682-4CE8-B8AB-ADDE50932CF3} = {59E3F154-D682-4CE8-B8AB-ADDE50932CF3}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveAssistant.Protocols.Data", "LiveAssistant.Protocols.Data\LiveAssistant.Protocols.Data.csproj", "{E19728E9-7853-4CE7-88DB-BB6E09CEF375}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveAssistant.Protocols.Overlay", "LiveAssistant.Protocols.Overlay\LiveAssistant.Protocols.Overlay.csproj", "{579A0BE4-F5D1-4913-A35F-2E9EC9A0B252}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveAssistant.ExternalPlugin.BilibiliDanmakuForward", "LiveAssistant.ExternalPlugin.BilibiliDanmakuForward\LiveAssistant.ExternalPlugin.BilibiliDanmakuForward.csproj", "{59E3F154-D682-4CE8-B8AB-ADDE50932CF3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,6 +78,18 @@ Global
 		{579A0BE4-F5D1-4913-A35F-2E9EC9A0B252}.Release|arm64.Build.0 = Release|Any CPU
 		{579A0BE4-F5D1-4913-A35F-2E9EC9A0B252}.Release|x64.ActiveCfg = Release|Any CPU
 		{579A0BE4-F5D1-4913-A35F-2E9EC9A0B252}.Release|x64.Build.0 = Release|Any CPU
+		{59E3F154-D682-4CE8-B8AB-ADDE50932CF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59E3F154-D682-4CE8-B8AB-ADDE50932CF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59E3F154-D682-4CE8-B8AB-ADDE50932CF3}.Debug|arm64.ActiveCfg = Debug|Any CPU
+		{59E3F154-D682-4CE8-B8AB-ADDE50932CF3}.Debug|arm64.Build.0 = Debug|Any CPU
+		{59E3F154-D682-4CE8-B8AB-ADDE50932CF3}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{59E3F154-D682-4CE8-B8AB-ADDE50932CF3}.Debug|x64.Build.0 = Debug|Any CPU
+		{59E3F154-D682-4CE8-B8AB-ADDE50932CF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59E3F154-D682-4CE8-B8AB-ADDE50932CF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59E3F154-D682-4CE8-B8AB-ADDE50932CF3}.Release|arm64.ActiveCfg = Release|Any CPU
+		{59E3F154-D682-4CE8-B8AB-ADDE50932CF3}.Release|arm64.Build.0 = Release|Any CPU
+		{59E3F154-D682-4CE8-B8AB-ADDE50932CF3}.Release|x64.ActiveCfg = Release|Any CPU
+		{59E3F154-D682-4CE8-B8AB-ADDE50932CF3}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
