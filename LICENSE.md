@@ -1,12 +1,12 @@
-## Windows app
+## Windows app and Bilibili Danmaku Forward plugin
 
-The Live Assistant official Windows app is licensed under [GPLv3](/LiveAssistant/LICENSE), the third party software notice is located [here](/LiveAssistant/NOTICE.txt). Which applies to all code files in the `LiveAssistant` folder.
+These apps are licensed under [GPLv3](/LiveAssistant/LICENSE), the third party software notice is located [here](/LiveAssistant/NOTICE.txt). Which applies to all code files in the `LiveAssistant` and `LiveAssistant.ExternalPlugin.BilibiliDanmakuForward` folder.
 
 `Bilibili`, `Twitch`, `YouTube`, `Amazon` and `HypeRate` are trademarks of their respective owners.
 
 ## LiveAssistant.Protocols.Data and LiveAssistant.Protocols.Overlay package
 
-This package is licensed under [MIT](/LiveAssistant.Protocols/LICENSE). Which applies to all code files in the `LiveAssistant.Protocols.Data` and `LiveAssistant.Protocols.Overlay` folder.
+These packages are licensed under [MIT](/LiveAssistant.Protocols/LICENSE). Which applies to all code files in the `LiveAssistant.Protocols.Data` and `LiveAssistant.Protocols.Overlay` folder.
 
 ## Image content
 
